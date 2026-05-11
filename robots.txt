@@ -1,0 +1,19 @@
+# robots.txt — Trollana Edit
+# Permitir a todos los buscadores indexar todo
+
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+# Bloqueos específicos a bots de scraping basura
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap
+Sitemap: https://trollanaa.com/sitemap.xml
