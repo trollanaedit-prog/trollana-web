@@ -70550,7 +70550,7 @@ s===$&&A.b()
 s.m()
 this.UN()},
 HP(){var s,r,q,p,o
-try{q=A.anB("https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.2/Trollana.Edit.apk")
+try{q=A.anB("https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.3/Trollana.Edit.1.0.3.apk")
 q.setAttribute("download","Trollana.Edit.apk")
 p=q.style
 p.display="none"
@@ -70560,7 +70560,7 @@ J.anq(s)
 J.anu(s)}catch(o){r=A.aE(o)
 A.U_().$1("Error al iniciar descarga APK: "+A.o(r))}},
 a01(){var s,r,q,p,o
-try{q=A.anB("https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.00/Trollana.Edit.exe")
+try{q=A.anB("https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.0/Trollana.Edit.2.0.0.exe")
 q.setAttribute("download","Trollana.Edit.exe")
 p=q.style
 p.display="none"
