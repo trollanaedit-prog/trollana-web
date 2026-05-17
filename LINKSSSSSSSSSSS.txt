@@ -1,7 +1,7 @@
 PARA WINDOWS
 
 
-( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.0/Trollana.Edit.2.0.0.exe
+( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.1/Trollana.Edit.V2.0.1.exe
 
 
 
