@@ -1,7 +1,7 @@
 PARA WINDOWS
 
 
-( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.2/downloaderV.2.0.2.exe
+( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.3/DownloaderV.2.0.3.exe
 
 
 
@@ -9,4 +9,4 @@ PARA WINDOWS
 PARA ANDROID
 
 
-( https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.4/app-release.apk
+( https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.6/DownloaderV.1.0.6.apk
