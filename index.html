@@ -5,289 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>downloaderV — Descarga y edición al más alto nivel</title>
 <meta name="description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en calidad 8K. Edita, añade subtítulos automáticos y clona voces con IA desde el Creator Studio." />
-<link rel="icon" href="favicon.png" />
+<link rel="canonical" href="https://downloaderv.com/" />
+<meta name="theme-color" content="#0B1220" />
 
-<!-- Tipografías -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="downloaderV" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:url" content="https://downloaderv.com/" />
+<meta property="og:title" content="downloaderV — Descarga y edición al más alto nivel" />
+<meta property="og:description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en 8K. Edita y clona voces con IA." />
+<meta property="og:image" content="https://downloaderv.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="downloaderV — Descarga y edición al más alto nivel" />
+<meta name="twitter:description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en 8K. Edita y clona voces con IA." />
+<meta name="twitter:image" content="https://downloaderv.com/og-image.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  /* ===================== TOKENS ===================== */
-  :root{
-    --bg:#FBFBFC;
-    --ink:#0B1220;
-    --ink-soft:#475569;
-    --line:#EAECEF;
-    --card:#FFFFFF;
-
-    --hero-1:#0B1220;
-    --hero-2:#111827;
-    --hero-3:#09090B;
-
-    --blue:#1A73E8;
-    --purple:#8B5CF6;
-    --pink:#E1306C;
-    --green:#10B981;
-    --amber:#F59E0B;
-    --cyan:#06B6D4;
-
-    --r-lg:32px;
-    --r-md:20px;
-    --r-sm:14px;
-    --maxw:1180px;
-
-    --font-display:'Space Grotesk', system-ui, sans-serif;
-    --font-body:'Inter', system-ui, -apple-system, sans-serif;
-  }
-
-  *{box-sizing:border-box; margin:0; padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--font-body);
-    background:var(--bg);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-    line-height:1.6;
-  }
-  a{color:inherit; text-decoration:none}
-  img{display:block; max-width:100%}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
-
-  /* ===================== NAV ===================== */
-  .nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,.78);
-    backdrop-filter:saturate(180%) blur(14px);
-    -webkit-backdrop-filter:saturate(180%) blur(14px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:66px}
-  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:17px; letter-spacing:.5px}
-  .brand img{width:30px; height:30px; border-radius:8px}
-  .brand-dot{width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,var(--blue),#0D47A1); display:grid; place-items:center; color:#fff}
-  .nav-links{display:flex; align-items:center; gap:28px}
-  .nav-links a{font-size:13px; font-weight:600; letter-spacing:1px; color:var(--ink-soft); transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .nav-cta{
-    background:var(--ink); color:#fff; padding:9px 18px; border-radius:999px;
-    font-size:13px; font-weight:700; letter-spacing:.3px; transition:transform .2s, box-shadow .2s;
-  }
-  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(11,18,32,.25)}
-  @media(max-width:720px){ .nav-links a:not(.nav-cta){display:none} }
-
-  /* ===================== HERO ===================== */
-  .hero-pad{padding:26px 20px 0}
-  .hero{
-    position:relative; max-width:var(--maxw); margin:0 auto;
-    border-radius:var(--r-lg); overflow:hidden;
-    background:linear-gradient(160deg,var(--hero-1),var(--hero-2) 55%,var(--hero-3));
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 40px 90px -30px rgba(26,115,232,.35), 0 30px 60px -40px rgba(0,0,0,.6);
-    isolation:isolate;
-  }
-  /* Aurora animada (ligera, sólo transform/opacity) */
-  .aurora{position:absolute; inset:-30% -10%; z-index:-1; filter:blur(60px); opacity:.55}
-  .aurora span{position:absolute; width:46%; height:46%; border-radius:50%; mix-blend-mode:screen; animation:drift 18s ease-in-out infinite}
-  .a1{background:#1A73E8; top:5%; left:8%}
-  .a2{background:#8B5CF6; top:30%; right:6%; animation-delay:-6s}
-  .a3{background:#E1306C; bottom:2%; left:34%; animation-delay:-12s}
-  @keyframes drift{
-    0%,100%{transform:translate(0,0) scale(1)}
-    33%{transform:translate(8%,6%) scale(1.15)}
-    66%{transform:translate(-6%,-4%) scale(.92)}
-  }
-  .hero-grid{position:absolute; inset:0; z-index:-1; opacity:.4;
-    background:radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(0,0,0,.55) 100%);}
-
-  .hero-inner{position:relative; padding:clamp(40px,7vw,96px) clamp(20px,5vw,64px); text-align:center; min-height:min(86vh,820px); display:flex; flex-direction:column; justify-content:center; align-items:center}
-
-  .badge-row{position:absolute; top:24px; left:24px; right:24px; display:flex; justify-content:space-between; pointer-events:none}
-  .glass{
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.16);
-    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-    border-radius:999px; padding:8px 15px; color:#fff;
-    font-size:11px; font-weight:700; letter-spacing:2px;
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .live-dot{width:7px; height:7px; border-radius:50%; background:#EF4444; box-shadow:0 0 8px 1px #EF4444; animation:pulse 1.8s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-  .hero-pill{margin-bottom:30px}
-  .hero-pill img{width:26px; height:26px; border-radius:7px}
-
-  .hero h1{
-    font-family:var(--font-display); font-weight:700;
-    font-size:clamp(38px,7.5vw,86px); line-height:1.02; letter-spacing:-.03em;
-    background:linear-gradient(180deg,#fff 0%,#E5E7EB 55%,#9CA3AF 100%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    margin-bottom:22px;
-  }
-  .hero p.sub{
-    max-width:720px; color:#CBD5E1; font-size:clamp(15px,1.7vw,20px); font-weight:400;
-    margin:0 auto 36px;
-  }
-
-  .chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:46px}
-  .chip{
-    display:inline-flex; align-items:center; gap:9px;
-    background:rgba(15,23,42,.55);
-    border:1.5px solid rgba(255,255,255,.14);
-    border-radius:999px; padding:10px 17px;
-    color:#fff; font-size:13px; font-weight:700; letter-spacing:.2px;
-  }
-  .chip svg{width:17px; height:17px}
-  .chip.hl{border-color:rgba(245,158,11,.6); box-shadow:0 8px 30px -8px rgba(245,158,11,.4)}
-  .chip .c-blue{color:#60A5FA}.chip .c-purple{color:#A78BFA}.chip .c-pink{color:#F472B6}
-  .chip .c-green{color:#34D399}.chip .c-amber{color:#FBBF24}
-
-  /* Botón principal */
-  .dl-btn{
-    display:inline-flex; align-items:center; gap:14px;
-    background:#fff; color:var(--ink);
-    padding:16px 30px; border-radius:999px;
-    font-weight:800; font-size:16px; letter-spacing:.2px;
-    border:none; cursor:pointer;
-    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
-    box-shadow:0 20px 50px -16px rgba(255,255,255,.5);
-  }
-  .dl-btn:hover{transform:translateY(-3px); box-shadow:0 28px 60px -18px rgba(255,255,255,.6)}
-  .dl-btn .ic{width:30px; height:30px; display:grid; place-items:center}
-  .dl-btn .ic svg{width:26px; height:26px}
-  .dl-btn small{display:block; font-size:11px; font-weight:600; color:var(--ink-soft); letter-spacing:.4px; line-height:1}
-  .dl-btn b{display:block; font-size:17px; line-height:1.15}
-
-  /* ===================== PLATAFORMAS ===================== */
-  .plats{padding:54px 0 10px; text-align:center}
-  .plats .eyebrow{font-size:12px; font-weight:700; letter-spacing:2.5px; color:var(--ink-soft); text-transform:uppercase}
-  .plats-row{display:flex; flex-wrap:wrap; justify-content:center; gap:30px 48px; margin-top:26px; align-items:center}
-  .plat{display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:18px; color:#1f2937; opacity:.8; transition:opacity .2s}
-  .plat:hover{opacity:1}
-  .plat svg{width:26px; height:26px}
-
-  /* ===================== SECCIONES ===================== */
-  .section{padding:clamp(64px,9vw,110px) 0}
-  .sec-head{max-width:680px; margin:0 auto 56px; text-align:center}
-  .sec-head .eyebrow{font-size:12px; font-weight:700; letter-spacing:2.5px; color:var(--blue); text-transform:uppercase; margin-bottom:14px; display:block}
-  .sec-head h2{font-family:var(--font-display); font-weight:700; font-size:clamp(30px,4.5vw,52px); letter-spacing:-.02em; line-height:1.08}
-  .sec-head p{color:var(--ink-soft); font-size:clamp(15px,1.6vw,18px); margin-top:16px}
-
-  .features{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-  @media(max-width:920px){ .features{grid-template-columns:repeat(2,1fr)} }
-  @media(max-width:560px){ .features{grid-template-columns:1fr} }
-
-  .feat{
-    background:var(--card); border:1px solid var(--line); border-radius:24px;
-    padding:30px 28px; position:relative; overflow:hidden;
-    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s;
-  }
-  .feat:hover{transform:translateY(-6px); box-shadow:0 30px 60px -28px rgba(15,23,42,.22); border-color:transparent}
-  .feat .glow{position:absolute; width:220px; height:220px; right:-70px; top:-70px; border-radius:50%; opacity:0; transition:opacity .35s; filter:blur(10px)}
-  .feat:hover .glow{opacity:.16}
-  .feat .ico{width:54px; height:54px; border-radius:16px; display:grid; place-items:center; margin-bottom:20px}
-  .feat .ico svg{width:27px; height:27px; color:#fff}
-  .feat h3{font-family:var(--font-display); font-weight:600; font-size:20px; letter-spacing:-.01em; margin-bottom:10px}
-  .feat p{color:var(--ink-soft); font-size:14.5px}
-  .tag{position:absolute; top:22px; right:22px; font-size:10px; font-weight:800; letter-spacing:1px; padding:5px 10px; border-radius:999px; text-transform:uppercase}
-
-  .bg-blue{background:linear-gradient(135deg,var(--blue),#0D47A1)}
-  .bg-purple{background:linear-gradient(135deg,var(--purple),#6D28D9)}
-  .bg-pink{background:linear-gradient(135deg,var(--pink),#9D174D)}
-  .bg-green{background:linear-gradient(135deg,var(--green),#047857)}
-  .bg-amber{background:linear-gradient(135deg,var(--amber),#B45309)}
-  .bg-cyan{background:linear-gradient(135deg,var(--cyan),#0E7490)}
-  .gl-blue{background:var(--blue)}.gl-purple{background:var(--purple)}.gl-pink{background:var(--pink)}
-  .gl-green{background:var(--green)}.gl-amber{background:var(--amber)}.gl-cyan{background:var(--cyan)}
-
-  /* Banda Android */
-  .android{
-    background:linear-gradient(135deg,#062E25,#10B981 140%);
-    border-radius:var(--r-lg); padding:clamp(40px,6vw,72px); color:#fff;
-    display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center;
-    position:relative; overflow:hidden;
-  }
-  @media(max-width:780px){ .android{grid-template-columns:1fr; text-align:center} }
-  .android .eyebrow{font-size:12px; font-weight:800; letter-spacing:2.5px; color:#A7F3D0; text-transform:uppercase}
-  .android h2{font-family:var(--font-display); font-weight:700; font-size:clamp(28px,4vw,46px); letter-spacing:-.02em; line-height:1.1; margin:14px 0}
-  .android p{color:rgba(255,255,255,.85); font-size:16px; max-width:520px}
-  .android .a-btn{margin-top:28px; display:inline-flex; align-items:center; gap:12px; background:#fff; color:#065F46; padding:15px 28px; border-radius:999px; font-weight:800; cursor:pointer; transition:transform .2s}
-  .android .a-btn:hover{transform:translateY(-2px)}
-  .android .a-visual{display:grid; place-items:center}
-  .android .phone{width:200px; height:200px; border-radius:48px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); display:grid; place-items:center; backdrop-filter:blur(8px)}
-  .android .phone svg{width:90px; height:90px; color:#fff}
-
-  /* Mini stats */
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:60px}
-  @media(max-width:680px){ .stats{grid-template-columns:1fr} }
-  .stat{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:28px; text-align:center}
-  .stat .n{font-family:var(--font-display); font-weight:700; font-size:36px; letter-spacing:-.02em; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .stat .l{color:var(--ink-soft); font-size:14px; font-weight:600; margin-top:6px}
-
-  /* CTA final */
-  .cta{
-    text-align:center; background:linear-gradient(160deg,var(--hero-1),var(--hero-3));
-    border-radius:var(--r-lg); padding:clamp(56px,8vw,96px) 24px; color:#fff; position:relative; overflow:hidden;
-  }
-  .cta h2{font-family:var(--font-display); font-weight:700; font-size:clamp(30px,5vw,56px); letter-spacing:-.02em; margin-bottom:18px}
-  .cta p{color:#CBD5E1; max-width:560px; margin:0 auto 36px; font-size:17px}
-
-  /* Footer */
-  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:90px}
-  .foot-inner{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center}
-  footer .brand{font-size:15px}
-  footer small{color:var(--ink-soft); font-size:13px}
-  .foot-links{display:flex; gap:22px}
-  .foot-links a{font-size:13px; color:var(--ink-soft); font-weight:600}
-  .foot-links a:hover{color:var(--ink)}
-
-  /* Reveal on scroll */
-  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
-  .reveal.in{opacity:1; transform:none}
-
-  @media (prefers-reduced-motion: reduce){
-    .aurora span{animation:none}
-    .live-dot{animation:none}
-    .reveal{transition:none; opacity:1; transform:none}
-    html{scroll-behavior:auto}
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ===================== NAV ===================== -->
-<header class="nav">
+<!-- NAV -->
+<header class="nav" id="top">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <img src="icono.png" alt="" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;><svg width=16 height=16 viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot;><path d=&quot;M4 4h16v16H4z&quot; opacity=0/></svg>V</span>'">
-      downloaderV
-    </a>
+    <a class="brand" href="#top"><img src="icono.png" alt="" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;>V</span>'"> downloaderV</a>
     <nav class="nav-links">
       <a href="#funciones">FUNCIONES</a>
       <a href="#soporte">SOPORTE</a>
-      <a class="nav-cta" href="#descargar" id="navDl">Descargar</a>
+      <a class="nav-cta" href="#descargar">Descargar</a>
     </nav>
   </div>
 </header>
 
-<!-- ===================== HERO ===================== -->
-<div class="hero-pad" id="top">
+<!-- HERO -->
+<div class="hero-pad">
   <section class="hero">
     <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
     <div class="hero-grid"></div>
-
     <div class="badge-row">
       <span class="glass"><span class="live-dot"></span>PREVIEW</span>
       <span class="glass">8K · 60FPS</span>
     </div>
-
     <div class="hero-inner">
       <span class="glass hero-pill"><img src="icono.png" alt="" onerror="this.style.display='none'">downloaderV</span>
-
       <h1>Descarga y edición<br>al más alto nivel.</h1>
       <p class="sub">Mucho más que un descargador. Extrae vídeos de YouTube, Facebook, TikTok e Instagram en calidad nativa 8K. Edita, añade subtítulos automáticos y genera clonaciones de voz con Inteligencia Artificial desde nuestro Creator Studio integrado.</p>
-
       <div class="chips">
         <span class="chip"><svg class="c-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 12h4M6 15h8"/></svg>Subtítulos IA</span>
         <span class="chip"><svg class="c-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>Clonación de Voz</span>
@@ -295,125 +66,348 @@
         <span class="chip"><svg class="c-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3z"/></svg>Creator Studio</span>
         <span class="chip hl"><svg class="c-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M8 12l4 4 4-4M4 20h16"/></svg>Descarga en todas las plataformas hasta 8K</span>
       </div>
-
-      <button class="dl-btn" id="heroDl">
-        <span class="ic" id="heroDlIcon"></span>
-        <span><small>Descargar para</small><b id="heroDlLabel">Windows</b></span>
-      </button>
+      <button class="dl-btn" id="heroDl"><span class="ic" id="heroDlIcon"></span><span><small>Descargar para</small><b id="heroDlLabel">Windows</b></span></button>
     </div>
   </section>
 </div>
 
-<!-- ===================== PLATAFORMAS ===================== -->
-<section class="plats wrap">
-  <span class="eyebrow">Compatible con tus plataformas favoritas</span>
-  <div class="plats-row">
-    <span class="plat"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
-    <span class="plat"><svg viewBox="0 0 24 24" fill="#000"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
-    <span class="plat"><svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>Instagram</span>
-    <span class="plat"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
-  </div>
-</section>
-
-<!-- ===================== FUNCIONES ===================== -->
+<!-- FUNCIONALIDADES CORE -->
 <section class="section wrap" id="funciones">
   <div class="sec-head reveal">
-    <span class="eyebrow">Funciones</span>
-    <h2>Todo lo que necesitas, en una sola app.</h2>
-    <p>Descarga, edita y publica sin saltar entre programas. Potenciado con inteligencia artificial de última generación.</p>
+    <span class="eyebrow">Funcionalidades core</span>
+    <h2>Potencia real. Resultados reales.</h2>
+    <p>Descarga, transcribe y edita sin saltar entre programas. Todo potenciado con inteligencia artificial.</p>
   </div>
-
   <div class="features">
     <article class="feat reveal">
       <div class="glow gl-blue"></div>
-      <div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 12h4M6 15h8"/></svg></div>
-      <h3>Subtítulos automáticos con IA</h3>
-      <p>Genera subtítulos precisos en segundos y en cualquier idioma. Edítalos y ajústalos con un clic.</p>
+      <div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 12h4M6 15h8M6 9h12"/></svg></div>
+      <h3>Transcripciones automáticas</h3>
+      <p>Analiza cualquier vídeo al instante y obtén la transcripción completa, etiquetas virales y descripción lista para publicar.</p>
     </article>
-
-    <article class="feat reveal">
-      <div class="glow gl-purple"></div>
-      <div class="ico bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></div>
-      <h3>Clonación de voz neural</h3>
-      <p>Clona cualquier voz con IA y dale vida a tus vídeos con narraciones realistas y naturales.</p>
+    <article class="feat reveal d1">
+      <div class="glow gl-amber"></div>
+      <span class="tag bg-amber">8K · 60 FPS</span>
+      <div class="ico bg-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M8 12l4 4 4-4M4 20h16"/></svg></div>
+      <h3>Hasta 8K y 60 FPS</h3>
+      <p>Descarga en todas las calidades disponibles. Fusiona vídeo y audio por separado en máxima resolución sin pérdidas.</p>
     </article>
-
-    <article class="feat reveal">
-      <div class="glow gl-pink"></div>
-      <div class="ico bg-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 6L21 9l-5 4 2 7-6-4-6 4 2-7-5-4 6.5 0z"/></svg></div>
-      <h3>Filtros PRO</h3>
-      <p>Aplica filtros y efectos de nivel profesional al instante. Color, luz y estilo en un solo toque.</p>
-    </article>
-
-    <article class="feat reveal">
+    <article class="feat reveal d2">
       <div class="glow gl-green"></div>
       <div class="ico bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></div>
       <h3>Creator Studio integrado</h3>
-      <p>Corta, edita y exporta sin salir de la app. Tu flujo de trabajo completo en un mismo sitio.</p>
+      <p>Edita tus vídeos antes de descargarlos. Añade subtítulos, recorta escenas, aplica efectos y exporta hasta en 8K.</p>
     </article>
-
-    <article class="feat reveal">
-      <div class="glow gl-amber"></div>
-      <span class="tag bg-amber" style="color:#fff">8K</span>
-      <div class="ico bg-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M8 12l4 4 4-4M4 20h16"/></svg></div>
-      <h3>Descarga hasta 8K</h3>
-      <p>YouTube, TikTok, Instagram y Facebook en su máxima calidad nativa. Vídeo y audio, como quieras.</p>
-    </article>
-
-    <article class="feat reveal">
-      <div class="glow gl-cyan"></div>
-      <span class="tag bg-cyan" style="color:#fff">Android</span>
-      <div class="ico bg-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-      <h3>Flash Download</h3>
-      <p>Descargas ultrarrápidas optimizadas para Android. Guarda tus vídeos en un abrir y cerrar de ojos.</p>
-    </article>
-  </div>
-
-  <div class="stats">
-    <div class="stat reveal"><div class="n">8K</div><div class="l">Calidad máxima de descarga</div></div>
-    <div class="stat reveal"><div class="n">+4</div><div class="l">Plataformas compatibles</div></div>
-    <div class="stat reveal"><div class="n">24/7</div><div class="l">Soporte siempre disponible</div></div>
   </div>
 </section>
 
-<!-- ===================== ANDROID ===================== -->
-<section class="section wrap">
-  <div class="android reveal">
-    <div>
-      <span class="eyebrow">Exclusivo Android</span>
-      <h2>Flash Download. Descargas a la velocidad de la luz.</h2>
-      <p>Diseñado específicamente para móvil: descarga vídeos completos, Shorts o canales enteros directamente en tu teléfono, sin esperas y sin complicaciones.</p>
-      <button class="a-btn" id="androidDl">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M5 16V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" opacity=".0"/><path d="M7.2 7.8 8 6.4M16.8 7.8 16 6.4M3 18h18M6 18V11a6 6 0 0 1 12 0v7" stroke="currentColor" stroke-width="0"/><path d="M12 2 9 7h6l-3-5zM6 8h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/></svg>
-        Descargar para Android
-      </button>
+<!-- DESCARGAS · MOTOR YT-DLP -->
+<section class="section sec-dark">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow c-blue">Motor · YT-DLP</span>
+        <h2>Descarga desde<br>cualquier red.</h2>
+        <p class="lead">Un motor profesional que identifica los servidores, extrae las pistas en su fuente original y reconstruye el archivo sin recodificar. Calidad nativa, siempre.</p>
+        <div class="pchips">
+          <span class="pchip"><span class="c-pink">●</span> Instagram</span>
+          <span class="pchip"><span class="c-blue">●</span> Twitter / X</span>
+          <span class="pchip"><span class="c-pink">●</span> Pinterest</span>
+          <span class="pchip"><span class="c-blue">●</span> Dailymotion</span>
+          <span class="pchip"><span class="c-amber">●</span> SoundCloud</span>
+          <span class="pchip more">+1000 plataformas</span>
+        </div>
+      </div>
+      <div class="visual reveal d1">
+        <div class="mock">
+          <div class="mock-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="mock-label">downloaderV · Analizar</span></div>
+          <div class="mock-body">
+            <div class="dlbar" id="dlbar1">
+              <div class="row"><span>Descargando · 8K Ultra HD</span><span class="pct">78%</span></div>
+              <div class="bar"><i></i></div>
+              <div class="quality-tags">
+                <span class="qtag max">MÁXIMA</span>
+                <span class="qtag">5 formatos</span>
+                <span class="qtag">Audio · MP3</span>
+                <span class="qtag">8K</span>
+                <span class="qtag">60 FPS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="a-visual">
-      <div class="phone">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9 7h6l-3-5zM6 8h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/></svg>
+
+    <div class="sec-head reveal" style="margin-top:90px">
+      <span class="eyebrow c-blue">Cómo funciona el motor</span>
+      <h2>Tres pasos invisibles.<br>Un resultado perfecto.</h2>
+    </div>
+    <div class="steps" style="max-width:760px;margin:0 auto">
+      <div class="step reveal"><div class="num bg-blue">1</div><div><h4>Extracción</h4><p>Identifica los servidores que sirven el vídeo y obtiene los manifiestos de calidad disponibles, formato por formato.</p></div></div>
+      <div class="step reveal d1"><div class="num bg-purple">2</div><div><h4>Decodificación</h4><p>Descarga las pistas de vídeo y audio por separado, manteniendo siempre la fuente original en máxima calidad.</p></div></div>
+      <div class="step reveal d2"><div class="num bg-green">3</div><div><h4>Reconstrucción</h4><p>Fusiona vídeo y audio en un único archivo sin recodificar, conservando el 100% de la calidad original.</p></div></div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:90px;margin-bottom:32px">
+      <span class="eyebrow c-blue">Disponibilidad multiplataforma</span>
+      <h2>En tu móvil, en tu PC,<br>pronto en todos lados.</h2>
+    </div>
+    <div class="os-grid">
+      <div class="os reveal">
+        <div class="osic"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M12 2 9 7h6l-3-5zM6 8h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/></svg></div>
+        <span class="badge badge-ok">Disponible</span><h4>Android</h4><small>APK directo · sin Play Store</small>
+      </div>
+      <div class="os reveal d1">
+        <div class="osic"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg></div>
+        <span class="badge badge-ok">Disponible</span><h4>Windows</h4><small>Instalador portable .exe</small>
+      </div>
+      <div class="os reveal d2">
+        <div class="osic"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M16 3a4 4 0 0 1-1 2.8M12 7c-1.5 0-3 1-3 3 0 3 2 8 3 8s1.5-1 3-1 2 1 3 1 3-5 3-8c0-2-1.5-3-3-3-1 0-2 .6-3 .6S13 7 12 7z"/></svg></div>
+        <span class="badge badge-soon">Próximamente</span><h4>macOS</h4><small>En desarrollo activo</small>
+      </div>
+      <div class="os reveal d3">
+        <div class="osic"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2" stroke="#0F172A"/></svg></div>
+        <span class="badge badge-soon">Próximamente</span><h4>iOS</h4><small>En proceso de revisión</small>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="n">+1000</div><div class="l">Plataformas soportadas</div></div>
+      <div class="stat reveal d1"><div class="n">8K</div><div class="l">Calidad máxima</div></div>
+      <div class="stat reveal d2"><div class="n">60</div><div class="l">Frames por segundo</div></div>
+      <div class="stat reveal d3"><div class="n">0</div><div class="l">Marcas de agua</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATOR STUDIO -->
+<section class="section wrap">
+  <div class="split rev">
+    <div class="reveal">
+      <span class="eyebrow c-pink">Creator Studio</span>
+      <h2>Edita antes<br>de descargar.</h2>
+      <p class="lead">Activa Creator Studio antes de la descarga y abre directamente un editor profesional dentro de la app. Edita, traduce, recorta y exporta hasta en 8K sin salir de un solo flujo.</p>
+    </div>
+    <div class="visual reveal d1">
+      <div class="editor">
+        <div class="scr">
+          <div class="scrtag">PREVIEW · Editando</div>
+          <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="scrtime">00:42 / 02:18</div>
+        </div>
+        <div class="timeline">
+          <div class="track"><span class="tl">Vídeo</span><div class="clips"><span class="clip bg-blue"></span><span class="clip bg-blue" style="flex:.5"></span><span class="clip bg-blue" style="flex:1.4"></span></div></div>
+          <div class="track"><span class="tl">Audio</span><div class="clips"><span class="clip bg-green" style="flex:2.2"></span><span class="clip bg-green"></span></div></div>
+          <div class="track"><span class="tl">Subs</span><div class="clips"><span class="clip bg-purple" style="flex:.6"></span><span class="clip bg-purple"></span><span class="clip bg-purple" style="flex:.8"></span><span class="clip bg-purple" style="flex:.5"></span></div></div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ===================== CTA ===================== -->
-<section class="section wrap" id="descargar">
-  <div class="cta reveal">
-    <h2>Empieza a descargar gratis.</h2>
-    <p>Sin límites absurdos, sin marcas de agua. Descarga downloaderV y lleva tus vídeos al máximo nivel.</p>
-    <button class="dl-btn" id="ctaDl">
-      <span class="ic" id="ctaDlIcon"></span>
-      <span><small>Descargar para</small><b id="ctaDlLabel">Windows</b></span>
-    </button>
+  <div class="sec-head reveal" style="margin-top:90px">
+    <span class="eyebrow" style="color:var(--pink)">Cinco pasos · un flujo perfecto</span>
+    <h2>Del enlace al vídeo final<br>sin cambiar de app.</h2>
+  </div>
+  <div class="steps" style="max-width:780px;margin:0 auto">
+    <div class="step reveal"><div class="num bg-blue">1</div><div><h4>Pega el link</h4><p>Pega cualquier enlace de YouTube, TikTok, Instagram, Facebook o cualquier plataforma soportada.</p></div></div>
+    <div class="step reveal d1"><div class="num bg-pink">2</div><div><h4>Activa Creator Studio</h4><p>Antes de descargar, activa Creator Studio desde la pantalla de calidad. Este paso es clave: tiene que activarse ANTES.</p></div></div>
+    <div class="step reveal d2"><div class="num bg-purple">3</div><div><h4>Elige la calidad</h4><p>Selecciona la calidad de partida: 1080p, 4K o 8K. El editor trabajará sobre la resolución que escojas.</p></div></div>
+    <div class="step reveal d3"><div class="num bg-amber">4</div><div><h4>Descarga temporal + editor</h4><p>La app prepara una descarga temporal y abre el editor profesional en el mismo flujo, sin pasos extra.</p></div></div>
+    <div class="step reveal d3"><div class="num bg-green">5</div><div><h4>Exporta hasta en 8K</h4><p>Cuando termines, exporta el resultado final hasta en 8K a 60 FPS sin pérdida de calidad.</p></div></div>
+  </div>
+
+  <div class="warn reveal" style="max-width:780px;margin-left:auto;margin-right:auto">
+    <div class="wi"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2 1 21h22zM12 9v5M12 17h.01" stroke="#fff" stroke-width="2" fill="none"/></svg></div>
+    <div><b>Importante: Creator Studio debe activarse ANTES de descargar el vídeo.</b><p>Si descargas el vídeo primero y luego intentas editarlo, el editor no se abrirá automáticamente. Actívalo en la pantalla de calidad para que la app prepare la descarga temporal y abra el editor en el mismo flujo.</p></div>
+  </div>
+
+  <div class="features" style="margin-top:56px">
+    <article class="feat reveal"><div class="glow gl-blue"></div><div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 12h4M6 15h8"/></svg></div><h3>Subtítulos automáticos</h3><p>Genera subtítulos en 6+ idiomas a partir del audio del vídeo.</p></article>
+    <article class="feat reveal d1"><div class="glow gl-cyan"></div><div class="ico bg-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7M9 3v2c0 4-2 7-5 9M5 9c0 3 3 5 6 5M13 21l4-9 4 9M14.5 18h5"/></svg></div><h3>Traducción IA</h3><p>Traduce subtítulos y audio a otro idioma sin perder sincronía.</p></article>
+    <article class="feat reveal d2"><div class="glow gl-purple"></div><div class="ico bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg></div><h3>Filtros cinematográficos</h3><p>LUTs y filtros tipo profesional listos para aplicar.</p></article>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer id="soporte">
+<!-- FLASH DOWNLOAD · ANDROID -->
+<section class="section sec-dark">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow c-green">Flash Download · Android</span>
+        <h2>Descarga sin<br>abrir la app.</h2>
+        <p class="lead">Una notificación permanente en tu Android que descarga vídeos desde cualquier plataforma sin tener que abrir downloaderV. Estés donde estés.</p>
+      </div>
+      <div class="visual reveal d1">
+        <div class="phones">
+          <div class="phone">
+            <div class="pscreen"><div class="notch"></div><div class="ptime">14:32</div>
+              <div class="notif"><div class="nt"><b>downloaderV</b> · ahora</div><div class="nb">⚡ Flash Download activo</div>
+                <div class="mini-input"><span class="mi">tiktok.com/@user/video/...</span><span class="mb">Pegar</span></div>
+              </div>
+              <div class="ok-card"><div class="okt">✓ Descarga completada</div><small>mi_video_tiktok.mp4 · 4K</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:90px">
+      <span class="eyebrow c-green">Configuración en 3 pasos</span>
+      <h2>Una sola configuración.<br>Para siempre.</h2>
+    </div>
+    <div class="steps" style="max-width:760px;margin:0 auto">
+      <div class="step reveal"><div class="num bg-green">1</div><div><h4>Elige tu carpeta</h4><p>Selecciona una carpeta personalizada donde se guardarán automáticamente todas tus descargas.</p></div></div>
+      <div class="step reveal d1"><div class="num bg-green">2</div><div><h4>Activa la notificación</h4><p>Se activa una notificación permanente en tu Android. Esa notificación es tu acceso directo.</p></div></div>
+      <div class="step reveal d2"><div class="num bg-green">3</div><div><h4>Pega y descarga</h4><p>Desde cualquier app, copia un enlace, bájalo desde la notificación y listo. Descargado.</p></div></div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:90px;margin-bottom:32px">
+      <span class="eyebrow c-green">Cuatro razones para usarlo</span>
+      <h2>Pequeña función,<br>cambio enorme.</h2>
+    </div>
+    <div class="features">
+      <article class="feat reveal" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg></div><h3 style="color:#fff">Sin abrir la app</h3><p style="color:#94A3B8">Tu downloaderV puede estar cerrada. La notificación funciona en segundo plano.</p></article>
+      <article class="feat reveal d1" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18"/></svg></div><h3 style="color:#fff">En cualquier plataforma</h3><p style="color:#94A3B8">TikTok, YouTube, Instagram, Facebook, Reddit... Funciona en todas.</p></article>
+      <article class="feat reveal d2" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico bg-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3 style="color:#fff">Velocidad inmediata</h3><p style="color:#94A3B8">No hay que esperar a que cargue una app. Pegas y descarga.</p></article>
+      <article class="feat reveal d3" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a7 7 0 0 0-1.7-1l-.3-2.5h-4l-.3 2.5a7 7 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.5 2.4-1a7 7 0 0 0 1.7 1l.3 2.5h4l.3-2.5a7 7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5a7 7 0 0 0 .1-1z"/></svg></div><h3 style="color:#fff">Configurable en segundos</h3><p style="color:#94A3B8">Cambia formato o calidad desde la notificación con un solo tap.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- CLONACIÓN DE VOZ -->
+<section class="section wrap">
+  <div class="split rev">
+    <div class="reveal">
+      <span class="eyebrow c-purple">Clonación neural</span>
+      <h2>Tu voz,<br>infinitas veces.</h2>
+      <p class="lead">Sube unas muestras de tu voz, guárdalas en tu biblioteca personal y úsalas directamente desde el editor para narraciones, subtítulos hablados o contenido automático sin volver a grabar.</p>
+    </div>
+    <div class="visual reveal d1">
+      <div class="mock">
+        <div class="mock-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="mock-label">Studio de clonación · LISTA</span></div>
+        <div class="mock-body">
+          <div class="wave">
+            <i style="animation-delay:0s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.5s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:0s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.45s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.15s"></i>
+          </div>
+          <div style="text-align:center;color:#94A3B8;font-size:12px;margin-top:4px">Modelo neural · entrenado con 30 s de audio · 00:12 / 00:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:90px">
+    <span class="eyebrow" style="color:var(--purple)">Tres pasos · un clon perfecto</span>
+    <h2>De grabar a usar tu voz<br>en menos de un minuto.</h2>
+  </div>
+  <div class="steps" style="max-width:760px;margin:0 auto">
+    <div class="step reveal"><div class="num bg-purple">1</div><div><h4>Graba o sube</h4><p>Sube 30 segundos de tu voz limpia o grábalos directamente desde la app.</p></div></div>
+    <div class="step reveal d1"><div class="num bg-purple">2</div><div><h4>Entrenamiento</h4><p>Nuestro modelo neural analiza el timbre, tono, acento y matices únicos de tu voz.</p></div></div>
+    <div class="step reveal d2"><div class="num bg-purple">3</div><div><h4>Úsala donde quieras</h4><p>Genera audio escribiendo texto. Funciona dentro del editor y en narraciones automáticas.</p></div></div>
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:90px;margin-bottom:30px">
+    <span class="eyebrow" style="color:var(--purple)">Biblioteca personal de voces</span>
+    <h2>Crea varios estilos<br>de tu propia voz.</h2>
+  </div>
+  <div style="max-width:620px;margin:0 auto">
+    <div class="vrow reveal"><span class="vplay"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg></span><div class="vmeta"><b>Tu voz · Original</b><small>Voz base entrenada</small></div><span class="vbadge">PRIMARIA</span></div>
+    <div class="vrow reveal d1"><span class="vplay"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg></span><div class="vmeta"><b>Tu voz · Energético</b><small>Estilo viral / TikTok</small></div></div>
+    <div class="vrow reveal d2"><span class="vplay"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg></span><div class="vmeta"><b>Tu voz · Calmado</b><small>Narrativo / Documental</small></div></div>
+    <div class="vrow reveal d3"><span class="vplay"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg></span><div class="vmeta"><b>Tu voz · Serio</b><small>Profesional / Corporativo</small></div></div>
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:90px;margin-bottom:30px">
+    <span class="eyebrow" style="color:var(--purple)">Casos de uso</span>
+    <h2>Tu voz, todo el día,<br>sin estar tú delante.</h2>
+  </div>
+  <div class="features">
+    <article class="feat reveal"><div class="ico bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10v4h4l5 4V6L7 10z"/><path d="M16 8a5 5 0 0 1 0 8"/></svg></div><h3>Narraciones</h3><p>Cuenta tus vídeos con tu voz sin necesidad de volver a grabar.</p></article>
+    <article class="feat reveal d1"><div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 12h4M6 15h8"/></svg></div><h3>Subtítulos hablados</h3><p>Convierte texto en audio con tu propia voz y sincronización.</p></article>
+    <article class="feat reveal d2"><div class="ico bg-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></div><h3>Voces IA personalizadas</h3><p>Genera variantes: serio, energético, calmado, neutral.</p></article>
+    <article class="feat reveal d3"><div class="ico bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></div><h3>Contenido automático</h3><p>Genera vídeos enteros narrados con tu voz en minutos.</p></article>
+  </div>
+</section>
+
+<!-- ACTUALIZACIONES -->
+<section class="section sec-dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow c-blue">Siempre al día</span>
+      <h2>Si una plataforma cambia,<br>nosotros también.</h2>
+      <p>Mantenemos el motor parcheado a la velocidad del cambio. Cuando una plataforma rompe algo, nosotros lo arreglamos.</p>
+    </div>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);max-width:720px;margin:0 auto 70px">
+      <div class="stat reveal"><div class="n">&lt;24h</div><div class="l">Tiempo medio de parche</div></div>
+      <div class="stat reveal d1"><div class="n">+50</div><div class="l">Mejoras este año</div></div>
+      <div class="stat reveal d2"><div class="n">12+</div><div class="l">Releases al año</div></div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-bottom:24px">
+      <span class="eyebrow c-blue">Changelog · últimas releases</span>
+      <h2>Lo último que hemos<br>empujado al motor.</h2>
+    </div>
+    <div class="changelog">
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Parche extracción TikTok tras cambio de API</b><small>Esta semana</small></div></div>
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Nuevo motor de subtítulos con detección automática de idioma</b><small>Semana pasada</small></div></div>
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Soporte para listas privadas de YouTube y Spotify</b><small>Hace 2 semanas</small></div></div>
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Mejora del exportador 8K — un 40% más rápido</b><small>Hace 3 semanas</small></div></div>
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Flash Download ahora soporta MP3 y WAV de forma nativa</b><small>Hace 1 mes</small></div></div>
+      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Clonación de voz neural disponible para todos</b><small>Hace 1 mes</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOPORTE 24/7 -->
+<section class="section wrap" id="soporte">
+  <div class="sec-head reveal">
+    <span class="eyebrow" style="color:var(--blue)">Soporte · 24/7</span>
+    <h2>Estamos al otro lado.</h2>
+    <p>Si algo falla —bugs, errores de descarga, fallos visuales o incompatibilidades— reporta directamente al equipo. Respondemos rápido y arreglamos antes que la competencia se entere.</p>
+  </div>
+  <div class="features">
+    <article class="feat reveal"><div class="ico bg-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2l1 3h6l1-3M5 8h14l-1 11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/></svg></div><h3>Bugs y errores</h3><p>Cualquier comportamiento inesperado de la app.</p></article>
+    <article class="feat reveal d1"><div class="ico bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M8 12l4 4 4-4M4 20h16"/></svg></div><h3>Fallos de descarga</h3><p>Enlaces que no funcionan o calidades que fallan.</p></article>
+    <article class="feat reveal d2"><div class="ico bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M9 21h6"/></svg></div><h3>Fallos visuales</h3><p>Diseños rotos, textos cortados o iconos faltantes.</p></article>
+    <article class="feat reveal"><div class="ico bg-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Incompatibilidades</h3><p>Problemas en tu dispositivo o sistema operativo.</p></article>
+    <article class="feat reveal d1"><div class="ico bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c1 1 1 2 1 3h6c0-1 0-2 1-3a7 7 0 0 0-4-12z"/></svg></div><h3>Sugerencias</h3><p>¿Falta una función? Cuéntanoslo, lo valoramos.</p></article>
+    <article class="feat reveal d2"><div class="ico bg-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3M12 17h.01"/></svg></div><h3>Dudas generales</h3><p>Resolvemos lo que sea, sin tickets eternos.</p></article>
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:90px">
+    <span class="eyebrow" style="color:var(--blue)">Así conversamos contigo</span>
+    <h2>Sin chatbots. Sin tickets.<br>Un equipo de personas.</h2>
+  </div>
+  <div class="chat reveal" style="margin:0 auto">
+    <div class="chead"><span class="cav">V</span><div><b>Soporte downloaderV</b><small>Activos ahora · respuesta &lt; 5 min</small></div></div>
+    <div class="cbody">
+      <div class="msg them">No me deja descargar de Instagram, sale error 403.</div>
+      <div class="msg you">¡Hola! Es un cambio en su API. Estamos parcheándolo ahora. Descarga la versión 4.7 en 10 min y ya funcionará 🚀</div>
+      <div class="msg them">Buah, gracias, qué rápidos sois.</div>
+      <div class="msg you">Es nuestro trabajo. Si vuelves a tener cualquier cosa, aquí estamos 💙</div>
+    </div>
+    <div class="cinput">Escribe tu mensaje...</div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section wrap" id="descargar">
+  <div class="cta reveal">
+    <h2>Tu próximo vídeo viral<br>empieza aquí.</h2>
+    <p>Descarga, edita y exporta como un profesional. Sin marcas de agua. Sin pasos absurdos. Sin esperas.</p>
+    <div class="cta-btns">
+      <button class="dl-btn" id="ctaDl"><span class="ic" id="ctaDlIcon"></span><span><small>Descargar para</small><b id="ctaDlLabel">Windows</b></span></button>
+      <a class="btn-ghost" href="#funciones">Ver tutoriales</a>
+    </div>
+    <div class="cta-feats">
+      <span>Sin marca de agua</span><span>Sin cuenta requerida</span><span>Sin tracking</span><span>Sin esperas</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
   <div class="wrap foot-inner">
-    <a class="brand" href="#top">
-      <span class="brand-dot">V</span> downloaderV
-    </a>
+    <a class="brand" href="#top"><span class="brand-dot">V</span> downloaderV</a>
     <div class="foot-links">
       <a href="#funciones">Funciones</a>
       <a href="#descargar">Descargar</a>
@@ -423,140 +417,7 @@
   </div>
 </footer>
 
-
-<!-- ============================================================ -->
-<!--  LÓGICA: botones de descarga + animación de aparición        -->
-<!-- ============================================================ -->
-<script>
-  /* ====== 1) ENLACES DE DESCARGA (ya configurados) ====== */
-  const CONFIG = {
-    descargaWindows: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.3/DownloaderV.2.0.3.exe',
-    descargaAndroid: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.6/DownloaderV.1.0.6.apk',
-  };
-
-  /* Iconos */
-  const ICON_WIN = '<svg viewBox="0 0 24 24" fill="#1A73E8"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg>';
-  const ICON_AND = '<svg viewBox="0 0 24 24" fill="#10B981"><path d="M12 2 9 7h6l-3-5zM6 8h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/></svg>';
-
-  const esMovil = /mobi|android|iphone|ipad|ipod/i.test(navigator.userAgent) || screen.width < 700;
-
-  function configurarBoton(iconEl, labelEl, btnEl){
-    if(!btnEl) return;
-    if(esMovil){
-      if(iconEl) iconEl.innerHTML = ICON_AND;
-      if(labelEl) labelEl.textContent = 'Android';
-      btnEl.onclick = ()=>{ if(CONFIG.descargaAndroid && CONFIG.descargaAndroid!=='#') location.href=CONFIG.descargaAndroid; };
-    }else{
-      if(iconEl) iconEl.innerHTML = ICON_WIN;
-      if(labelEl) labelEl.textContent = 'Windows';
-      btnEl.onclick = ()=>{ if(CONFIG.descargaWindows && CONFIG.descargaWindows!=='#') location.href=CONFIG.descargaWindows; };
-    }
-  }
-  configurarBoton(document.getElementById('heroDlIcon'), document.getElementById('heroDlLabel'), document.getElementById('heroDl'));
-  configurarBoton(document.getElementById('ctaDlIcon'),  document.getElementById('ctaDlLabel'),  document.getElementById('ctaDl'));
-  // Botón Android de la sección verde
-  const aBtn=document.getElementById('androidDl');
-  if(aBtn) aBtn.onclick=()=>{ if(CONFIG.descargaAndroid && CONFIG.descargaAndroid!=='#') location.href=CONFIG.descargaAndroid; };
-
-  /* Reveal al hacer scroll */
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-
-
-<!-- ============================================================ -->
-<!--  REGISTRO DE VISITAS  →  Firebase Firestore                  -->
-<!--  (mismos datos que la versión anterior: país, dispositivo…)  -->
-<!-- ============================================================ -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, addDoc, serverTimestamp }
-    from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyD9sWd6hiiQLds6-4NwYyTyhtt7mifHYs0",
-    authDomain: "downloaderv-analytics.firebaseapp.com",
-    projectId: "downloaderv-analytics",
-    storageBucket: "downloaderv-analytics.firebasestorage.app",
-    messagingSenderId: "10457429159",
-    appId: "1:10457429159:web:c7225988bc22f8f7e85782",
-    measurementId: "G-6J5FX3S3Q0"
-  };
-
-  function infoGpu(){
-    try{
-      const c=document.createElement('canvas');
-      const gl=c.getContext('webgl')||c.getContext('experimental-webgl');
-      if(gl){ const e=gl.getExtension('WEBGL_debug_renderer_info');
-        if(e){ const r=gl.getParameter(e.UNMASKED_RENDERER_WEBGL); if(r) return r; } }
-    }catch(_){}
-    return 'desconocida';
-  }
-  function zonaHoraria(){
-    try{
-      const off = -new Date().getTimezoneOffset()/60;
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      return `UTC${off>=0?'+':''}${off} (${tz})`;
-    }catch(_){ return 'desconocida'; }
-  }
-
-  (async ()=>{
-    try{
-      const app = initializeApp(firebaseConfig);
-      const db  = getFirestore(app);
-
-      // ID anónimo persistente
-      let vid = localStorage.getItem('dv_visitante_id') || '';
-      if(!vid){ vid = Date.now()+'_'+Math.floor(Math.random()*900000+100000); localStorage.setItem('dv_visitante_id', vid); }
-      const recurrente = localStorage.getItem('dv_ya_visito')==='si';
-      localStorage.setItem('dv_ya_visito','si');
-
-      const datos = {
-        fecha: serverTimestamp(),
-        fecha_local: new Date().toISOString(),
-        visitante_id: vid,
-        es_recurrente: recurrente,
-        user_agent: navigator.userAgent,
-        plataforma: navigator.platform,
-        idioma: navigator.language,
-        idiomas: (navigator.languages||[]).join(', '),
-        nucleos_cpu: navigator.hardwareConcurrency || null,
-        pantalla_ancho: screen.width,
-        pantalla_alto: screen.height,
-        densidad_pixel: window.devicePixelRatio,
-        referrer: document.referrer,
-        url: location.href,
-        zona_horaria: zonaHoraria(),
-        gpu: infoGpu(),
-      };
-
-      // Ubicación aproximada por IP (sin clave)
-      try{
-        const ctrl = new AbortController();
-        const t = setTimeout(()=>ctrl.abort(), 5000);
-        const r = await fetch('https://ipwho.is/', {signal: ctrl.signal});
-        clearTimeout(t);
-        if(r.ok){
-          const g = await r.json();
-          if(g && g.success){
-            Object.assign(datos, {
-              ip: g.ip, pais: g.country, pais_codigo: g.country_code,
-              region: g.region, ciudad: g.city,
-              latitud: g.latitude, longitud: g.longitude,
-              isp: g.connection?.isp, organizacion: g.connection?.org,
-            });
-          }
-        }
-      }catch(_){ /* sin geo, seguimos */ }
-
-      await addDoc(collection(db,'visitas'), datos);
-    }catch(e){
-      console.log('Registro de visita falló (no crítico):', e);
-    }
-  })();
-</script>
-
+<script src="app.js"></script>
+<script type="module" src="firebase-visitas.js"></script>
 </body>
 </html>
