@@ -719,3 +719,60 @@ footer{position:relative; border-top:1px solid var(--line); padding:0; margin-to
 .foot-watermark{position:absolute; bottom:-26px; left:50%; transform:translateX(-50%); font-family:var(--font-display); font-weight:700; font-size:clamp(70px,16vw,200px); letter-spacing:-.04em; line-height:1; color:rgba(10,14,26,.035); white-space:nowrap; z-index:1; pointer-events:none; user-select:none}
 
 @media (prefers-reduced-motion: reduce){ .foot-glow,.foot-made .heart{animation:none} }
+
+/* ============================================================
+   v7 — gesto del dedo deslizando + dock de la home
+   ============================================================ */
+.phome-dock{position:absolute; bottom:20px; left:0; right:0; display:flex; justify-content:center; gap:14px}
+.phome-dock span{width:30px; height:30px; border-radius:9px; box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 6px 14px -6px rgba(0,0,0,.5)}
+.phome-dock span:nth-child(1){background:linear-gradient(135deg,#1A73E8,#4F8DF7)}
+.phome-dock span:nth-child(2){background:linear-gradient(135deg,#EC4899,#F472B6)}
+.phome-dock span:nth-child(3){background:linear-gradient(135deg,#10B981,#34D399)}
+.phome-dock span:nth-child(4){background:linear-gradient(135deg,#F59E0B,#FBBF24)}
+
+/* Dedo (gesto táctil que arrastra la notificación) */
+.pfinger{position:absolute; left:50%; top:6px; transform:translateX(-50%); z-index:8; opacity:0; pointer-events:none}
+.pf-dot{position:relative; display:block; width:34px; height:34px; border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, rgba(255,255,255,.96), rgba(255,255,255,.55) 60%, rgba(255,255,255,.22));
+  box-shadow:0 8px 20px rgba(0,0,0,.4), inset 0 0 0 2px rgba(255,255,255,.55)}
+.pf-ring{position:absolute; inset:-8px; border-radius:50%; border:2px solid rgba(255,255,255,.55)}
+.pf-trail{position:absolute; left:50%; bottom:36px; transform:translateX(-50%); width:3px; height:0; border-radius:999px; background:linear-gradient(180deg, transparent, rgba(255,255,255,.55)); opacity:0}
+.phone.s-open .pfinger{animation:swipe 1s cubic-bezier(.45,0,.2,1) forwards}
+.phone.s-open .pf-ring{animation:pfRing 1s ease-out forwards}
+.phone.s-open .pf-trail{animation:pfTrail 1s ease forwards}
+@keyframes swipe{
+  0%{top:2px; opacity:0; transform:translateX(-50%) scale(.8)}
+  16%{opacity:1; transform:translateX(-50%) scale(1)}
+  62%{top:196px; opacity:1; transform:translateX(-50%) scale(1)}
+  100%{top:230px; opacity:0; transform:translateX(-50%) scale(.88)}
+}
+@keyframes pfRing{0%{transform:scale(.55); opacity:.85}40%{opacity:.45}100%{transform:scale(1.7); opacity:0}}
+@keyframes pfTrail{0%,12%{opacity:0; height:0}34%{opacity:.6; height:34px}100%{opacity:0; height:54px}}
+
+@media (prefers-reduced-motion: reduce){ .pfinger{display:none} }
+
+/* ============================================================
+   v8 — CARRUSEL DE CHATS + captura de pantalla
+   ============================================================ */
+.chat-carousel{max-width:440px; margin:0 auto; position:relative}
+.chat-track{position:relative; max-width:440px; margin:0 auto}
+.chat-slide{transition:opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1)}
+.chat-slide:not(.active){position:absolute; top:0; left:0; right:0; opacity:0; transform:translateX(38px) scale(.985); pointer-events:none}
+.chat-slide.active{position:relative; opacity:1; transform:none; z-index:1}
+
+.chat-dots{display:flex; gap:8px; justify-content:center; margin-top:24px; position:relative; z-index:2}
+.chat-dots button{width:9px; height:9px; border-radius:999px; background:#D7DEE8; border:none; cursor:pointer; padding:0; transition:width .35s cubic-bezier(.2,.8,.2,1), background .35s}
+.chat-dots button.active{width:28px; background:linear-gradient(90deg,#1A73E8,#8B5CF6)}
+.chat-dots button:hover{background:#9FB0C8}
+.chat-dots button.active:hover{background:linear-gradient(90deg,#1A73E8,#8B5CF6)}
+
+/* Captura (screenshot) dentro del chat */
+.shot{width:210px; max-width:100%; background:#0F1626; border:1px solid rgba(255,255,255,.09); border-radius:15px; overflow:hidden; box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+.shot-top{display:flex; align-items:center; gap:7px; padding:9px 12px; background:rgba(255,255,255,.05); font-size:11px; font-weight:700; color:#cbd5e1; border-bottom:1px solid rgba(255,255,255,.07)}
+.shot-app{width:18px; height:18px; border-radius:5px; background:#000; display:grid; place-items:center}
+.shot-body{padding:20px 14px; text-align:center}
+.shot-err{width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#EF4444,#B91C1C); display:grid; place-items:center; margin:0 auto 11px; box-shadow:0 12px 26px -8px rgba(239,68,68,.65); animation:warnPulse 1.9s ease-in-out infinite}
+.shot-body b{display:block; color:#fff; font-size:13px; margin-bottom:3px}
+.shot-body small{color:#94A3B8; font-size:11px}
+
+@media (prefers-reduced-motion: reduce){ .shot-err{animation:none} }

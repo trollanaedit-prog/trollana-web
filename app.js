@@ -163,7 +163,8 @@ if(!esMovil && finePointer && !reduce){
   let target = window.scrollY;
   let current = window.scrollY;
   let raf = null;
-  const EASE = 0.13;
+  const EASE = 0.19;        // más alto = más rápido y directo (antes 0.13)
+  const SPEED = 1.5;        // multiplicador de la rueda (va más rápido)
   const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
   function loop(){
@@ -184,9 +185,9 @@ if(!esMovil && finePointer && !reduce){
     if(e.ctrlKey) return;             // dejar el zoom del navegador
     e.preventDefault();
     let dy = e.deltaY;
-    if(e.deltaMode === 1) dy *= 16;    // deltas en líneas -> px
+    if(e.deltaMode === 1) dy *= 32;    // deltas en líneas -> px (más rápido)
     else if(e.deltaMode === 2) dy *= window.innerHeight;
-    target = Math.max(0, Math.min(target + dy, maxScroll()));
+    target = Math.max(0, Math.min(target + dy * SPEED, maxScroll()));
     start();
   }, {passive:false});
 
@@ -250,7 +251,7 @@ if(!esMovil && finePointer && !reduce){
   async function cycle(){
     while(running && visible){
       clearAll();                                   await sleep(1100); if(!visible) break;
-      phone.classList.add('s-open');                await sleep(650);  if(!visible) break;
+      phone.classList.add('s-open');                await sleep(1000); if(!visible) break;
       phone.classList.add('s-type'); await typeLink();                 if(!visible) break;
       await sleep(260);
       phone.classList.add('s-paste');               await sleep(220);
@@ -276,4 +277,42 @@ if(!esMovil && finePointer && !reduce){
     });
   }, { threshold:.35 });
   io.observe(phone);
+})();
+
+/* ============================================================
+   CARRUSEL DE CHATS (soporte) — varias conversaciones
+   ============================================================ */
+(function(){
+  const track = document.getElementById('chatTrack');
+  const dotsWrap = document.getElementById('chatDots');
+  if(!track || !dotsWrap) return;
+  const slides = Array.from(track.querySelectorAll('.chat-slide'));
+  if(!slides.length) return;
+  let idx = 0, timer = null;
+
+  slides.forEach((_, i)=>{
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', 'Conversación ' + (i+1));
+    btn.addEventListener('click', ()=>{ go(i); restart(); });
+    dotsWrap.appendChild(btn);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(i){
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (i + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  function next(){ go(idx + 1); }
+  function restart(){ clearInterval(timer); timer = setInterval(next, 5500); }
+
+  slides[0].classList.add('active');
+  dots[0].classList.add('active');
+  restart();
+
+  const car = track.closest('.chat-carousel');
+  car.addEventListener('mouseenter', ()=> clearInterval(timer));
+  car.addEventListener('mouseleave', restart);
 })();
