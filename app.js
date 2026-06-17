@@ -316,3 +316,134 @@ if(!esMovil && finePointer && !reduce){
   car.addEventListener('mouseenter', ()=> clearInterval(timer));
   car.addEventListener('mouseleave', restart);
 })();
+
+/* ============================================================
+   SO: monitor (Windows/PC) o teléfono (Android)
+   ============================================================ */
+document.documentElement.classList.add(esMovil ? 'dev-mobile' : 'dev-desktop');
+
+/* ============================================================
+   DEMO DE SUBTÍTULOS — activar → generar → incrustar → reproducir
+   ============================================================ */
+(function(){
+  const demos = Array.from(document.querySelectorAll('.subdemo'));
+  if(!demos.length) return;
+  const phrases = ['Hola chicos, ¿qué tal?', 'Bienvenidos.', 'Vamos a probar los subtítulos automáticos.'];
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  demos.forEach(el=>{
+    const cap = el.querySelector('.sd-cap');
+    let running = false, visible = false;
+
+    if(reduce){
+      el.classList.add('is-playing');
+      cap.innerHTML = '';
+      phrases[2].split(' ').forEach((word,i,arr)=>{
+        const w = document.createElement('span');
+        w.className = 'w' + (i === arr.length-1 ? ' hot' : '');
+        w.textContent = word; cap.appendChild(w);
+      });
+      return;
+    }
+    async function speak(text){
+      cap.innerHTML = '';
+      const words = text.split(' ');
+      for(let i=0;i<words.length;i++){
+        if(!visible) return;
+        const prev = cap.querySelector('.w.hot'); if(prev) prev.classList.remove('hot');
+        const w = document.createElement('span');
+        w.className = 'w hot';
+        w.textContent = words[i];
+        cap.appendChild(w);
+        await sleep(words[i].length > 7 ? 235 : 185);
+      }
+      await sleep(620);
+      const last = cap.querySelector('.w.hot'); if(last) last.classList.remove('hot');
+      await sleep(240);
+    }
+    async function cycle(){
+      while(running && visible){
+        el.classList.remove('is-proc','is-playing'); cap.innerHTML = '';
+        await sleep(1400); if(!visible) break;             // invita a pulsar
+        el.classList.add('is-proc');                        // genera con IA
+        await sleep(1750); if(!visible) break;
+        el.classList.remove('is-proc'); el.classList.add('is-playing'); // incrusta + reproduce
+        for(const p of phrases){ await speak(p); if(!visible) break; }
+        cap.innerHTML = '';
+        await sleep(650);
+      }
+      running = false;
+    }
+    const io = new IntersectionObserver((es)=>{
+      es.forEach(e=>{
+        visible = e.isIntersecting;
+        if(visible && !running){ running = true; cycle(); }
+      });
+    }, { threshold:.3 });
+    io.observe(el);
+  });
+})();
+
+/* ============================================================
+   MODALES (Privacidad, Reportes, Soporte, Novedades)
+   ============================================================ */
+(function(){
+  const root = document.getElementById('modalRoot');
+  if(!root) return;
+  const modals = Array.from(root.querySelectorAll('.modal'));
+  function open(name){
+    const m = root.querySelector('.modal[data-name="'+name+'"]');
+    if(!m) return;
+    modals.forEach(x=>x.classList.remove('show'));
+    m.classList.add('show');
+    root.classList.add('open');
+    root.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    m.scrollTop = 0;
+  }
+  function close(){
+    root.classList.remove('open');
+    root.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    setTimeout(()=> modals.forEach(x=>x.classList.remove('show')), 320);
+  }
+  document.querySelectorAll('[data-modal]').forEach(a=>{
+    a.addEventListener('click', (e)=>{ e.preventDefault(); open(a.getAttribute('data-modal')); });
+  });
+  root.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', close));
+  addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && root.classList.contains('open')) close(); });
+})();
+
+/* ============================================================
+   Copiar correo de soporte (con feedback "¡Copiado!")
+   ============================================================ */
+(function(){
+  const EMAIL = 'soporte@downloaderv.com';
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject)=>{
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly','');
+        ta.style.position = 'fixed'; ta.style.top = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta); resolve();
+      }catch(e){ reject(e); }
+    });
+  }
+  document.querySelectorAll('[data-copy-email]').forEach(btn=>{
+    const label = btn.querySelector('span');
+    const original = label ? label.textContent : '';
+    btn.addEventListener('click', ()=>{
+      copyText(EMAIL).then(()=>{
+        btn.classList.add('copied');
+        if(label) label.textContent = '¡Copiado!';
+        clearTimeout(btn._t);
+        btn._t = setTimeout(()=>{ btn.classList.remove('copied'); if(label) label.textContent = original; }, 1900);
+      }).catch(()=>{ if(label) label.textContent = EMAIL; });
+    });
+  });
+})();
