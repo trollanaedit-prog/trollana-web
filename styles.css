@@ -1127,3 +1127,39 @@ footer{position:relative; border-top:1px solid var(--line); padding:0; margin-to
 .modal-body .ma-btn{color:var(--ink); text-decoration:none}
 .modal-body .ma-btn svg{stroke:currentColor}
 .modal-body .ma-btn.copied{color:#059669}
+
+/* ============================================================
+   v15 — Pulido fino para Android (solo móvil; PC intacto)
+   ============================================================ */
+@media(max-width:600px){
+  /* ritmo vertical más ajustado */
+  .section{padding:56px 0}
+  .sec-head{margin-bottom:34px}
+  .sec-head .lead, .sec-head p{font-size:15px}
+
+  /* héroe: el logo no debe solaparse con las insignias PREVIEW/8K (badge-row absoluta) */
+  .hero-inner{padding-top:78px}
+  .badge-row{top:20px; left:18px; right:18px}
+  .hero-pill{margin-bottom:24px}
+
+  /* tarjetas feature más cohesionadas y elegantes */
+  .features{gap:14px}
+  .feat{padding:24px 22px; border-radius:22px}
+  .feat .ico{width:50px; height:50px; border-radius:14px; margin-bottom:15px}
+  .feat .ico svg{width:25px; height:25px}
+  .feat h3{font-size:19px; margin-bottom:7px}
+  .feat p{font-size:14px; line-height:1.55}
+
+  /* steps un poco más compactos */
+  .step{padding:22px 20px}
+
+  /* títulos grandes: que no se desborden y respiren */
+  h1{line-height:1.1}
+  .section h2{line-height:1.14}
+}
+
+/* pantallas muy estrechas */
+@media(max-width:380px){
+  .wrap{padding-left:18px; padding-right:18px}
+  .feat{padding:22px 18px}
+}

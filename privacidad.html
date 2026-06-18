@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad · downloaderV</title>
+<meta name="description" content="Política de privacidad de downloaderV. No necesitas cuenta ni registro, no te rastreamos y todo el procesamiento (incluida la clonación de voz) ocurre en tu propio dispositivo. Tu voz y tus archivos se quedan contigo.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://downloaderv.com/privacidad.html">
+<meta property="og:title" content="Política de Privacidad · downloaderV">
+<meta property="og:description" content="Sin registro, sin rastreo y con procesamiento 100% local. Tu voz y tus archivos nunca salen de tu dispositivo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://downloaderv.com/privacidad.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-soft:#F7F9FC; --ink:#0A0E1A; --ink-soft:#5A6478;
+    --line:#EDF0F5; --blue:#1A73E8; --purple:#8B5CF6; --green:#10B981; --amber:#F59E0B;
+    --font-display:'Space Grotesk', system-ui, sans-serif;
+    --font-body:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body); background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased}
+  a{color:var(--blue); text-decoration:none; font-weight:600}
+  a:hover{text-decoration:underline}
+
+  /* Cabecera */
+  .nav{position:sticky; top:0; z-index:10; background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line)}
+  .nav-in{max-width:880px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between}
+  .brand{display:flex; align-items:center; gap:11px; font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--ink)}
+  .brand img{width:32px; height:32px; border-radius:8px}
+  .brand-dot{width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--blue),#6D28D9); display:grid; place-items:center; color:#fff; font-family:var(--font-display); font-weight:700}
+  .back{display:inline-flex; align-items:center; gap:7px; font-size:14px; color:var(--ink-soft)}
+  .back:hover{color:var(--ink); text-decoration:none}
+
+  /* Hero */
+  .hero{max-width:760px; margin:0 auto; padding:54px 24px 22px}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--blue); background:#EAF2FE; padding:7px 14px; border-radius:999px; margin-bottom:18px}
+  h1{font-family:var(--font-display); font-weight:700; font-size:clamp(30px,6vw,44px); letter-spacing:-.02em; line-height:1.12; margin-bottom:14px}
+  .updated{color:var(--ink-soft); font-size:14px}
+  .updated b{color:var(--ink)}
+  .lead{margin-top:20px; font-size:17px; color:#374151; line-height:1.7}
+
+  /* Resumen rápido */
+  .tldr{max-width:760px; margin:26px auto 0; padding:0 24px}
+  .tldr-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .tldr-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:16px; padding:18px}
+  .tldr-card .ic{width:38px; height:38px; border-radius:11px; display:grid; place-items:center; color:#fff; margin-bottom:11px}
+  .ic.b{background:linear-gradient(135deg,#1A73E8,#0D47A1)} .ic.g{background:linear-gradient(135deg,#10B981,#047857)} .ic.p{background:linear-gradient(135deg,#8B5CF6,#6D28D9)}
+  .tldr-card b{display:block; font-size:14px; margin-bottom:3px}
+  .tldr-card span{font-size:13px; color:var(--ink-soft); line-height:1.5}
+
+  /* Cuerpo */
+  main{max-width:760px; margin:0 auto; padding:36px 24px 20px}
+  section{padding:22px 0; border-top:1px solid var(--line)}
+  section:first-child{border-top:none}
+  h2{font-family:var(--font-display); font-weight:700; font-size:21px; letter-spacing:-.01em; margin-bottom:12px; display:flex; align-items:center; gap:11px}
+  h2 .n{flex:none; width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,#1A73E8,#6D28D9); color:#fff; font-size:14px; font-weight:800; display:grid; place-items:center; font-family:var(--font-display)}
+  section p{color:#374151; margin-bottom:12px}
+  section p:last-child{margin-bottom:0}
+  .plist{list-style:none; display:flex; flex-direction:column; gap:11px; margin:6px 0 4px}
+  .plist li{position:relative; padding-left:26px; color:#374151}
+  .plist li::before{content:""; position:absolute; left:0; top:9px; width:14px; height:14px; border-radius:5px; background:linear-gradient(135deg,#1A73E8,#6D28D9)}
+  .perm{background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin:12px 0}
+  .perm h3{font-family:var(--font-display); font-size:15px; font-weight:600; margin-bottom:6px; display:flex; align-items:center; gap:9px}
+  .perm h3 .tag{font-size:10px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; padding:4px 9px; border-radius:999px; color:#fff}
+  .tag.amber{background:linear-gradient(135deg,#F59E0B,#B45309)}
+  .tag.blue{background:linear-gradient(135deg,#1A73E8,#0D47A1)}
+  .perm p{font-size:14.5px; margin:0}
+  .note{background:#EAF2FE; border:1px solid rgba(26,115,232,.25); border-radius:12px; padding:13px 16px; font-size:14px; color:#1e3a5f; margin-top:10px}
+
+  /* Compromiso */
+  .pledge{max-width:760px; margin:18px auto 0; padding:0 24px}
+  .pledge-card{position:relative; overflow:hidden; background:linear-gradient(150deg,#0A0E1A,#0F172A 60%,#0a0e1a); border-radius:24px; padding:36px; color:#fff}
+  .pledge-card .glow{position:absolute; inset:-40% -10%; background:radial-gradient(circle at 25% 30%, rgba(26,115,232,.25), transparent 55%), radial-gradient(circle at 80% 80%, rgba(139,92,246,.2), transparent 55%); pointer-events:none}
+  .pledge-card .in{position:relative}
+  .pledge-card .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#34D399; background:rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.3); padding:7px 14px; border-radius:999px; margin-bottom:16px}
+  .pledge-card h2{color:#fff; border:none; padding:0; font-size:24px; margin-bottom:12px}
+  .pledge-card p{color:#cbd5e1; font-size:16px; line-height:1.7; margin-bottom:8px}
+  .pledge-card .sign{margin-top:14px; font-weight:700; color:#fff; font-family:var(--font-display)}
+
+  /* Footer */
+  footer{max-width:760px; margin:40px auto 0; padding:26px 24px 60px; border-top:1px solid var(--line); color:var(--ink-soft); font-size:14px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+  footer .links a{margin-left:16px}
+
+  @media(max-width:680px){
+    .tldr-grid{grid-template-columns:1fr}
+    .pledge-card{padding:26px}
+    footer{flex-direction:column; align-items:flex-start}
+    footer .links a{margin-left:0; margin-right:16px}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><img src="icono.png" alt="downloaderV" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;>V</span>'">downloaderV</a>
+    <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 5l-7 7 7 7"/></svg>Volver al inicio</a>
+  </div>
+</header>
+
+<div class="hero">
+  <span class="eyebrow">Legal · Privacidad</span>
+  <h1>Política de Privacidad</h1>
+  <p class="updated"><b>downloaderV</b> · Desarrollado por el equipo TROLLANA · Última actualización: <b>junio de 2026</b></p>
+  <p class="lead">En downloaderV nos tomamos tu privacidad muy en serio. Aquí te explicamos, de forma clara y sin letra pequeña, qué datos tratamos (muy pocos), qué permisos pedimos y por qué, y por qué tu información y tus creaciones se quedan siempre contigo. En resumen: <b>no necesitas cuenta, no te rastreamos y todo el procesamiento importante ocurre en tu propio dispositivo.</b></p>
+</div>
+
+<div class="tldr">
+  <div class="tldr-grid">
+    <div class="tldr-card">
+      <span class="ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M9 21h6"/></svg></span>
+      <b>Sin cuenta</b><span>No hay registro ni inicio de sesión. Empiezas sin dar ningún dato.</span>
+    </div>
+    <div class="tldr-card">
+      <span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <b>Todo en tu equipo</b><span>La clonación de voz funciona en tu PC. Tu voz no sale de ahí.</span>
+    </div>
+    <div class="tldr-card">
+      <span class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span>
+      <b>Cero rastreo</b><span>No te escaneamos, no te perfilamos y no vendemos datos.</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section>
+    <h2><span class="n">1</span>Sin registro, sin cuenta, sin inicio de sesión</h2>
+    <p>La página web y la aplicación no te piden absolutamente nada para funcionar. No hay registro, no hace falta iniciar sesión y no necesitas crear ninguna cuenta. Puedes empezar a usar downloaderV siendo un usuario completamente nuevo, sin facilitar nombre, correo, teléfono ni ningún dato personal.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>Clonación de voz: 100% en tu propio PC</h2>
+    <p>La función de clonación de voz <b>no utiliza ningún servidor</b>. Funciona directamente con el procesador de tu propio ordenador: todo el procesamiento es <b>local</b>, dentro de tu equipo.</p>
+    <ul class="plist">
+      <li>Tu voz <b>no se sube a ningún servidor</b> ni se envía a ningún sitio.</li>
+      <li>Tu voz se queda guardada <b>al 100% en tu PC</b>. La única manera de que salga de tu equipo es que seas tú quien decida publicarla en otro lugar.</li>
+    </ul>
+    <div class="note"><b>Importante:</b> que la función use el procesador de tu PC <b>no significa, en absoluto, que accedamos a la información de tu ordenador</b>. Solo se aprovecha la potencia de cálculo local de tu equipo, igual que hace cualquier otro programa que instalas. No leemos, no copiamos y no enviamos tus archivos.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>Tus descargas y archivos</h2>
+    <p>Los vídeos que descargas se guardan únicamente en tu dispositivo, en la carpeta que tú elijas. No se suben a ningún servidor nuestro ni se comparten con terceros. El contenido es tuyo y se queda contigo.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>Permisos que solicita la aplicación (y para qué)</h2>
+    <p>Solo pedimos permisos cuando son necesarios para una función concreta, y puedes denegarlos si no vas a usar esa función.</p>
+    <div class="perm">
+      <h3><span class="tag amber">Notificaciones</span></h3>
+      <p>Se usa únicamente para <b>Flash Download</b>, la descarga rápida desde la notificación. Cuando desactivas Flash Download, el permiso deja de utilizarse hasta que lo vuelvas a activar.</p>
+    </div>
+    <div class="perm">
+      <h3><span class="tag blue">Galería / Almacenamiento</span></h3>
+      <p>Es necesario para <b>Creator Studio</b> cuando vas a acceder a tu galería para añadir un vídeo o una imagen externa y editarlo. Si solo vas a usar los <b>subtítulos</b> o una <b>edición básica</b> dentro de Creator Studio, no hace falta que concedas este permiso: puedes denegarlo sin problema. Solo lo necesitarás si vas a agregar otro vídeo o una imagen externa; para un cambio rápido, de momento no tendrás que usarlo.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>No te rastreamos ni te escaneamos</h2>
+    <p>La aplicación no te registra, no te escanea y no hace absolutamente nada con tus datos personales. Eres 100% libre. No guardamos tu información ni creamos perfiles sobre ti. Tampoco mostramos publicidad de seguimiento dentro de la aplicación.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>Soporte: los chats se eliminan</h2>
+    <p>Cuando contactas con soporte, las conversaciones se eliminan una vez finalizadas, tanto por tu privacidad como para ahorrar costes. No conservamos historiales de tus consultas.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">7</span>Sin venta de datos</h2>
+    <p>No vendemos, no alquilamos y no cedemos datos personales a terceros. Nunca.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">8</span>Uso responsable</h2>
+    <p>downloaderV es una herramienta. Eres responsable de respetar los derechos de autor y las condiciones de uso de cada plataforma al descargar o editar contenido.</p>
+  </section>
+</main>
+
+<div class="pledge">
+  <div class="pledge-card">
+    <div class="glow"></div>
+    <div class="in">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M20 6L9 17l-5-5"/></svg>Nuestro compromiso</span>
+      <h2>Tu confianza es lo más importante</h2>
+      <p>Juramos y prometemos no decepcionar nunca a nuestros clientes. Trabajamos para que downloaderV sea una herramienta potente y, a la vez, totalmente respetuosa con tu privacidad.</p>
+      <p>Gracias por usar downloaderV.</p>
+      <p class="sign">— El equipo TROLLANA, desarrolladores de downloaderV.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 downloaderV · Desarrollado por el equipo TROLLANA</span>
+  <span class="links"><a href="index.html">Inicio</a><a href="mailto:soporte@downloaderv.com">Soporte</a></span>
+</footer>
+
+</body>
+</html>
