@@ -1163,3 +1163,70 @@ footer{position:relative; border-top:1px solid var(--line); padding:0; margin-to
   .wrap{padding-left:18px; padding-right:18px}
   .feat{padding:22px 18px}
 }
+
+/* ============================================================
+   ICONOS MODERNOS · Material Symbols Rounded (Google)
+   + micro-interacciones (relleno al hover, "pop" al entrar)
+   ============================================================ */
+.material-symbols-rounded{
+  font-family:'Material Symbols Rounded';
+  font-weight:normal; font-style:normal; line-height:1;
+  letter-spacing:normal; text-transform:none; white-space:nowrap;
+  word-wrap:normal; direction:ltr; display:inline-block; vertical-align:middle;
+  -webkit-font-feature-settings:'liga'; font-feature-settings:'liga';
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  user-select:none;
+  font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 40;
+  transition:font-variation-settings .35s cubic-bezier(.2,.8,.2,1), transform .35s cubic-bezier(.2,.8,.2,1), color .25s;
+}
+
+/* --- Chips del hero: rellenan + escalan al pasar el cursor --- */
+.chip .material-symbols-rounded{font-size:20px}
+.chip:hover .material-symbols-rounded{font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40; transform:scale(1.12)}
+
+/* --- pchips (línea): se quedan en contorno (hay globo) --- */
+.pchip .material-symbols-rounded{font-size:17px}
+.pchip:hover .material-symbols-rounded{transform:scale(1.1)}
+
+/* --- ICONOS DE FUNCIONES: contenedor tonal + relleno al hover --- */
+.feat .ico .material-symbols-rounded{font-size:30px; color:inherit; font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 40}
+.feat:hover .ico .material-symbols-rounded{font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40}
+
+/* Contenedores tonales por color (sustituyen el blanco-gris genérico) */
+.feat .ico.ic-blue  {background:linear-gradient(160deg,rgba(26,115,232,.16),rgba(26,115,232,.04)); border-color:rgba(26,115,232,.18)}
+.feat .ico.ic-amber {background:linear-gradient(160deg,rgba(245,158,11,.18),rgba(245,158,11,.05)); border-color:rgba(245,158,11,.20)}
+.feat .ico.ic-green {background:linear-gradient(160deg,rgba(16,185,129,.16),rgba(16,185,129,.04)); border-color:rgba(16,185,129,.18)}
+.feat .ico.ic-purple{background:linear-gradient(160deg,rgba(139,92,246,.16),rgba(139,92,246,.05)); border-color:rgba(139,92,246,.20)}
+.feat .ico.ic-pink  {background:linear-gradient(160deg,rgba(236,72,153,.16),rgba(236,72,153,.05)); border-color:rgba(236,72,153,.20)}
+.feat .ico.ic-cyan  {background:linear-gradient(160deg,rgba(6,182,212,.16),rgba(6,182,212,.05)); border-color:rgba(6,182,212,.18)}
+/* Variante en secciones oscuras */
+.sec-dark .feat .ico.ic-blue  {background:rgba(26,115,232,.18); border-color:rgba(96,165,250,.28)}
+.sec-dark .feat .ico.ic-amber {background:rgba(245,158,11,.18); border-color:rgba(251,191,36,.28)}
+.sec-dark .feat .ico.ic-green {background:rgba(16,185,129,.18); border-color:rgba(52,211,153,.28)}
+.sec-dark .feat .ico.ic-purple{background:rgba(139,92,246,.20); border-color:rgba(167,139,250,.30)}
+.sec-dark .feat .ico.ic-pink  {background:rgba(236,72,153,.20); border-color:rgba(244,114,182,.30)}
+.sec-dark .feat .ico.ic-cyan  {background:rgba(6,182,212,.18); border-color:rgba(34,211,238,.28)}
+
+/* "Pop" del icono cuando la tarjeta entra en pantalla */
+.feat.in .ico{animation:icoPop .58s cubic-bezier(.2,1.5,.35,1)}
+@keyframes icoPop{0%{transform:scale(.4) rotate(-10deg)}55%{transform:scale(1.1) rotate(4deg)}100%{transform:none}}
+
+/* --- Iconos sólidos (blanco sobre degradado): rellenos por defecto --- */
+.sup-ic .material-symbols-rounded   {font-size:26px; font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40}
+.modal-ic .material-symbols-rounded {font-size:26px; font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40}
+.warn .wi .material-symbols-rounded {font-size:26px; font-variation-settings:'FILL' 1,'wght' 650,'GRAD' 0,'opsz' 40}
+.vrow .vplay .material-symbols-rounded{font-size:20px; margin-left:2px; font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40}
+.sup-card:hover .sup-ic .material-symbols-rounded{transform:scale(1.1)}
+.vrow:hover .vplay .material-symbols-rounded{transform:scale(1.12)}
+
+/* --- Iconos de UI (contorno) --- */
+.modal-x .material-symbols-rounded   {font-size:22px}
+.sps-name .material-symbols-rounded  {font-size:19px; font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 40}
+.sps-foot .material-symbols-rounded  {font-size:16px}
+.dl-btn .ic .material-symbols-rounded{font-size:24px; font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 40}
+.faq-q .plus .material-symbols-rounded{font-size:19px; font-variation-settings:'FILL' 0,'wght' 650,'GRAD' 0,'opsz' 40}
+
+@media (prefers-reduced-motion: reduce){
+  .feat.in .ico{animation:none}
+  .material-symbols-rounded{transition:none}
+}
