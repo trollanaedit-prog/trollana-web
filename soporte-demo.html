@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soporte · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;
+    background:radial-gradient(120% 90% at 50% 0%,#101a30,#070b16 70%);
+    font-family:'Inter',system-ui,sans-serif;padding:24px 14px}
+</style>
+</head>
+<body>
+
+<!-- ====================================================================
+     DEMO VISUAL · Chat de Soporte  (clases sc-)  ·  backend SIMULADO
+     ==================================================================== -->
+<div class="sc-wrap">
+<style>
+.sc{--blue:#1A73E8;--blue2:#6D28D9;--green:#10B981;--ink:#0A0E1A;--soft:#5A6478;--line:#EDF0F5;--red:#EF4444;
+  width:400px;max-width:94vw;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.sc *{box-sizing:border-box}
+.sc-card{position:relative;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);display:flex;flex-direction:column;height:620px;max-height:86vh}
+
+/* cabecera */
+.sc-head{position:relative;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;padding:18px 18px 16px;overflow:hidden}
+.sc-head::after{content:"";position:absolute;inset:-40% -10% auto;height:140%;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 55%)}
+.sc-head-row{position:relative;display:flex;align-items:center;gap:12px}
+.sc-av{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);display:grid;place-items:center;flex:none;position:relative}
+.sc-av svg{width:25px;height:25px}
+.sc-av .dot{position:absolute;right:-2px;bottom:-2px;width:14px;height:14px;border-radius:50%;background:#22E07B;border:2.5px solid #2b50b8;box-shadow:0 0 8px #22E07B}
+.sc-htx{flex:1;min-width:0}
+.sc-htx b{font-family:'Space Grotesk',sans-serif;font-size:16.5px;font-weight:700;display:block;line-height:1.2}
+.sc-htx span{font-size:12px;opacity:.9;display:flex;align-items:center;gap:6px;margin-top:2px}
+.sc-htx span i{width:6px;height:6px;border-radius:50%;background:#22E07B;display:inline-block;box-shadow:0 0 6px #22E07B;animation:scPulse 1.8s ease-in-out infinite}
+@keyframes scPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.sc-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);border:none;color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:background .2s}
+.sc-x:hover{background:rgba(255,255,255,.28)}
+.sc-x svg{width:18px;height:18px}
+
+/* pestañas */
+.sc-tabs{display:flex;gap:5px;background:rgba(255,255,255,.14);border-radius:12px;padding:4px;margin-top:15px;position:relative}
+.sc-tab{flex:1;border:none;background:transparent;color:rgba(255,255,255,.85);font:inherit;font-size:13px;font-weight:700;padding:8px;border-radius:9px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.sc-tab svg{width:15px;height:15px}
+.sc-tab.on{background:#fff;color:#1A73E8;box-shadow:0 4px 12px -4px rgba(0,0,0,.3)}
+
+/* cuerpo */
+.sc-body{flex:1;display:flex;flex-direction:column;min-height:0;background:#F7F9FC}
+.sc-pane{flex:1;min-height:0;display:none;flex-direction:column}
+.sc-pane.on{display:flex}
+
+/* ---- chat ---- */
+.sc-msgs{flex:1;overflow-y:auto;padding:18px 16px 8px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.sc-msgs::-webkit-scrollbar{width:6px}.sc-msgs::-webkit-scrollbar-thumb{background:#d6dbe5;border-radius:6px}
+.sc-day{align-self:center;font-size:11px;color:#9aa3b2;font-weight:600;background:#eaeef5;padding:4px 12px;border-radius:999px;margin:2px 0}
+.sc-row{display:flex;gap:8px;max-width:84%;animation:scIn .35s ease both}
+@keyframes scIn{from{opacity:0;transform:translateY(8px)}}
+.sc-row.me{align-self:flex-end;flex-direction:row-reverse}
+.sc-ava{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#1A73E8,#6D28D9);flex:none;display:grid;place-items:center;align-self:flex-end}
+.sc-ava svg{width:15px;height:15px}
+.sc-bub{padding:10px 13px;border-radius:16px;font-size:13.5px;line-height:1.45;color:#15171e;background:#fff;border:1px solid #ECEFF4;box-shadow:0 4px 12px -8px rgba(20,40,90,.2);border-bottom-left-radius:5px}
+.sc-row.me .sc-bub{background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;border:none;border-radius:16px;border-bottom-right-radius:5px}
+.sc-time{font-size:10px;color:#aab2c0;margin-top:5px;display:block}
+.sc-row.me .sc-time{color:rgba(255,255,255,.75);text-align:right}
+.sc-typing{display:flex;gap:4px;padding:13px 14px}
+.sc-typing i{width:7px;height:7px;border-radius:50%;background:#b9c2d0;animation:scType 1.3s ease-in-out infinite}
+.sc-typing i:nth-child(2){animation-delay:.18s}.sc-typing i:nth-child(3){animation-delay:.36s}
+@keyframes scType{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+
+/* chips de inicio */
+.sc-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+.sc-chip{border:1.5px solid #dfe5ef;background:#fff;color:#33415a;font:inherit;font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer;transition:.18s}
+.sc-chip:hover{border-color:#1A73E8;color:#1A73E8;background:#f3f7ff}
+
+/* barra de sesión */
+.sc-sess{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 16px;background:#fff;border-top:1px solid #EDF0F5;font-size:11px;color:#7a8394;font-weight:600}
+.sc-sess .t{display:flex;align-items:center;gap:6px}
+.sc-sess .t svg{width:13px;height:13px}
+.sc-clock{font-variant-numeric:tabular-nums;font-weight:800;color:#1A73E8}
+.sc-clock.warn{color:#F59E0B}.sc-clock.crit{color:#EF4444}
+.sc-sess .e{display:flex;align-items:center;gap:6px;color:#10B981}
+.sc-sess .e svg{width:13px;height:13px}
+
+/* composer */
+.sc-comp{padding:11px 13px;background:#fff;border-top:1px solid #EDF0F5}
+.sc-inrow{display:flex;align-items:flex-end;gap:9px;background:#F2F4F8;border-radius:16px;padding:7px 7px 7px 14px;transition:box-shadow .2s}
+.sc-inrow:focus-within{box-shadow:0 0 0 2px rgba(26,115,232,.35)}
+.sc-ta{flex:1;border:none;background:transparent;resize:none;font:inherit;font-size:13.5px;line-height:1.4;max-height:96px;padding:6px 0;color:#15171e;outline:none}
+.sc-send{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .15s,filter .15s,opacity .2s}
+.sc-send:hover{filter:brightness(1.08)}.sc-send:active{transform:scale(.9)}
+.sc-send:disabled{opacity:.4;cursor:default;filter:grayscale(.3)}
+.sc-send svg{width:18px;height:18px}
+.sc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:7px;padding:0 4px}
+.sc-count{font-size:10.5px;color:#aab2c0;font-weight:600}
+.sc-count.over{color:#EF4444}
+
+/* acciones inferiores */
+.sc-foot{display:flex;gap:9px;padding:11px 13px;background:#fff;border-top:1px solid #EDF0F5}
+.sc-fin{flex:1;border:none;border-radius:13px;padding:12px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#10B981,#047857);color:#fff;box-shadow:0 10px 22px -10px rgba(16,185,129,.7);transition:transform .15s,filter .15s}
+.sc-fin:hover{filter:brightness(1.06)}.sc-fin:active{transform:scale(.98)}
+.sc-fin svg{width:16px;height:16px}
+.sc-cancel{border:1.5px solid #f1d4d4;border-radius:13px;padding:12px 16px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#dc2626;transition:.18s}
+.sc-cancel:hover{background:#fef2f2;border-color:#f5b5b5}
+
+/* ---- correo ---- */
+.sc-mail{flex:1;overflow-y:auto;padding:18px 16px}
+.sc-mail h4{font-family:'Space Grotesk',sans-serif;font-size:15px;margin:0 0 4px;color:#15171e}
+.sc-mail .lead{font-size:12.5px;color:#5A6478;margin:0 0 16px;line-height:1.5}
+.sc-mailbtn{display:flex;align-items:center;gap:12px;width:100%;border:1px solid #ECEFF4;border-radius:14px;padding:13px;background:#fff;cursor:pointer;text-align:left;text-decoration:none;color:inherit;margin-bottom:10px;transition:.18s;font:inherit}
+.sc-mailbtn:hover{border-color:#1A73E8;box-shadow:0 8px 20px -12px rgba(26,115,232,.4);transform:translateY(-1px)}
+.sc-mailbtn .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff}
+.sc-mailbtn .ic svg{width:21px;height:21px}
+.ic-blue{background:linear-gradient(135deg,#1A73E8,#0D47A1)}.ic-red{background:linear-gradient(135deg,#EA4335,#B31412)}.ic-cyan{background:linear-gradient(135deg,#0EA5E9,#0369A1)}.ic-gray{background:linear-gradient(135deg,#64748B,#334155)}
+.sc-mailbtn b{font-size:13.5px;display:block;color:#15171e}
+.sc-mailbtn span{font-size:11.5px;color:#9aa3b2}
+.sc-addr{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#F7F9FC;border:1px dashed #d3dae6;border-radius:12px;padding:11px 14px;margin-top:6px}
+.sc-addr code{font-family:'Space Grotesk',monospace;font-size:13px;color:#1A73E8;font-weight:600}
+.sc-addr button{border:none;background:#1A73E8;color:#fff;font:inherit;font-size:11.5px;font-weight:700;padding:7px 12px;border-radius:8px;cursor:pointer}
+
+/* overlay confirm */
+.sc-ov{position:absolute;inset:0;z-index:20;background:rgba(10,14,26,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:22px;animation:scFade .25s ease}
+.sc-ov.on{display:flex}
+@keyframes scFade{from{opacity:0}}
+.sc-dialog{background:#fff;border-radius:20px;padding:22px;width:100%;max-width:320px;text-align:center;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);animation:scPop .3s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes scPop{from{opacity:0;transform:scale(.9)}}
+.sc-dialog .di{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin:0 auto 13px}
+.sc-dialog .di svg{width:26px;height:26px}
+.di-red{background:#FEE2E2;color:#DC2626}.di-green{background:#D1FAE5;color:#059669}
+.sc-dialog h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin:0 0 8px;color:#15171e}
+.sc-dialog p{font-size:13px;color:#5A6478;line-height:1.55;margin:0 0 8px}
+.sc-warn{background:#FEF2F2;border:1px solid #FECACA;border-radius:11px;padding:9px 12px;font-size:11.5px;color:#B91C1C;font-weight:600;margin:12px 0 4px;display:flex;align-items:center;gap:8px;text-align:left}
+.sc-warn svg{width:16px;height:16px;flex:none}
+.sc-dbtns{display:flex;gap:9px;margin-top:18px}
+.sc-dbtns button{flex:1;border:none;border-radius:12px;padding:12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.sc-db-ghost{background:#F1F3F7;color:#5A6478}.sc-db-ghost:hover{background:#e7eaf0}
+.sc-db-red{background:linear-gradient(135deg,#EF4444,#B91C1C);color:#fff}.sc-db-red:hover{filter:brightness(1.06)}
+
+/* estado finalizado */
+.sc-done{position:absolute;inset:0;z-index:15;background:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;animation:scFade .3s ease}
+.sc-done.on{display:flex}
+.sc-done .ic{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,#10B981,#047857);display:grid;place-items:center;margin-bottom:18px;box-shadow:0 18px 40px -14px rgba(16,185,129,.6);animation:scPop .4s cubic-bezier(.2,.9,.3,1.1)}
+.sc-done .ic svg{width:38px;height:38px}
+.sc-done h3{font-family:'Space Grotesk',sans-serif;font-size:21px;margin:0 0 9px;color:#15171e}
+.sc-done p{font-size:13.5px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 22px}
+.sc-done .trash{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#10B981;font-weight:700;background:#ECFDF5;padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.sc-done .trash svg{width:14px;height:14px}
+.sc-restart{border:none;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;font:inherit;font-size:13.5px;font-weight:700;padding:12px 26px;border-radius:13px;cursor:pointer;transition:filter .15s}
+.sc-restart:hover{filter:brightness(1.08)}
+
+.sc-demo-tag{text-align:center;margin-top:14px;font-size:11.5px;color:#7c8aa5;font-weight:600}
+</style>
+
+<div class="sc">
+  <div class="sc-card" id="scCard">
+
+    <!-- cabecera -->
+    <div class="sc-head">
+      <div class="sc-head-row">
+        <div class="sc-av">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          <span class="dot"></span>
+        </div>
+        <div class="sc-htx">
+          <b>Soporte downloaderV</b>
+          <span><i></i>En línea · respondemos en minutos</span>
+        </div>
+        <button class="sc-x" title="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="sc-tabs">
+        <button class="sc-tab on" data-tab="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>Chat en directo</button>
+        <button class="sc-tab" data-tab="mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Por correo</button>
+      </div>
+    </div>
+
+    <!-- cuerpo -->
+    <div class="sc-body">
+
+      <!-- PANE CHAT -->
+      <div class="sc-pane on" data-pane="chat">
+        <div class="sc-msgs" id="scMsgs"></div>
+        <div class="sc-chips" id="scChips">
+          <button class="sc-chip">📥 Problema de descarga</button>
+          <button class="sc-chip">🎬 Creator Studio</button>
+          <button class="sc-chip">🎙️ Clonar voz</button>
+          <button class="sc-chip">💬 Otra consulta</button>
+        </div>
+
+        <div class="sc-sess">
+          <span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sesión: <span class="sc-clock" id="scClock">15:00</span></span>
+          <span class="e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Se borra al finalizar</span>
+        </div>
+
+        <div class="sc-comp">
+          <div class="sc-inrow">
+            <textarea class="sc-ta" id="scTa" rows="1" placeholder="Escribe tu mensaje…" maxlength="1200"></textarea>
+            <button class="sc-send" id="scSend" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+          </div>
+          <div class="sc-meta">
+            <span class="sc-count" id="scCount">0 / 1000</span>
+            <span class="sc-count" id="scLeft">Te quedan 30 mensajes</span>
+          </div>
+        </div>
+
+        <div class="sc-foot">
+          <button class="sc-fin" id="scFin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Finalizar y borrar</button>
+          <button class="sc-cancel" id="scCancel">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- PANE CORREO -->
+      <div class="sc-pane" data-pane="mail">
+        <div class="sc-mail">
+          <h4>¿Prefieres el correo?</h4>
+          <p class="lead">Detrás de downloaderV hay un equipo de personas reales. Escríbenos y te respondemos lo antes posible.</p>
+          <a class="sc-mailbtn" href="#"><span class="ic ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><b>Abrir mi correo</b><span>Plantilla rellenada automáticamente</span></div></a>
+          <a class="sc-mailbtn" href="#"><span class="ic ic-red"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span><div><b>Gmail</b><span>Abrir en Gmail web</span></div></a>
+          <a class="sc-mailbtn" href="#"><span class="ic ic-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span><div><b>Outlook</b><span>Abrir en Outlook web</span></div></a>
+          <div class="sc-addr"><code>soporte@downloaderv.com</code><button id="scCopy">Copiar</button></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- overlay: confirmar FINALIZAR -->
+    <div class="sc-ov" id="scOvFin">
+      <div class="sc-dialog">
+        <div class="di di-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>¿Finalizar soporte?</h3>
+        <p>Tu consulta se marcará como resuelta y la conversación se eliminará por completo de nuestros servidores.</p>
+        <div class="sc-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Esta acción no se puede deshacer.</div>
+        <div class="sc-dbtns"><button class="sc-db-ghost" data-close-ov>Volver</button><button class="sc-db-red" id="scFinYes" style="background:linear-gradient(135deg,#10B981,#047857)">Sí, finalizar</button></div>
+      </div>
+    </div>
+
+    <!-- overlay: confirmar CANCELAR -->
+    <div class="sc-ov" id="scOvCancel">
+      <div class="sc-dialog">
+        <div class="di di-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+        <h3>¿Cancelar el chat?</h3>
+        <p>Se cerrará la conversación y se borrará todo lo escrito. No podrás recuperarla.</p>
+        <div class="sc-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Una vez cancelado, no se puede revertir.</div>
+        <div class="sc-dbtns"><button class="sc-db-ghost" data-close-ov>Volver</button><button class="sc-db-red" id="scCancelYes">Sí, cancelar</button></div>
+      </div>
+    </div>
+
+    <!-- estado finalizado -->
+    <div class="sc-done" id="scDone">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h3 id="scDoneT">Soporte finalizado</h3>
+      <p id="scDoneP">Gracias por contactar con downloaderV. Esperamos haberte ayudado.</p>
+      <span class="trash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Conversación eliminada de la base de datos</span>
+      <button class="sc-restart" id="scRestart">Iniciar nuevo chat</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="sc-demo-tag">Demo · backend simulado (sin conexión real a Firebase todavía)</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const card=$('#scCard'), msgs=$('#scMsgs'), ta=$('#scTa'), send=$('#scSend'),
+        count=$('#scCount'), left=$('#scLeft'), chips=$('#scChips'), clockEl=$('#scClock');
+  const MAXLEN=1000, MAXMSG=30, SESSION=15*60;
+  let sentCount=0, started=false, timer=null, remaining=SESSION, ended=false;
+
+  const now = ()=> new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+
+  function scroll(){ msgs.scrollTop=msgs.scrollHeight; }
+  function addDay(){ const d=document.createElement('div'); d.className='sc-day'; d.textContent='Hoy'; msgs.appendChild(d); }
+
+  function bubble(text, me){
+    const row=document.createElement('div'); row.className='sc-row'+(me?' me':'');
+    const ava = me ? '' : '<div class="sc-ava"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div>';
+    row.innerHTML = ava + '<div class="sc-bub">'+text.replace(/</g,'&lt;')+'<span class="sc-time">'+now()+'</span></div>';
+    msgs.appendChild(row); scroll(); return row;
+  }
+  function typing(){
+    const row=document.createElement('div'); row.className='sc-row'; row.id='scTyping';
+    row.innerHTML='<div class="sc-ava"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="sc-bub"><div class="sc-typing"><i></i><i></i><i></i></div></div>';
+    msgs.appendChild(row); scroll();
+  }
+  function stopTyping(){ const t=$('#scTyping'); if(t) t.remove(); }
+
+  function agent(text, delay=1100){
+    typing();
+    setTimeout(()=>{ stopTyping(); bubble(text,false); }, delay);
+  }
+
+  // respuestas simuladas (en real, esto lo respondes tú desde tu app/Firebase)
+  const replies=[
+    "¡Gracias por escribir! Cuéntame con detalle qué te ocurre y en qué dispositivo, y lo miramos ahora mismo. 🙌",
+    "Entendido. ¿Podrías indicarme el enlace o la plataforma (YouTube, TikTok, Instagram…) con la que pasa?",
+    "Perfecto, lo estoy revisando. ¿Te aparece algún mensaje de error en pantalla?",
+    "Vale, con eso ya puedo ayudarte. Prueba a actualizar la app a la última versión y dime si sigue igual.",
+    "Genial, me alegro de que se haya solucionado. ¿Necesitas algo más antes de finalizar? 😊"
+  ];
+  let ri=0;
+
+  function startSession(){
+    if(started) return; started=true;
+    chips.style.display='none';
+    timer=setInterval(tick,1000);
+  }
+  function tick(){
+    remaining--;
+    const m=String(Math.floor(remaining/60)).padStart(2,'0'), s=String(remaining%60).padStart(2,'0');
+    clockEl.textContent=m+':'+s;
+    clockEl.classList.toggle('warn', remaining<=120 && remaining>30);
+    clockEl.classList.toggle('crit', remaining<=30);
+    if(remaining<=0){ clearInterval(timer); finalize('⏰ La sesión ha caducado','Por inactividad, el chat se ha cerrado y todo se ha eliminado automáticamente.'); }
+  }
+
+  function doSend(){
+    const text=ta.value.trim();
+    if(!text || ended) return;
+    if(text.length>MAXLEN){ return; }
+    if(sentCount>=MAXMSG){ agent('Has alcanzado el límite de mensajes de esta sesión. Si necesitas seguir, finaliza y abre un chat nuevo. 🙏',500); return; }
+    startSession();
+    bubble(text,true);
+    sentCount++;
+    left.textContent='Te quedan '+(MAXMSG-sentCount)+' mensajes';
+    ta.value=''; resize(); updateBtn();
+    agent(replies[Math.min(ri,replies.length-1)], 1000+Math.random()*900); ri++;
+  }
+
+  function resize(){ ta.style.height='auto'; ta.style.height=Math.min(ta.scrollHeight,96)+'px'; }
+  function updateBtn(){
+    const len=ta.value.trim().length;
+    send.disabled = len===0 || len>MAXLEN || ended;
+    count.textContent=ta.value.length+' / '+MAXLEN;
+    count.classList.toggle('over', ta.value.length>MAXLEN);
+  }
+
+  ta.addEventListener('input', ()=>{ resize(); updateBtn(); });
+  ta.addEventListener('keydown', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); doSend(); } });
+  send.addEventListener('click', doSend);
+  chips.querySelectorAll('.sc-chip').forEach(c=>c.addEventListener('click',()=>{
+    ta.value=c.textContent.replace(/^[^\s]+\s/,'')+': '; ta.focus(); resize(); updateBtn();
+  }));
+
+  // pestañas
+  document.querySelectorAll('.sc-tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.sc-tab').forEach(x=>x.classList.toggle('on',x===t));
+    document.querySelectorAll('.sc-pane').forEach(p=>p.classList.toggle('on',p.dataset.pane===t.dataset.tab));
+  }));
+
+  // overlays
+  const ovFin=$('#scOvFin'), ovCancel=$('#scOvCancel');
+  $('#scFin').addEventListener('click',()=>ovFin.classList.add('on'));
+  $('#scCancel').addEventListener('click',()=>ovCancel.classList.add('on'));
+  document.querySelectorAll('[data-close-ov]').forEach(b=>b.addEventListener('click',()=>{ovFin.classList.remove('on');ovCancel.classList.remove('on');}));
+
+  function finalize(title,text){
+    ended=true; if(timer) clearInterval(timer);
+    ovFin.classList.remove('on'); ovCancel.classList.remove('on');
+    // animación: los mensajes se desvanecen (simula borrado)
+    msgs.style.transition='opacity .4s ease'; msgs.style.opacity='.2';
+    $('#scDoneT').textContent=title; $('#scDoneP').textContent=text;
+    setTimeout(()=>$('#scDone').classList.add('on'),250);
+  }
+  $('#scFinYes').addEventListener('click',()=>finalize('Soporte finalizado','Gracias por contactar con downloaderV. La conversación se ha eliminado por completo.'));
+  $('#scCancelYes').addEventListener('click',()=>finalize('Chat cancelado','Has cancelado el chat. Todo lo escrito se ha borrado y no se puede recuperar.'));
+
+  // reiniciar (solo demo)
+  $('#scRestart').addEventListener('click',()=>{
+    msgs.innerHTML=''; msgs.style.opacity='1'; ta.value=''; resize(); updateBtn();
+    sentCount=0; started=false; ended=false; remaining=SESSION; ri=0;
+    clockEl.textContent='15:00'; clockEl.className='sc-clock'; left.textContent='Te quedan 30 mensajes';
+    chips.style.display='flex'; $('#scDone').classList.remove('on');
+    boot();
+  });
+
+  $('#scCopy').addEventListener('click',e=>{ e.target.textContent='¡Copiado!'; setTimeout(()=>e.target.textContent='Copiar',1600); });
+  $('.sc-x').addEventListener('click',()=>{ /* en tu web: cerrar modal */ });
+
+  function boot(){ addDay(); agent('👋 ¡Hola! Soy del equipo de soporte de downloaderV. ¿En qué puedo ayudarte?', 700); }
+  boot();
+})();
+</script>
+</div>
+<!-- ==================== FIN DEMO ==================== -->
+
+</body>
+</html>

@@ -8,8 +8,8 @@ const CONFIG = {
   descargaAndroid: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.6/DownloaderV.1.0.6.apk',
 };
 
-const ICON_WIN = '<svg viewBox="0 0 24 24" fill="#1A73E8"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg>';
-const ICON_AND = '<svg viewBox="0 0 24 24" fill="#10B981"><path d="M12 2 9 7h6l-3-5zM6 8h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/></svg>';
+const ICON_WIN = '<svg viewBox="0 0 24 24" fill="#1A73E8"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg>';
+const ICON_AND = '<svg viewBox="0 0 24 24" fill="#10B981"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg>';
 
 /* ====== DETECCIÓN PC vs MÓVIL (a prueba de balas) ======
    1º API moderna (Chrome/Edge): navigator.userAgentData.mobile

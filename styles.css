@@ -1230,3 +1230,77 @@ footer{position:relative; border-top:1px solid var(--line); padding:0; margin-to
   .feat.in .ico{animation:none}
   .material-symbols-rounded{transition:none}
 }
+
+/* ============================================================
+   v16 — PULIDO PREMIUM GLOBAL
+   Capa puramente ADITIVA: solo refina el acabado.
+   No modifica ninguna sección, ningún mockup ni la lógica JS.
+   ============================================================ */
+
+/* ---- Render global más fino y de mayor calidad ---- */
+html{ scroll-padding-top:86px; }                 /* las anclas no quedan ocultas bajo la barra fija (clave en móvil) */
+*{ -webkit-tap-highlight-color:transparent; }     /* sin destello azulado al tocar en Android = acabado más limpio */
+body{ text-rendering:optimizeLegibility; -moz-osx-font-smoothing:grayscale; font-kerning:normal; }
+
+/* ---- Equilibrado tipográfico: cortes de línea elegantes en titulares y textos ---- */
+h1, h2, h3, h4,
+.sec-head h2, .split h2, .cta h2, .modal-head h3{ text-wrap:balance; }
+.hero p.sub, p.lead, .sec-head p, .cta p, .feat p, .modal-body p, .sup-card p{ text-wrap:pretty; }
+
+/* ---- Selección de texto con color de marca ---- */
+::selection{ background:rgba(26,115,232,.20); color:#0A0E1A; }
+.sec-dark ::selection, .hero ::selection, .cta ::selection{ background:rgba(96,165,250,.32); color:#fff; }
+
+/* ---- Foco accesible (solo teclado): anillo limpio que no molesta con el ratón ---- */
+:focus:not(:focus-visible){ outline:none; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+.chip:focus-visible, .pchip:focus-visible, .dl-btn:focus-visible, .nav-cta:focus-visible,
+.btn-ghost:focus-visible, .ma-primary:focus-visible, .ma-btn:focus-visible,
+.modal-x:focus-visible{
+  outline:2.5px solid rgba(26,115,232,.6); outline-offset:3px;
+}
+.sec-dark a:focus-visible, .sec-dark button:focus-visible,
+.hero button:focus-visible, .cta button:focus-visible{ outline-color:rgba(125,182,255,.9); }
+
+/* ---- Micro-interacción al pulsar: feedback táctil en Android y clic en PC ---- */
+.dl-btn:active{ transform:translateY(-1px) scale(.985); }
+.nav-cta:active{ transform:scale(.96); }
+.btn-ghost:active, .ma-primary:active{ transform:translateY(0) scale(.98); }
+.chip:active, .pchip:active{ transform:scale(.95); }
+.feat:active, .os:active, .stat:active, .sup-card:active{ transform:translateY(-2px) scale(.995); }
+.vrow:active{ transform:translateX(4px) scale(.996); }
+.foot-col a:active{ transform:translateX(3px); }
+/* estos no traían transición de transform: se la damos para que el "press" sea suave */
+.ma-btn{ transition:transform .18s cubic-bezier(.2,.8,.2,1), border-color .2s ease, background .2s ease, color .2s ease; }
+.ma-btn:active{ transform:scale(.94); }
+.modal-x{ transition:transform .18s cubic-bezier(.2,.8,.2,1), background .2s ease; }
+.modal-x:active{ transform:scale(.92); }
+
+/* ---- Botón de descarga: acabado un punto más premium (sutil, no cambia su comportamiento) ---- */
+.dl-btn{ background-image:linear-gradient(180deg,#FFFFFF 0%,#EEF3FB 100%); }
+.dl-btn b{ letter-spacing:-.01em; }
+
+/* ---- Profundidad táctil sutil en pastillas e iconos de sistema ---- */
+.pchip{ box-shadow:inset 0 1px 0 rgba(255,255,255,.7); }
+.sec-dark .pchip{ box-shadow:inset 0 1px 0 rgba(255,255,255,.06); }
+.os .osic{ box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 22px -16px rgba(10,14,26,.4); }
+.sec-dark .os .osic{ box-shadow:inset 0 1px 0 rgba(255,255,255,.1); }
+
+/* ---- Barra de navegación: realce más fino y elegante al hacer scroll ---- */
+.nav.scrolled{ background:rgba(255,255,255,.82); box-shadow:0 1px 0 rgba(10,14,26,.05), 0 10px 30px -16px rgba(10,14,26,.18); }
+
+/* ---- Scrollbar premium (solo escritorio; en móvil se respeta la nativa) ---- */
+@media (hover:hover) and (pointer:fine){
+  *{ scrollbar-width:thin; scrollbar-color:rgba(120,135,160,.55) transparent; }
+  ::-webkit-scrollbar{ width:11px; height:11px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:linear-gradient(180deg,#9AA7BC,#7C8AA3); border:3px solid transparent; background-clip:padding-box; border-radius:999px; }
+  ::-webkit-scrollbar-thumb:hover{ background:linear-gradient(180deg,#7C8AA3,#5E6E8A); background-clip:padding-box; }
+}
+
+/* ---- Respeto a "prefers-reduced-motion": el press no debe dar saltos ---- */
+@media (prefers-reduced-motion: reduce){
+  .dl-btn:active, .nav-cta:active, .btn-ghost:active, .ma-primary:active,
+  .chip:active, .pchip:active, .feat:active, .os:active, .stat:active, .sup-card:active,
+  .vrow:active, .ma-btn:active, .modal-x:active, .foot-col a:active{ transform:none; }
+}

@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, addDoc, serverTimestamp }
+  import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
     from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
   const firebaseConfig = {
@@ -28,19 +28,70 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
       return `UTC${off>=0?'+':''}${off} (${tz})`;
     }catch(_){ return 'desconocida'; }
   }
+  // Texto bonito para la duración (15 s · 7 min 32 s · 1 h 4 min)
+  function formatoDuracion(seg){
+    if(seg < 60) return seg + ' s';
+    const m = Math.floor(seg/60), s = seg%60;
+    if(m < 60) return s ? `${m} min ${s} s` : `${m} min`;
+    const h = Math.floor(m/60), mm = m%60;
+    return mm ? `${h} h ${mm} min` : `${h} h`;
+  }
 
   (async ()=>{
+    let db=null, ref=null;
+    const inicio = Date.now();
+    let descargo = false;     // ¿pulsó Descargar?
+    let cerrado  = false;     // para no escribir la duración dos veces
+
+    const segundos = ()=> Math.max(0, Math.round((Date.now()-inicio)/1000));
+    const textoDescarga = ()=> descargo ? '✅ SÍ — pulsó descargar' : '❌ NO — solo visitó';
+
+    // --- Detectar clic en los botones de descarga (#heroDl, #ctaDl, .dl-btn, enlaces .exe/.apk) ---
+    function marcarDescarga(){
+      if(descargo) return; descargo = true;
+      if(ref){
+        updateDoc(ref, {
+          _descarga: textoDescarga(),
+          descargo: true,
+          _duracion: formatoDuracion(segundos()),
+          duracion_segundos: segundos()
+        }).catch(()=>{});
+      }
+    }
+    document.addEventListener('click', (e)=>{
+      const t = e.target.closest('#heroDl, #ctaDl, .dl-btn, a[href*=".exe"], a[href*=".apk"], a[href*="releases/download"]');
+      if(t) marcarDescarga();
+    }, true);
+
+    // --- Guardar la duración al salir / cambiar de pestaña ---
+    function guardarSalida(){
+      if(cerrado || !ref) return; cerrado = true;
+      updateDoc(ref, {
+        _descarga: textoDescarga(),
+        _duracion: formatoDuracion(segundos()),
+        descargo,
+        duracion_segundos: segundos()
+      }).catch(()=>{});
+    }
+    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') guardarSalida(); });
+    window.addEventListener('pagehide', guardarSalida);
+
     try{
       const app = initializeApp(firebaseConfig);
-      const db  = getFirestore(app);
+      db = getFirestore(app);
 
-      // ID anónimo persistente
       let vid = localStorage.getItem('dv_visitante_id') || '';
       if(!vid){ vid = Date.now()+'_'+Math.floor(Math.random()*900000+100000); localStorage.setItem('dv_visitante_id', vid); }
       const recurrente = localStorage.getItem('dv_ya_visito')==='si';
       localStorage.setItem('dv_ya_visito','si');
 
       const datos = {
+        // ===== ARRIBA DEL TODO (el "_" hace que salgan los primeros en Firestore) =====
+        _descarga: textoDescarga(),       // ✅ SÍ / ❌ NO  (si pulsó descargar)
+        _duracion: '0 s',                 // tiempo que estuvo en la página
+        // ===== resto de datos =====
+        descargo: descargo,               // versión booleana (para tu app)
+        duracion_segundos: 0,             // versión numérica (para tu app)
         fecha: serverTimestamp(),
         fecha_local: new Date().toISOString(),
         visitante_id: vid,
@@ -78,7 +129,21 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
         }
       }catch(_){ /* sin geo, seguimos */ }
 
-      await addDoc(collection(db,'visitas'), datos);
+      // Crear el documento de la visita y guardar su referencia
+      ref = await addDoc(collection(db,'visitas'), datos);
+
+      // Si ya había pulsado descargar mientras cargaba, lo reflejamos
+      if(descargo){ updateDoc(ref, { _descarga: textoDescarga(), descargo:true }).catch(()=>{}); }
+
+      // Guardar la duración en hitos (1, 5, 15, 30 min) por si cierra de golpe.
+      // Pocas escrituras = entra de sobra en el plan GRATUITO de Firebase.
+      [60, 300, 900, 1800].forEach(seg=>{
+        setTimeout(()=>{
+          if(cerrado || !ref) return;
+          updateDoc(ref, { _duracion: formatoDuracion(segundos()), duracion_segundos: segundos() }).catch(()=>{});
+        }, seg*1000);
+      });
+
     }catch(e){
       console.log('Registro de visita falló (no crítico):', e);
     }

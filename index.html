@@ -467,45 +467,545 @@
         <p class="lead">Una notificación permanente en tu Android que descarga vídeos desde cualquier plataforma sin tener que abrir downloaderV. Estés donde estés.</p>
       </div>
       <div class="visual reveal d1">
-        <div class="phones">
-          <div class="phone" id="flashPhone">
-            <span class="pbtn pwr"></span><span class="pbtn vu"></span><span class="pbtn vd"></span>
-            <div class="pscreen">
-              <div class="pill"></div>
-              <div class="pstatus"><span>14:32</span><span class="pstat-ic"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M2 16h3v4H2zM7 12h3v8H7zM12 8h3v12h-3zM17 4h3v16h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 4C7 4 2.7 6 0 9l12 14L24 9c-2.7-3-7-5-12-5z"/></svg><svg viewBox="0 0 26 14" fill="none" width="20" height="12"><rect x="1" y="2" width="19" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="4" width="14" height="6" rx="1" fill="currentColor"/><rect x="21.5" y="5" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+        <div class="fdx-wrap">
+        <style>
+        /* ---------- raíz / marco ---------- */
+        .fdx{--w:300px;--sb:30px;--nav:36px;--blue:#2f6bff;--green:#10b981;
+          width:var(--w);max-width:88vw;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;
+          font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+        .fdx *{box-sizing:border-box}
+        .fdx-phone{position:relative;width:100%;aspect-ratio:9/19.5;background:#05070d;border:3px solid #2a3142;border-radius:42px;padding:7px;
+          box-shadow:0 50px 100px -34px rgba(0,0,0,.75),inset 0 0 0 2px #0d1220,0 0 0 1px rgba(255,255,255,.04)}
+        .fdx-phone::before{content:"";position:absolute;right:-5px;top:140px;width:3px;height:54px;background:#222a3a;border-radius:3px}
+        .fdx-phone::after{content:"";position:absolute;left:-5px;top:118px;width:3px;height:34px;background:#222a3a;border-radius:3px;
+          box-shadow:0 48px 0 #222a3a}
+        .fdx-screen{position:relative;width:100%;height:100%;border-radius:35px;overflow:hidden;background:#0a0e1a;font-size:12px;isolation:isolate}
 
-              <!-- Pantalla de inicio -->
-              <div class="phome">
-                <div class="phome-time">14:32</div>
-                <div class="phome-date">Miércoles, 17 de junio</div>
-                <div class="phome-grab"><span></span></div>
-                <div class="phome-hint">Desliza para ver la notificación</div>
-                <div class="phome-dock"><span></span><span></span><span></span><span></span></div>
+        /* ---------- barra de estado ---------- */
+        .fdx-sb{position:absolute;top:0;left:0;right:0;height:var(--sb);z-index:30;display:flex;align-items:center;justify-content:space-between;
+          padding:0 16px;font-weight:700;font-size:12px;color:#0b0b0f;transition:color .35s ease;pointer-events:none}
+        .fdx-screen[data-theme="dark"] .fdx-sb{color:#fff}
+        .fdx-sb .l{display:flex;align-items:center;gap:5px}
+        .fdx-sb .r{display:flex;align-items:center;gap:5px}
+        .fdx-sb svg{display:block}
+        .fdx-batt{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:800}
+        .fdx-pill{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:74px;height:18px;background:#000;border-radius:999px;z-index:31}
+
+        /* ---------- escenario ---------- */
+        .fdx-stage{position:absolute;left:0;right:0;top:var(--sb);bottom:var(--nav);overflow:hidden;z-index:1}
+        .fdx-scene{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease}
+        .fdx-screen[data-scene="app"]  .fdx-app {opacity:1}
+        .fdx-screen[data-scene="home"] .fdx-home{opacity:1}
+        .fdx-screen[data-scene="feed"] .fdx-feed{opacity:1}
+
+        /* =================== ESCENA 1 · APP DownloaderV =================== */
+        .fdx-app{background:#eef1f6;padding:6px 13px 0;display:flex;flex-direction:column;overflow:hidden}
+        .fdx-head{text-align:center;padding:4px 0 8px}
+        .fdx-logo{width:44px;height:44px;margin:0 auto 6px;background:#fff;border-radius:13px;display:grid;place-items:center;
+          box-shadow:0 6px 16px -8px rgba(20,40,90,.35)}
+        .fdx-logo svg{width:28px;height:28px}
+        .fdx-title{font-size:23px;font-weight:900;letter-spacing:-.5px;color:#0b0b0f;line-height:1}
+        .fdx-sub{font-size:10.5px;color:#9aa3b2;font-weight:600;margin-top:3px}
+        .fdx-card{background:#fff;border-radius:20px;padding:13px 11px;box-shadow:0 12px 30px -18px rgba(20,40,90,.3);display:flex;flex-direction:column;gap:11px}
+        .fdx-socs{display:flex;justify-content:space-between}
+        .fdx-soc{display:flex;flex-direction:column;align-items:center;gap:4px;width:18%}
+        .fdx-soc i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff;box-shadow:0 3px 9px -3px rgba(0,0,0,.22)}
+        .fdx-soc i svg{width:22px;height:22px}
+        .fdx-soc span{font-size:8.5px;font-weight:700;color:#3a4150}
+        .ig-bg{background:radial-gradient(120% 120% at 28% 105%,#FFD85F 0%,#FF5E3A 28%,#FF2A86 56%,#A036C9 80%,#5B4BE8 100%)}
+        .yt-bg{background:#FF0000} .fb-bg{background:#1877F2;border-radius:50%!important} .x-bg{background:#000} .tt-bg{background:#000}
+        .fdx-voice{display:flex;align-items:center;gap:10px;border:1px solid #eef0f5;border-radius:15px;padding:9px 10px}
+        .fdx-voice .vic{width:36px;height:36px;border-radius:11px;background:linear-gradient(140deg,#7C5CFC,#9B6BFF);display:grid;place-items:center;color:#fff;font-size:17px;flex:none}
+        .fdx-voice .vtx{flex:1;min-width:0}
+        .fdx-voice .vtx b{font-size:12px;color:#15171e;display:flex;align-items:center;gap:6px}
+        .fdx-voice .vtx em{font-style:normal;font-size:8px;font-weight:800;background:#FCE9A8;color:#8a6d1f;padding:2px 6px;border-radius:6px;letter-spacing:.4px}
+        .fdx-voice .vtx span{font-size:10px;color:#9aa3b2;font-weight:600}
+        .fdx-voice .vch{color:#c2c8d2;font-size:18px;font-weight:700}
+        .fdx-paste{display:flex;align-items:center;gap:9px;background:#eceff4;border-radius:14px;padding:11px 12px}
+        .fdx-paste .lk{color:#7b8493;font-size:16px;flex:none}
+        .fdx-paste .ph{flex:1;font-size:13px;font-weight:800;color:#2b2f3a;letter-spacing:-.2px}
+        .fdx-paste .cb{color:#2f6bff;font-size:15px}
+        .fdx-analyze{background:#0b0b0f;color:#fff;border-radius:15px;padding:13px;text-align:center;font-size:13px;font-weight:800;letter-spacing:.4px;
+          display:flex;align-items:center;justify-content:center;gap:8px}
+        .fdx-analyze svg{width:16px;height:16px}
+        .fdx-flash{margin:13px auto 0;background:#fff;border-radius:999px;padding:10px 16px;display:inline-flex;align-items:center;gap:9px;align-self:center;
+          box-shadow:0 8px 20px -10px rgba(0,0,0,.22);transition:transform .15s ease}
+        .fdx-flash .fi{width:24px;height:24px;border-radius:8px;background:linear-gradient(140deg,#FF8A00,#FF3D71);display:grid;place-items:center;color:#fff;font-size:13px}
+        .fdx-flash b{font-size:14px;font-weight:800;color:#15171e}
+        .fdx-flash .nw{font-size:8px;font-weight:800;color:#2f6bff;background:#e7efff;padding:3px 7px;border-radius:7px;letter-spacing:.5px}
+        .fdx-recent{margin-top:16px;font-size:11px;font-weight:900;letter-spacing:.6px;color:#15171e;padding:0 4px;opacity:.85}
+
+        /* =================== ESCENA 2 (overlay) · MODAL Flash =================== */
+        .fdx-mdim{position:absolute;inset:0;background:rgba(8,12,22,.5);opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:20}
+        .fdx-screen.m-open .fdx-mdim{opacity:1}
+        .fdx-modal{position:absolute;left:0;right:0;bottom:0;z-index:21;background:#fff;border-radius:24px 24px 0 0;padding:8px 16px 16px;
+          transform:translateY(102%);transition:transform .5s cubic-bezier(.2,.9,.25,1);max-height:92%;overflow:hidden;color:#15171e}
+        .fdx-screen.m-open .fdx-modal{transform:translateY(0)}
+        .fdx-grab{width:42px;height:5px;border-radius:999px;background:#d7dbe3;margin:4px auto 12px}
+        .fdx-mhead{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+        .fdx-mhead .ic{width:34px;height:34px;border-radius:50%;background:#e7efff;display:grid;place-items:center;color:#2f6bff;font-size:16px;flex:none}
+        .fdx-mhead b{font-size:18px;font-weight:900;flex:1}
+        .fdx-mhead .x{width:30px;height:30px;border-radius:50%;background:#f1f3f7;display:grid;place-items:center;color:#9aa3b2;font-size:14px}
+        .fdx-info{background:#eaf1ff;border-radius:16px;padding:12px;display:flex;gap:10px;margin-bottom:15px}
+        .fdx-info .ic{color:#2f6bff;font-size:18px;flex:none}
+        .fdx-info b{display:block;font-size:13px;color:#1a73e8;margin-bottom:5px}
+        .fdx-info p{margin:0 0 6px;font-size:10.5px;line-height:1.45;color:#3f6dab;font-weight:500}
+        .fdx-info p:last-child{margin:0}
+        .fdx-lbl{font-size:14px;font-weight:900;margin:0 0 9px}
+        .fdx-opts{display:flex;gap:9px;overflow:hidden;margin-bottom:16px}
+        .fdx-opt{flex:0 0 41%;background:#fff;border:1.6px solid #e6e9ef;border-radius:15px;padding:11px;position:relative;transition:border-color .2s,background .2s}
+        .fdx-opt .bd{width:32px;height:32px;border-radius:9px;background:#eef1f6;display:grid;place-items:center;font-size:9px;font-weight:900;color:#5a6478;margin-bottom:9px}
+        .fdx-opt .bd.blue{background:#2f6bff;color:#fff}
+        .fdx-opt .ti{display:block;font-size:14px;font-weight:900}
+        .fdx-opt .de{display:block;font-size:9.5px;color:#9aa3b2;font-weight:700;margin-top:2px;white-space:nowrap}
+        .fdx-opt .ck{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:#2f6bff;display:grid;place-items:center;opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s}
+        .fdx-opt .ck svg{width:11px;height:11px}
+        .fdx-opt.sel{border-color:#2f6bff;background:#eef4ff}
+        .fdx-opt.sel .ck{opacity:1;transform:scale(1)}
+        .fdx-opt.fmt .bd{border-radius:9px}
+        .fdx-opt.fmt .bd.vid{background:#E5342B;color:#fff}
+        .fdx-opt.fmt .ck{background:#E5342B}
+        .fdx-opt.fmt.sel{border-color:#E5342B;background:#fdecec}
+        .fdx-act{background:linear-gradient(135deg,#2f7bff,#2f6bff);color:#fff;border-radius:16px;padding:14px;text-align:center;font-size:13px;font-weight:900;letter-spacing:.4px;
+          display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 14px 26px -12px rgba(47,107,255,.7);transition:transform .15s,filter .15s}
+
+        /* =================== ESCENA · HOME (lanzador) =================== */
+        .fdx-home{background:linear-gradient(165deg,#1b2440,#0d1426 55%,#10182b);display:flex;flex-direction:column;align-items:center;padding:26px 18px 0}
+        .fdx-home .hc{font-size:46px;font-weight:200;color:#fff;letter-spacing:-1px;line-height:1}
+        .fdx-home .hd{font-size:11px;color:#aab6cf;font-weight:600;margin-top:2px;text-transform:capitalize}
+        .fdx-grid{margin-top:30px;width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:18px 6px;justify-items:center}
+        .fdx-ai{display:flex;flex-direction:column;align-items:center;gap:6px}
+        .fdx-ai i{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(0,0,0,.5)}
+        .fdx-ai i svg{width:28px;height:28px}
+        .fdx-ai span{font-size:9.5px;color:#e7ecf6;font-weight:600}
+        .fdx-ai.g i{background:linear-gradient(140deg,#3a4258,#2a3350)}
+        .fdx-ai .gen{width:46px;height:46px;border-radius:13px;background:linear-gradient(140deg,#465072,#2c3450)}
+        .fdx-dock{margin-top:auto;margin-bottom:14px;width:90%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border-radius:22px;padding:11px;display:flex;justify-content:space-around}
+        .fdx-dock i{width:40px;height:40px;border-radius:11px;background:linear-gradient(140deg,#4a5072,#2c3450)}
+
+        /* =================== ESCENA · FEED (TikTok) =================== */
+        .fdx-feed{background:#000;overflow:hidden}
+        .fdx-ftrack{position:absolute;inset:0;transition:transform .55s cubic-bezier(.2,.85,.25,1)}
+        .fdx-screen.feed-2 .fdx-ftrack{transform:translateY(-100%)}
+        .fdx-vid{position:absolute;left:0;right:0;height:100%;overflow:hidden}
+        .fdx-vid:nth-child(1){top:0;background:linear-gradient(160deg,#1b3a5b,#0d2138 50%,#08263f)}
+        .fdx-vid:nth-child(2){top:100%;background:linear-gradient(160deg,#3a1b4f,#1f0f33 55%,#26113f)}
+        .fdx-vid:nth-child(3){top:200%;background:linear-gradient(160deg,#0f3b34,#08231f)}
+        .fdx-vid::before{content:"";position:absolute;inset:0;background:
+          radial-gradient(60% 40% at 50% 30%,rgba(255,255,255,.18),transparent 70%),
+          radial-gradient(80% 50% at 50% 100%,rgba(0,0,0,.55),transparent 60%)}
+        .fdx-vsub{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;
+          background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.5),rgba(255,255,255,.06) 70%);box-shadow:0 0 60px 10px rgba(255,255,255,.08)}
+        .fdx-play{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);color:rgba(255,255,255,.85);font-size:26px;opacity:0;transition:opacity .3s}
+        .fdx-screen.feed-pause .fdx-vid:nth-child(2) .fdx-play{opacity:1}
+        .fdx-vcap{position:absolute;left:12px;right:64px;bottom:18px;color:#fff;z-index:2}
+        .fdx-vcap b{display:block;font-size:13px;font-weight:800;margin-bottom:5px}
+        .fdx-vcap p{margin:0;font-size:11px;opacity:.92;line-height:1.4}
+        .fdx-vcap .mus{display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:10px;opacity:.9}
+        .fdx-ftop{position:absolute;top:10px;left:0;right:0;display:flex;justify-content:center;gap:18px;color:#fff;z-index:3;font-size:13px;font-weight:700}
+        .fdx-ftop b{position:relative;opacity:.6}
+        .fdx-ftop b.on{opacity:1}
+        .fdx-ftop b.on::after{content:"";position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:18px;height:2.5px;border-radius:2px;background:#fff}
+        .fdx-fside{position:absolute;right:9px;bottom:30px;display:flex;flex-direction:column;align-items:center;gap:16px;z-index:3}
+        .fdx-fb{display:flex;flex-direction:column;align-items:center;gap:3px;color:#fff;font-size:9.5px;font-weight:700}
+        .fdx-fb .ci{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:17px}
+        .fdx-fb.sh .ci{transition:transform .15s}
+
+        /* =================== Compartir (overlay) =================== */
+        .fdx-shdim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .35s;z-index:25}
+        .fdx-screen.sh-open .fdx-shdim{opacity:1}
+        .fdx-sheet{position:absolute;left:0;right:0;bottom:0;z-index:26;background:#1c2230;border-radius:22px 22px 0 0;padding:8px 14px 18px;
+          transform:translateY(102%);transition:transform .45s cubic-bezier(.2,.9,.25,1)}
+        .fdx-screen.sh-open .fdx-sheet{transform:translateY(0)}
+        .fdx-sheet .gb{width:42px;height:5px;border-radius:999px;background:#39414f;margin:4px auto 14px}
+        .fdx-sheet-tt{font-size:11px;color:#8b95a6;font-weight:700;margin:0 4px 12px}
+        .fdx-srow{display:flex;justify-content:space-around}
+        .fdx-sa{display:flex;flex-direction:column;align-items:center;gap:7px;color:#e7ecf6;font-size:10px;font-weight:700;transition:transform .15s}
+        .fdx-sa .ci{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:19px}
+        .fdx-sa.copy .ci{background:#2f6bff;color:#fff}
+        .fdx-sa.send .ci{background:#10b981;color:#fff}
+        .fdx-sa.save .ci{background:#39414f;color:#cdd5e2}
+
+        /* =================== Cortina de notificaciones (img 3) =================== */
+        .fdx-ndbg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(140,145,155,.92),rgba(120,125,135,.86));backdrop-filter:blur(6px);
+          opacity:0;pointer-events:none;transition:opacity .5s;z-index:40}
+        .fdx-screen.nd-open .fdx-ndbg{opacity:1}
+        .fdx-nd{position:absolute;left:0;right:0;top:0;z-index:41;padding:0 12px;transform:translateY(-100%);transition:transform .55s cubic-bezier(.2,.9,.25,1)}
+        .fdx-screen.nd-open .fdx-nd{transform:translateY(0)}
+        .fdx-ndclock{padding:20px 8px 16px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+        .fdx-ndclock b{display:block;font-size:42px;font-weight:300;letter-spacing:-1px;line-height:1}
+        .fdx-ndclock span{font-size:12px;font-weight:500;opacity:.95}
+        .fdx-notif{background:#f4f5f7;border-radius:20px;padding:13px 14px;box-shadow:0 18px 40px -14px rgba(0,0,0,.4)}
+        .fdx-nhead{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#5a6478;font-weight:600;margin-bottom:8px}
+        .fdx-nhead .ap{width:22px;height:22px;border-radius:50%;background:#2f6bff;display:grid;place-items:center;color:#fff;font-size:12px;flex:none}
+        .fdx-nhead .ap svg{width:13px;height:13px}
+        .fdx-nhead b{color:#1b1f27;font-weight:700}
+        .fdx-ntitle{font-size:15px;font-weight:800;color:#15171e;margin-bottom:7px}
+        .fdx-nbody{font-size:11.5px;line-height:1.5;color:#4a5160;margin-bottom:11px;transition:color .3s}
+        .fdx-nprog{height:6px;border-radius:999px;background:#dfe2e8;overflow:hidden;margin-bottom:9px;opacity:0;max-height:0;transition:opacity .3s,max-height .3s,margin .3s}
+        .fdx-screen.dl .fdx-nprog{opacity:1;max-height:10px}
+        .fdx-nprog i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#2f6bff,#22b8d6,#10b981);background-size:200% 100%}
+        .fdx-nacts{display:flex;gap:26px;padding-left:2px}
+        .fdx-nbtn{font-size:13px;font-weight:800;color:#a14a38;display:flex;align-items:center;gap:5px}
+        .fdx-nbtn.ghost{color:#7a8190}
+        .fdx-screen.dl .fdx-nacts{opacity:.4}
+
+        /* =================== Toast =================== */
+        .fdx-toast{position:absolute;left:50%;bottom:calc(var(--nav) + 16px);transform:translate(-50%,16px);z-index:60;
+          background:#15171e;color:#fff;border-radius:14px;padding:11px 16px;display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;
+          box-shadow:0 18px 36px -14px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap}
+        .fdx-toast.show{opacity:1;transform:translate(-50%,0)}
+        .fdx-toast .ic{width:22px;height:22px;border-radius:50%;background:#10b981;display:grid;place-items:center;flex:none}
+        .fdx-toast .ic svg{width:13px;height:13px}
+        .fdx-toast.link .ic{background:#2f6bff}
+
+        /* =================== Dedo =================== */
+        .fdx-finger{position:absolute;width:36px;height:36px;left:50%;top:50%;border-radius:50%;z-index:70;pointer-events:none;
+          margin:-18px 0 0 -18px;
+          background:radial-gradient(circle at 35% 32%,rgba(255,255,255,.96),rgba(255,255,255,.35) 62%,rgba(255,255,255,0));
+          box-shadow:0 4px 14px rgba(0,0,0,.3),inset 0 0 0 2px rgba(255,255,255,.55);
+          opacity:0;transition:opacity .25s ease,left .42s cubic-bezier(.4,0,.2,1),top .42s cubic-bezier(.4,0,.2,1),transform .14s ease}
+        .fdx-finger.show{opacity:1}
+        .fdx-finger.press{transform:scale(.8)}
+        .fdx-finger.press::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(255,255,255,.85);animation:fdxRing .5s ease-out}
+        @keyframes fdxRing{from{transform:scale(.55);opacity:.9}to{transform:scale(1.85);opacity:0}}
+
+        /* =================== Barra navegación Android =================== */
+        .fdx-nav{position:absolute;left:0;right:0;bottom:0;height:var(--nav);z-index:50;display:flex;align-items:center;justify-content:space-around;
+          background:transparent}
+        .fdx-screen[data-theme="dark"] .fdx-nav{background:rgba(0,0,0,.18)}
+        .fdx-nb{color:#0b0b0f;opacity:.85;transition:color .35s,transform .14s}
+        .fdx-screen[data-theme="dark"] .fdx-nb{color:#fff}
+        .fdx-nb svg{width:16px;height:16px;display:block}
+        .fdx-nb.press{transform:scale(.82)}
+
+        /* botón repetir */
+        .fdx-replay{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#cdd5e2;
+          font:inherit;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+          transition:background .2s,border-color .2s}
+        .fdx-replay:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+
+        @media (prefers-reduced-motion: reduce){.fdx-finger{display:none}}
+        </style>
+
+        <div class="fdx">
+          <div class="fdx-phone">
+            <div class="fdx-screen" id="fdxScreen" data-scene="app" data-theme="light">
+
+              <div class="fdx-pill"></div>
+              <div class="fdx-sb">
+                <span class="l">15:16</span>
+                <span class="r">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 17h2v3H3zM8 13h2v7H8zM13 9h2v11h-2zM18 5h2v15h-2z"/></svg>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 5C7.5 5 3.7 6.8 1 9.7l11 13L23 9.7C20.3 6.8 16.5 5 12 5z"/></svg>
+                  <span class="fdx-batt"><svg viewBox="0 0 26 14" width="20" height="11"><rect x="1" y="2" width="19" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="4" width="11" height="6" rx="1" fill="currentColor"/><rect x="21.5" y="5" width="2" height="4" rx="1" fill="currentColor"/></svg>53</span>
+                </span>
               </div>
 
-              <!-- Dedo que desliza (gesto táctil) -->
-              <div class="pfinger">
-                <span class="pf-trail"></span>
-                <span class="pf-dot"><span class="pf-ring"></span></span>
+              <div class="fdx-stage">
+
+                <section class="fdx-scene fdx-app">
+                  <div class="fdx-head">
+                    <div class="fdx-logo">
+                      <svg viewBox="0 0 48 48"><path fill="#42A5F5" d="M30 4 9 25l6 6L42 4z"/><path fill="#42A5F5" d="M30 23 19 34l6 6 5-5 12-12z"/><path fill="#0D47A1" d="m19 34 6 6 5-5-6-6z"/><path fill="#0a1f4d" d="M22 8l-2.6 2.6 4 4L20 19l3 3 4-4-7-10z" opacity="0"/></svg>
+                    </div>
+                    <div class="fdx-title">DownloaderV</div>
+                    <div class="fdx-sub">Universal Media Downloader</div>
+                  </div>
+
+                  <div class="fdx-card">
+                    <div class="fdx-socs">
+                      <div class="fdx-soc"><i class="tt-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M33 14.6c-2.7-.4-4.8-2.6-5.2-5.3h-4.3v20.4c0 2.3-1.9 4.2-4.2 4.2s-4.2-1.9-4.2-4.2 1.9-4.2 4.2-4.2c.4 0 .9.1 1.3.2v-4.4c-.4-.1-.9-.1-1.3-.1-4.8 0-8.7 3.9-8.7 8.7s3.9 8.7 8.7 8.7 8.7-3.9 8.7-8.7V19.7c1.7 1.2 3.8 2 6 2v-4.4c-.4 0-.7 0-1-.1z"/></svg></i><span>TikTok</span></div>
+                      <div class="fdx-soc"><i class="ig-bg"><svg viewBox="0 0 48 48"><rect x="13" y="13" width="22" height="22" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/></svg></i><span>Reels</span></div>
+                      <div class="fdx-soc"><i class="yt-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M20 17.5 32 24l-12 6.5z"/></svg></i><span>YouTube</span></div>
+                      <div class="fdx-soc"><i class="fb-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M28 16.5h3.2V11h-4.4c-3.4 0-5.8 2.5-5.8 6v3h-4v5.5h4V38h5.5V25.5h4.2l.9-5.5h-5.1v-2.2c0-.8.6-1.3 1.4-1.3z"/></svg></i><span>Facebook</span></div>
+                      <div class="fdx-soc"><i class="x-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M29 13h3.8l-8.3 9.5 9.8 13h-7.6l-6-7.8-6.8 7.8H4.1l8.9-10.2L3.5 13h7.8l5.4 7.2 6.3-7.2z"/></svg></i><span>X</span></div>
+                    </div>
+
+                    <div class="fdx-voice">
+                      <span class="vic">✦</span>
+                      <span class="vtx"><b>CLONAR MI VOZ <em>BETA</em></b><span>Crea audio realista con IA</span></span>
+                      <span class="vch">›</span>
+                    </div>
+
+                    <div class="fdx-paste">
+                      <span class="lk">🔗</span>
+                      <span class="ph">Pega el enlace aquí…</span>
+                      <span class="cb">📋</span>
+                    </div>
+
+                    <div class="fdx-analyze"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 4v12M7 12l5 5 5-5M5 20h14"/></svg> ANALIZAR ENLACE</div>
+                  </div>
+
+                  <div class="fdx-flash" id="fdxFlash">
+                    <span class="fi">⚡</span><b>Flash Download</b><span class="nw">NUEVO</span>
+                  </div>
+
+                  <div class="fdx-recent">DESCARGAS RECIENTES</div>
+                </section>
+
+                <section class="fdx-scene fdx-home">
+                  <div class="hc">15:17</div>
+                  <div class="hd">dom, 21 jun</div>
+                  <div class="fdx-grid">
+                    <div class="fdx-ai" id="fdxTikTok"><i class="tt-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M33 14.6c-2.7-.4-4.8-2.6-5.2-5.3h-4.3v20.4c0 2.3-1.9 4.2-4.2 4.2s-4.2-1.9-4.2-4.2 1.9-4.2 4.2-4.2c.4 0 .9.1 1.3.2v-4.4c-.4-.1-.9-.1-1.3-.1-4.8 0-8.7 3.9-8.7 8.7s3.9 8.7 8.7 8.7 8.7-3.9 8.7-8.7V19.7c1.7 1.2 3.8 2 6 2v-4.4c-.4 0-.7 0-1-.1z"/></svg></i><span>TikTok</span></div>
+                    <div class="fdx-ai"><i class="ig-bg"><svg viewBox="0 0 48 48"><rect x="13" y="13" width="22" height="22" rx="7" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/></svg></i><span>Instagram</span></div>
+                    <div class="fdx-ai"><i class="fb-bg" style="border-radius:13px!important"><svg viewBox="0 0 48 48"><path fill="#fff" d="M28 16.5h3.2V11h-4.4c-3.4 0-5.8 2.5-5.8 6v3h-4v5.5h4V38h5.5V25.5h4.2l.9-5.5h-5.1v-2.2c0-.8.6-1.3 1.4-1.3z"/></svg></i><span>Facebook</span></div>
+                    <div class="fdx-ai"><i class="yt-bg"><svg viewBox="0 0 48 48"><path fill="#fff" d="M20 17.5 32 24l-12 6.5z"/></svg></i><span>YouTube</span></div>
+                    <div class="fdx-ai"><span class="gen"></span><span>Fotos</span></div>
+                    <div class="fdx-ai"><span class="gen"></span><span>Ajustes</span></div>
+                    <div class="fdx-ai"><span class="gen"></span><span>Reloj</span></div>
+                    <div class="fdx-ai"><span class="gen"></span><span>Música</span></div>
+                  </div>
+                  <div class="fdx-dock"><i></i><i></i><i></i><i></i></div>
+                </section>
+
+                <section class="fdx-scene fdx-feed">
+                  <div class="fdx-ftrack">
+                    <div class="fdx-vid"><span class="fdx-vsub"></span><div class="fdx-vcap"><b>@olas.surf</b><p>Sesión de mañana 🌊 condiciones perfectas</p><span class="mus">♪ sonido original</span></div></div>
+                    <div class="fdx-vid"><span class="fdx-vsub"></span><span class="fdx-play">▶</span><div class="fdx-vcap"><b>@viajes.4k</b><p>Amanecer en la montaña 🌄 #naturaleza</p><span class="mus">♪ ambient chill</span></div></div>
+                    <div class="fdx-vid"><span class="fdx-vsub"></span><div class="fdx-vcap"><b>@cocina.rapida</b><p>3 recetas en 60 segundos 🍳</p><span class="mus">♪ cocina beats</span></div></div>
+                  </div>
+                  <div class="fdx-ftop"><b>Siguiendo</b><b class="on">Para ti</b></div>
+                  <div class="fdx-fside">
+                    <div class="fdx-fb"><span class="ci">♥</span>12.4k</div>
+                    <div class="fdx-fb"><span class="ci">💬</span>308</div>
+                    <div class="fdx-fb sh" id="fdxShare"><span class="ci">↪</span>Compartir</div>
+                  </div>
+                </section>
+
               </div>
 
-              <!-- Cortina + notificación que baja -->
-              <div class="pshade"></div>
-              <div class="pnotif">
-                <div class="nt"><span class="napp"><img src="icono.png" alt="" onerror="this.parentNode.style.background='#1A73E8'"></span><b>downloaderV</b><span class="nago">· ahora</span></div>
-                <div class="nb">⚡ Flash Download</div>
-                <div class="mini-input"><span class="mi"><span class="plink"></span><span class="pcaret"></span></span><span class="mb ppaste">Pegar</span></div>
-                <div class="pbar"><i></i></div>
-                <div class="pbar-lbl"><span>Descargando…</span><b class="ppct">0%</b></div>
+              <div class="fdx-mdim"></div>
+              <div class="fdx-modal">
+                <div class="fdx-grab"></div>
+                <div class="fdx-mhead"><span class="ic">⚡</span><b>Flash Download</b><span class="x">✕</span></div>
+                <div class="fdx-info">
+                  <span class="ic">💡</span>
+                  <div>
+                    <b>Descarga sin salir de tu app</b>
+                    <p>Baja videos de YouTube, Instagram, TikTok, Facebook y X (Twitter) sin cambiar de pantalla.</p>
+                    <p>Solo desliza la barra de notificaciones de tu teléfono hacia abajo y pega el enlace.</p>
+                  </div>
+                </div>
+                <div class="fdx-lbl">Calidad de imagen</div>
+                <div class="fdx-opts" id="fdxQ">
+                  <div class="fdx-opt qual sel" data-q="max"><span class="bd blue">4K</span><span class="ti">Máxima</span><span class="de">8K · 4K · 1080p</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                  <div class="fdx-opt qual" data-q="mid"><span class="bd">HD</span><span class="ti">Intermedia</span><span class="de">720p · 480p</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                  <div class="fdx-opt qual" data-q="low"><span class="bd">SD</span><span class="ti">Básica</span><span class="de">360p · 240p</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                </div>
+                <div class="fdx-lbl">Formato de extracción</div>
+                <div class="fdx-opts" id="fdxF">
+                  <div class="fdx-opt fmt sel" data-f="video"><span class="bd vid">▶</span><span class="ti">Vídeo</span><span class="de">MP4 Full HD</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                  <div class="fdx-opt fmt" data-f="mp3"><span class="bd">♪</span><span class="ti">MP3</span><span class="de">Solo audio</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                  <div class="fdx-opt fmt" data-f="wav"><span class="bd">∿</span><span class="ti">WAV</span><span class="de">Alta fidelidad</span><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l5 5L20 6"/></svg></span></div>
+                </div>
+                <div class="fdx-act" id="fdxActivate"><span>⚡</span> ACTIVAR FLASH DOWNLOAD</div>
               </div>
 
-              <!-- Aviso de descarga completada -->
-              <div class="pdone">
-                <div class="pdone-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" width="22" height="22"><path d="M4 12l5 5L20 6"/></svg></div>
-                <div class="pdone-tx"><b>Descargado</b><small>Guardado en la carpeta <b>downloaderV</b></small></div>
+              <div class="fdx-shdim"></div>
+              <div class="fdx-sheet">
+                <div class="gb"></div>
+                <div class="fdx-sheet-tt">Compartir con</div>
+                <div class="fdx-srow">
+                  <div class="fdx-sa copy" id="fdxCopy"><span class="ci">🔗</span>Copiar enlace</div>
+                  <div class="fdx-sa send"><span class="ci">➤</span>Enviar</div>
+                  <div class="fdx-sa save"><span class="ci">＋</span>Guardar</div>
+                </div>
               </div>
+
+              <div class="fdx-ndbg"></div>
+              <div class="fdx-nd">
+                <div class="fdx-ndclock"><b>15:18</b><span>Dom, 21 Jun</span></div>
+                <div class="fdx-notif">
+                  <div class="fdx-nhead"><span class="ap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 4v9M8 11l4 4 4-4M6 20h12"/></svg></span><b>DownloaderV</b> · ahora</div>
+                  <div class="fdx-ntitle">⚡ Flash Download activo</div>
+                  <div class="fdx-nbody" id="fdxNBody">Pulsa ↓ Descargar para bajar el enlace que tengas copiado. Toca la notificación para abrir Flash y desactivarlo.</div>
+                  <div class="fdx-nprog"><i id="fdxNBar"></i></div>
+                  <div class="fdx-nacts">
+                    <span class="fdx-nbtn" id="fdxDownload">↓ Descargar enlace</span>
+                    <span class="fdx-nbtn ghost">Cerrar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fdx-toast" id="fdxToast"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span><span class="tx" id="fdxToastTx">Guardado en galería</span></div>
+
+              <div class="fdx-finger" id="fdxFinger"></div>
+
+              <div class="fdx-nav">
+                <span class="fdx-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2"/></svg></span>
+                <span class="fdx-nb" id="fdxHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/></svg></span>
+                <span class="fdx-nb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+              </div>
+
             </div>
           </div>
+
+          <button class="fdx-replay" id="fdxReplay"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg> Repetir demo</button>
+        </div>
+
+        <script>
+        (function(){
+          const root = document.querySelector('.fdx');
+          if(!root) return;
+          const S      = root.querySelector('#fdxScreen');
+          const finger = root.querySelector('#fdxFinger');
+          const toast  = root.querySelector('#fdxToast');
+          const toastTx= root.querySelector('#fdxToastTx');
+          const nBody  = root.querySelector('#fdxNBody');
+          const nBar   = root.querySelector('#fdxNBar');
+          const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          const els = {
+            flash:    root.querySelector('#fdxFlash'),
+            activate: root.querySelector('#fdxActivate'),
+            home:     root.querySelector('#fdxHome'),
+            tiktok:   root.querySelector('#fdxTikTok'),
+            share:    root.querySelector('#fdxShare'),
+            copy:     root.querySelector('#fdxCopy'),
+            download: root.querySelector('#fdxDownload')
+          };
+
+          const sleep = ms => new Promise(r=>setTimeout(r,ms));
+          let gen = 0;                                   // token para cancelar/relanzar
+
+          function placeFinger(el){
+            const sr = S.getBoundingClientRect(), er = el.getBoundingClientRect();
+            finger.style.left = ((er.left+er.width/2 - sr.left)/sr.width*100)+'%';
+            finger.style.top  = ((er.top +er.height/2- sr.top )/sr.height*100)+'%';
+          }
+          async function moveFinger(el, travel=440){
+            finger.classList.add('show'); placeFinger(el); await sleep(travel);
+          }
+          async function tap(el, travel=440){
+            if(!el) return;
+            await moveFinger(el, travel);
+            finger.classList.add('press');
+            if(el.classList.contains('fdx-nb')) el.classList.add('press');
+            await sleep(190);
+            finger.classList.remove('press'); el.classList.remove('press');
+            await sleep(130);
+          }
+          function scene(name){ S.setAttribute('data-scene', name); }
+          function theme(t){ S.setAttribute('data-theme', t); }
+
+          function selQuality(q){ S.querySelectorAll('#fdxQ .fdx-opt').forEach(o=>o.classList.toggle('sel', o.dataset.q===q)); }
+          function selFormat(f){  S.querySelectorAll('#fdxF .fdx-opt').forEach(o=>o.classList.toggle('sel', o.dataset.f===f)); }
+
+          function showToast(text, kind){
+            toastTx.textContent = text;
+            toast.classList.toggle('link', kind==='link');
+            toast.classList.add('show');
+          }
+          function hideToast(){ toast.classList.remove('show'); }
+
+          function progress(dur){
+            return new Promise(res=>{
+              nBar.style.transition='none'; nBar.style.width='0%';
+              // forzar reflow
+              void nBar.offsetWidth;
+              nBar.style.transition='width '+dur+'ms linear'; nBar.style.width='100%';
+              setTimeout(res, dur);
+            });
+          }
+
+          function reset(){
+            S.classList.remove('m-open','sh-open','nd-open','dl','feed-2','feed-pause');
+            scene('app'); theme('light');
+            finger.classList.remove('show','press');
+            selQuality('max'); selFormat('video');
+            nBody.textContent = 'Pulsa ↓ Descargar para bajar el enlace que tengas copiado. Toca la notificación para abrir Flash y desactivarlo.';
+            nBar.style.transition='none'; nBar.style.width='0%';
+            hideToast();
+          }
+
+          async function run(){
+            const my = ++gen;
+            const alive = () => my===gen;
+
+            while(alive() && !reduce){
+              reset();                                                   await sleep(1000); if(!alive())return;
+
+              /* 1 · pulsar Flash Download */
+              await tap(els.flash, 600);                                 if(!alive())return;
+              els.flash.style.transform='scale(.96)'; await sleep(120); els.flash.style.transform='';
+              S.classList.add('m-open');                                 await sleep(1150); if(!alive())return;
+
+              /* 2 · elegir calidad (Máxima→Intermedia) + confirmar Vídeo */
+              await tap(S.querySelector('#fdxQ [data-q="mid"]'), 480);   selQuality('mid'); await sleep(550); if(!alive())return;
+              await tap(S.querySelector('#fdxF [data-f="video"]'), 460); selFormat('video'); await sleep(450); if(!alive())return;
+
+              /* 3 · ACTIVAR */
+              await tap(els.activate, 460);
+              els.activate.style.transform='scale(.97)'; els.activate.style.filter='brightness(1.1)';
+              await sleep(160); els.activate.style.transform=''; els.activate.style.filter='';
+              S.classList.remove('m-open');                              await sleep(750); if(!alive())return;
+
+              /* 4 · botón inicio → lanzador */
+              await tap(els.home, 520);                                  if(!alive())return;
+              scene('home'); theme('dark');                              await sleep(950); if(!alive())return;
+
+              /* 5 · abrir TikTok */
+              await tap(els.tiktok, 520);                                if(!alive())return;
+              scene('feed'); theme('dark');                              await sleep(950); if(!alive())return;
+
+              /* 6 · deslizar el feed (scroll) */
+              finger.classList.add('show'); finger.style.left='50%'; finger.style.top='76%'; await sleep(300);
+              finger.classList.add('press'); S.classList.add('feed-2'); finger.style.top='32%';
+              await sleep(560); finger.classList.remove('press');       await sleep(250); if(!alive())return;
+              S.classList.add('feed-pause');                            await sleep(700); if(!alive())return;
+
+              /* 7 · compartir → copiar enlace */
+              await tap(els.share, 460);                                 if(!alive())return;
+              S.classList.add('sh-open');                                await sleep(850); if(!alive())return;
+              await tap(els.copy, 460);
+              els.copy.style.transform='scale(.9)'; await sleep(140); els.copy.style.transform='';
+              S.classList.remove('sh-open');
+              showToast('Enlace copiado', 'link');                       await sleep(1500); if(!alive())return;
+              hideToast();                                               await sleep(350); if(!alive())return;
+
+              /* 8 · bajar la cortina de notificaciones */
+              finger.classList.add('show'); finger.style.left='50%'; finger.style.top='3%'; await sleep(300);
+              finger.classList.add('press'); S.classList.add('nd-open'); finger.style.top='52%';
+              await sleep(600); finger.classList.remove('press');        await sleep(450); if(!alive())return;
+
+              /* 9 · pulsar Descargar enlace → progreso → guardado en galería */
+              await tap(els.download, 460);                              if(!alive())return;
+              nBody.textContent = 'Descargando el enlace copiado…';
+              S.classList.add('dl');
+              await progress(1700);                                      if(!alive())return;
+              nBody.textContent = '✓ Descarga completada · vídeo en MP4 Full HD';
+              showToast('Guardado en galería', 'ok');                    await sleep(2000); if(!alive())return;
+
+              /* cerrar y reiniciar */
+              hideToast(); S.classList.remove('nd-open');                await sleep(450); if(!alive())return;
+              S.classList.remove('dl');                                  await sleep(500);
+            }
+          }
+
+          // estado final si el usuario prefiere menos movimiento
+          if(reduce){
+            scene('feed'); theme('dark'); S.classList.add('nd-open','dl');
+            nBar.style.width='100%'; nBody.textContent='✓ Descarga completada · vídeo en MP4 Full HD';
+            showToast('Guardado en galería','ok');
+            return;
+          }
+
+          // arrancar al entrar en pantalla
+          let started=false;
+          const begin = ()=>{ if(!started){ started=true; run(); } };
+          const io = new IntersectionObserver(es=>{
+            es.forEach(e=>{ if(e.isIntersecting) begin(); });
+          }, {threshold:.3});
+          io.observe(root);
+          // red de seguridad: si el observer no dispara en 700ms, arranca igual
+          setTimeout(begin, 700);
+
+          // repetir
+          root.querySelector('#fdxReplay').addEventListener('click', ()=>{ run(); });
+        })();
+        </script>
         </div>
       </div>
     </div>
@@ -762,7 +1262,233 @@
 
   <div class="modal" data-name="reportes" role="dialog" aria-modal="true"><button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button><div class="modal-head"><span class="modal-ic amber"><span class="material-symbols-rounded">report</span></span><div><h3>Cómo reportar un error</h3><span class="modal-sub">5 pasos · menos de 1 minuto</span></div></div><div class="modal-body"><p>Si encuentras un <b>bug</b>, un <b>fallo de descarga</b> o un <b>problema visual</b>, repórtalo en segundos. Tu reporte llega directo al equipo y la corrección llega a todos.</p><ol class="rep-steps"><li><span class="rs-n">1</span><div><b>Pulsa «Abrir correo y reportar»</b><span>El botón azul de aquí abajo.</span></div></li><li><span class="rs-n">2</span><div><b>Se abre tu aplicación de correo</b><span>Con el destinatario, el asunto y una plantilla ya rellenados.</span></div></li><li><span class="rs-n">3</span><div><b>Explica el problema con detalle</b><span>Completa la plantilla: dispositivo, sistema, plataforma del enlace…</span></div></li><li><span class="rs-n">4</span><div><b>Adjunta capturas o vídeos</b><span>Si puedes, ayudan muchísimo a localizar el fallo.</span></div></li><li><span class="rs-n">5</span><div><b>Pulsa Enviar</b><span>Lo revisamos y lo solucionamos en la próxima actualización.</span></div></li></ol><div class="mail-preview"><div class="mp-row"><span>Para</span><b>soporte@downloaderv.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-divider"></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div><div class="modal-actions"><a class="ma-primary" href="mailto:soporte@downloaderv.com?subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Abrir correo y reportar</a><div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte%40downloaderv.com&su=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=soporte%40downloaderv.com&subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Outlook</a></div><span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span></div></div></div>
 
-  <div class="modal" data-name="soporte" role="dialog" aria-modal="true"><button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button><div class="modal-head"><span class="modal-ic green"><span class="material-symbols-rounded">forum</span></span><div><h3>Contactar con el equipo</h3><span class="modal-sub">Personas reales · respuesta &lt; 5 min</span></div></div><div class="modal-body"><p>Detrás de downloaderV hay un equipo de personas, no bots ni tickets eternos. Escríbenos por correo y te respondemos rápido.</p><h4>¿Qué puedes consultar?</h4><ul class="modal-list"><li>Problemas de descarga o de calidad.</li><li>Dudas sobre subtítulos, idiomas o Creator Studio.</li><li>Sugerencias de nuevas funciones.</li><li>Cualquier incompatibilidad con tu dispositivo.</li></ul><div class="mail-preview"><div class="mp-row"><span>Para</span><b>soporte@downloaderv.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-divider"></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div><div class="modal-actions"><a class="ma-primary" href="mailto:soporte@downloaderv.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Abrir correo y escribir</a><div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte%40downloaderv.com&su=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=soporte%40downloaderv.com&subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Outlook</a></div><span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span></div></div></div>
+  <div class="modal" data-name="soporte" role="dialog" aria-modal="true"><button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button><div class="modal-head"><span class="modal-ic green"><span class="material-symbols-rounded">forum</span></span><div><h3>Contactar con el equipo</h3><span class="modal-sub">Personas reales · respuesta &lt; 5 min</span></div></div><div class="modal-body"><button class="sc-open" data-modal="chat" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></span><span class="tx"><b>Chat en directo <em>BETA</em></b><span>Habla ahora con un agente del equipo</span></span><span class="go">›</span></button><p>Detrás de downloaderV hay un equipo de personas, no bots ni tickets eternos. Escríbenos por correo y te respondemos rápido.</p><h4>¿Qué puedes consultar?</h4><ul class="modal-list"><li>Problemas de descarga o de calidad.</li><li>Dudas sobre subtítulos, idiomas o Creator Studio.</li><li>Sugerencias de nuevas funciones.</li><li>Cualquier incompatibilidad con tu dispositivo.</li></ul><div class="mail-preview"><div class="mp-row"><span>Para</span><b>soporte@downloaderv.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-divider"></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div><div class="modal-actions"><a class="ma-primary" href="mailto:soporte@downloaderv.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Abrir correo y escribir</a><div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte%40downloaderv.com&su=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=soporte%40downloaderv.com&subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Outlook</a></div><span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span></div></div></div>
+  <div class="modal sc-modal" data-name="chat" role="dialog" aria-modal="true">
+<style>
+/* ===== Botón "Chat en directo" que se añade DENTRO del soporte original ===== */
+.sc-open{display:flex;align-items:center;gap:12px;width:100%;border:none;cursor:pointer;text-align:left;font:inherit;
+  background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;border-radius:16px;padding:14px 15px;margin:0 0 18px;
+  box-shadow:0 14px 28px -12px rgba(47,90,230,.65);transition:transform .15s,filter .15s;position:relative;overflow:hidden}
+.sc-open:hover{filter:brightness(1.05)}.sc-open:active{transform:scale(.99)}
+.sc-open::after{content:"";position:absolute;inset:-50% -10% auto;height:160%;background:radial-gradient(circle at 25% 20%,rgba(255,255,255,.22),transparent 55%)}
+.sc-open .ic{position:relative;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.sc-open .ic svg{width:22px;height:22px}
+.sc-open .tx{position:relative;flex:1}
+.sc-open .tx b{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:800}
+.sc-open .tx b em{font-style:normal;font-size:9px;font-weight:800;background:#fff;color:#1A73E8;padding:2px 7px;border-radius:6px;letter-spacing:.5px}
+.sc-open .tx span{font-size:11.5px;opacity:.92}
+.sc-open .go{position:relative;font-size:20px;opacity:.9}
+
+/* ===== Modal del chat (sc-) ===== */
+#modalRoot .modal.sc-modal{padding:0;background:transparent;box-shadow:none;overflow:visible;width:min(420px,94vw);max-height:none}
+.sc{font-family:var(--font-body,'Inter',system-ui,sans-serif);-webkit-font-smoothing:antialiased;width:100%}
+.sc *{box-sizing:border-box}
+.sc-card{position:relative;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);display:flex;flex-direction:column;height:min(600px,84vh)}
+.sc-head{position:relative;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;padding:18px;overflow:hidden;flex:none}
+.sc-head::after{content:"";position:absolute;inset:-40% -10% auto;height:140%;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 55%)}
+.sc-head-row{position:relative;display:flex;align-items:center;gap:12px}
+.sc-av{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none;position:relative}
+.sc-av svg{width:25px;height:25px}
+.sc-av .dot{position:absolute;right:-2px;bottom:-2px;width:14px;height:14px;border-radius:50%;background:#cbd5e1;border:2.5px solid #2b50b8;transition:background .3s}
+.sc[data-state="chat"] .sc-av .dot{background:#22E07B;box-shadow:0 0 8px #22E07B}
+.sc-htx{flex:1;min-width:0}
+.sc-htx b{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:16.5px;font-weight:700;display:block;line-height:1.2;color:#fff}
+.sc-htx span{font-size:12px;opacity:.92;display:flex;align-items:center;gap:6px;margin-top:2px}
+.sc-htx span i{width:6px;height:6px;border-radius:50%;background:#cbd5e1;display:inline-block;flex:none}
+.sc[data-state="chat"] .sc-htx span i{background:#22E07B;box-shadow:0 0 6px #22E07B;animation:scPulse 1.8s ease-in-out infinite}
+@keyframes scPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.sc-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);border:none;color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:background .2s}
+.sc-x:hover{background:rgba(255,255,255,.3)}.sc-x svg{width:18px;height:18px}
+.sc-stage{flex:1;display:flex;flex-direction:column;min-height:0;background:#F7F9FC;position:relative}
+.sc-screen{display:none;flex-direction:column;flex:1;min-height:0}
+.sc[data-state="connect"] .sc-connect{display:flex}
+.sc[data-state="waiting"] .sc-waiting{display:flex}
+.sc[data-state="chat"]    .sc-chat{display:flex}
+.sc[data-state="noagents"] .sc-noagents{display:flex}
+
+/* --- Pantalla CONECTAR --- */
+.sc-connect{align-items:center;justify-content:center;text-align:center;padding:30px 26px}
+.sc-connect .big{width:80px;height:80px;border-radius:24px;background:linear-gradient(135deg,#1A73E8,#6D28D9);display:grid;place-items:center;margin-bottom:20px;box-shadow:0 20px 40px -16px rgba(47,90,230,.6)}
+.sc-connect .big svg{width:40px;height:40px}
+.sc-connect h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:21px;margin:0 0 10px;color:#15171e}
+.sc-connect p{font-size:13.5px;color:#5A6478;line-height:1.6;max-width:290px;margin:0 0 22px}
+.sc-go{border:none;border-radius:14px;padding:14px 26px;font:inherit;font-size:14px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;box-shadow:0 14px 28px -12px rgba(26,115,232,.7);transition:transform .15s,filter .15s}
+.sc-go:hover{filter:brightness(1.07)}.sc-go:active{transform:scale(.98)}.sc-go svg{width:17px;height:17px}
+.sc-connect .note{margin-top:18px;font-size:11.5px;color:#9aa3b2;display:flex;align-items:center;gap:7px}
+.sc-connect .note svg{width:14px;height:14px}
+
+/* --- Pantalla ESPERA --- */
+.sc-waiting{align-items:center;justify-content:center;text-align:center;padding:30px 26px}
+.sc-spin{width:64px;height:64px;border-radius:50%;border:4px solid #E3E9F2;border-top-color:#1A73E8;animation:scSpin 1s linear infinite;margin-bottom:8px}
+@keyframes scSpin{to{transform:rotate(360deg)}}
+.sc-wclock{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:32px;font-weight:700;color:#1A73E8;font-variant-numeric:tabular-nums;margin:14px 0 6px}
+.sc-waiting h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:18px;margin:0 0 8px;color:#15171e}
+.sc-waiting p{font-size:13px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 8px}
+.sc-dots{display:inline-flex;gap:5px;margin:6px 0 20px}
+.sc-dots i{width:8px;height:8px;border-radius:50%;background:#9bb4e8;animation:scType 1.3s ease-in-out infinite}
+.sc-dots i:nth-child(2){animation-delay:.18s}.sc-dots i:nth-child(3){animation-delay:.36s}
+@keyframes scType{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.sc-wcancel{border:1.5px solid #e1e6ee;background:#fff;color:#5A6478;font:inherit;font-size:13px;font-weight:700;padding:10px 20px;border-radius:12px;cursor:pointer}
+.sc-wcancel:hover{background:#f1f3f7}
+
+/* --- Pantalla SIN AGENTES --- */
+.sc-noagents{align-items:center;justify-content:center;text-align:center;padding:30px 26px}
+.sc-noagents .big{width:70px;height:70px;border-radius:50%;background:#FEF3C7;color:#B45309;display:grid;place-items:center;margin-bottom:16px}
+.sc-noagents .big svg{width:34px;height:34px}
+.sc-noagents h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:19px;margin:0 0 9px;color:#15171e}
+.sc-noagents p{font-size:13px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 18px}
+.sc-mailbtn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:13px;padding:13px 22px;background:linear-gradient(135deg,#1A73E8,#0D47A1);color:#fff;font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer;margin-bottom:12px}
+.sc-mailbtn svg{width:18px;height:18px}
+.sc-retry{border:none;background:none;color:#1A73E8;font:inherit;font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline}
+
+/* --- Pantalla CHAT --- */
+.sc-banner{background:#ECFDF5;color:#047857;font-size:12px;font-weight:700;text-align:center;padding:8px;border-bottom:1px solid #d1f0e2;display:flex;align-items:center;justify-content:center;gap:7px;flex:none}
+.sc-banner svg{width:14px;height:14px}
+.sc-msgs{flex:1;overflow-y:auto;padding:16px 16px 8px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.sc-msgs::-webkit-scrollbar{width:6px}.sc-msgs::-webkit-scrollbar-thumb{background:#d6dbe5;border-radius:6px}
+.sc-day{align-self:center;font-size:11px;color:#9aa3b2;font-weight:600;background:#eaeef5;padding:4px 12px;border-radius:999px;margin:2px 0}
+.sc-row{display:flex;gap:8px;max-width:84%;animation:scIn .35s ease both}
+@keyframes scIn{from{opacity:0;transform:translateY(8px)}}
+.sc-row.me{align-self:flex-end;flex-direction:row-reverse}
+.sc-ava{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#1A73E8,#6D28D9);flex:none;display:grid;place-items:center;align-self:flex-end}
+.sc-ava svg{width:15px;height:15px}
+.sc-bub{padding:10px 13px;border-radius:16px;font-size:13.5px;line-height:1.45;color:#15171e;background:#fff;border:1px solid #ECEFF4;box-shadow:0 4px 12px -8px rgba(20,40,90,.2);border-bottom-left-radius:5px;word-wrap:break-word;overflow-wrap:anywhere}
+.sc-row.me .sc-bub{background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;border:none;border-radius:16px;border-bottom-right-radius:5px}
+.sc-time{font-size:10px;color:#aab2c0;margin-top:5px;display:block}
+.sc-row.me .sc-time{color:rgba(255,255,255,.75);text-align:right}
+.sc-sess{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 16px;background:#fff;border-top:1px solid #EDF0F5;font-size:11px;color:#7a8394;font-weight:600;flex:none}
+.sc-sess .t{display:flex;align-items:center;gap:6px}.sc-sess .t svg{width:13px;height:13px}
+.sc-clock{font-variant-numeric:tabular-nums;font-weight:800;color:#1A73E8}.sc-clock.warn{color:#F59E0B}.sc-clock.crit{color:#EF4444}
+.sc-sess .e{display:flex;align-items:center;gap:6px;color:#10B981}.sc-sess .e svg{width:13px;height:13px}
+.sc-comp{padding:11px 13px;background:#fff;border-top:1px solid #EDF0F5;flex:none}
+.sc-inrow{display:flex;align-items:flex-end;gap:9px;background:#F2F4F8;border-radius:16px;padding:7px 7px 7px 14px;transition:box-shadow .2s}
+.sc-inrow:focus-within{box-shadow:0 0 0 2px rgba(26,115,232,.35)}
+.sc-ta{flex:1;border:none;background:transparent;resize:none;font:inherit;font-size:13.5px;line-height:1.4;max-height:96px;padding:6px 0;color:#15171e;outline:none}
+.sc-send{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .15s,filter .15s,opacity .2s}
+.sc-send:hover{filter:brightness(1.08)}.sc-send:active{transform:scale(.9)}.sc-send:disabled{opacity:.4;cursor:default;filter:grayscale(.3)}.sc-send svg{width:18px;height:18px}
+.sc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:7px;padding:0 4px}
+.sc-count{font-size:10.5px;color:#aab2c0;font-weight:600}.sc-count.over{color:#EF4444}
+.sc-foot{display:flex;gap:9px;padding:11px 13px;background:#fff;border-top:1px solid #EDF0F5;flex:none}
+.sc-fin{flex:1;border:none;border-radius:13px;padding:12px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#10B981,#047857);color:#fff;box-shadow:0 10px 22px -10px rgba(16,185,129,.7);transition:transform .15s,filter .15s}
+.sc-fin:hover{filter:brightness(1.06)}.sc-fin:active{transform:scale(.98)}.sc-fin svg{width:16px;height:16px}
+.sc-cancel{border:1.5px solid #f1d4d4;border-radius:13px;padding:12px 16px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#dc2626;transition:.18s}
+.sc-cancel:hover{background:#fef2f2;border-color:#f5b5b5}
+
+/* overlays + finalizado */
+.sc-ov{position:absolute;inset:0;z-index:20;background:rgba(10,14,26,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:22px;animation:scFade .25s ease}
+.sc-ov.on{display:flex}
+@keyframes scFade{from{opacity:0}}
+.sc-dialog{background:#fff;border-radius:20px;padding:22px;width:100%;max-width:320px;text-align:center;box-shadow:0 30px 70px -20px rgba(0,0,0,.5);animation:scPop .3s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes scPop{from{opacity:0;transform:scale(.9)}}
+.sc-dialog .di{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin:0 auto 13px}.sc-dialog .di svg{width:26px;height:26px}
+.sc .di-red{background:#FEE2E2;color:#DC2626}.sc .di-green{background:#D1FAE5;color:#059669}
+.sc-dialog h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:18px;margin:0 0 8px;color:#15171e}
+.sc-dialog p{font-size:13px;color:#5A6478;line-height:1.55;margin:0 0 8px}
+.sc-warn{background:#FEF2F2;border:1px solid #FECACA;border-radius:11px;padding:9px 12px;font-size:11.5px;color:#B91C1C;font-weight:600;margin:12px 0 4px;display:flex;align-items:center;gap:8px;text-align:left}
+.sc-warn svg{width:16px;height:16px;flex:none}
+.sc-dbtns{display:flex;gap:9px;margin-top:18px}
+.sc-dbtns button{flex:1;border:none;border-radius:12px;padding:12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.sc-db-ghost{background:#F1F3F7;color:#5A6478}.sc-db-ghost:hover{background:#e7eaf0}
+.sc-db-red{background:linear-gradient(135deg,#EF4444,#B91C1C);color:#fff}.sc-db-red:hover{filter:brightness(1.06)}
+.sc-db-green{background:linear-gradient(135deg,#10B981,#047857);color:#fff}.sc-db-green:hover{filter:brightness(1.06)}
+.sc-done{position:absolute;inset:0;z-index:15;background:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;animation:scFade .3s ease}
+.sc-done.on{display:flex}
+.sc-done .ic{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,#10B981,#047857);display:grid;place-items:center;margin-bottom:18px;box-shadow:0 18px 40px -14px rgba(16,185,129,.6);animation:scPop .4s cubic-bezier(.2,.9,.3,1.1)}
+.sc-done .ic svg{width:38px;height:38px}
+.sc-done h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:21px;margin:0 0 9px;color:#15171e}
+.sc-done p{font-size:13.5px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 22px}
+.sc-done .trash{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#10B981;font-weight:700;background:#ECFDF5;padding:7px 14px;border-radius:999px;margin-bottom:22px}.sc-done .trash svg{width:14px;height:14px}
+.sc-restart{border:none;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;font:inherit;font-size:13.5px;font-weight:700;padding:12px 26px;border-radius:13px;cursor:pointer}.sc-restart:hover{filter:brightness(1.08)}
+</style>
+
+    <div class="sc" id="soporteChat" data-state="connect">
+      <div class="sc-card">
+        <div class="sc-head">
+          <div class="sc-head-row">
+            <div class="sc-av"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg><span class="dot"></span></div>
+            <div class="sc-htx"><b>Soporte downloaderV</b><span id="scStatus"><i></i>Chat en directo</span></div>
+            <button class="sc-x" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
+        </div>
+
+        <div class="sc-stage">
+
+          <div class="sc-screen sc-connect">
+            <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></div>
+            <h3>Habla con el equipo</h3>
+            <p>Conecta con una persona real del equipo de downloaderV. Pulsa para iniciar y te atenderemos en cuanto un agente esté libre.</p>
+            <button class="sc-go" id="scContact" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Contactar con el soporte</button>
+            <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Conversación privada · se borra al finalizar</div>
+          </div>
+
+          <div class="sc-screen sc-waiting">
+            <div class="sc-spin"></div>
+            <div class="sc-wclock" id="scWaitClock">00:00</div>
+            <h3>Conectando con un agente…</h3>
+            <p>Estás en la cola. Te atenderemos en cuanto un agente acepte tu solicitud.</p>
+            <div class="sc-dots"><i></i><i></i><i></i></div>
+            <button class="sc-wcancel" id="scWaitCancel" type="button">Cancelar espera</button>
+          </div>
+
+          <div class="sc-screen sc-noagents">
+            <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Ahora mismo no hay agentes</h3>
+            <p>No hemos podido conectarte con un agente en este momento. Puedes escribirnos por correo y te responderemos.</p>
+            <a class="sc-mailbtn" href="mailto:soporte@downloaderv.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%2C%20mi%20consulta%20es%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Escribir por correo</a><br>
+            <button class="sc-retry" id="scRetry" type="button">Reintentar el chat</button>
+          </div>
+
+          <div class="sc-screen sc-chat">
+            <div class="sc-banner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Un agente se ha unido al chat</div>
+            <div class="sc-msgs" id="scMsgs"></div>
+            <div class="sc-sess">
+              <span class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sesión: <span class="sc-clock" id="scClock">15:00</span></span>
+              <span class="e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Se borra al finalizar</span>
+            </div>
+            <div class="sc-comp">
+              <div class="sc-inrow">
+                <textarea class="sc-ta" id="scTa" rows="1" placeholder="Escribe tu mensaje…" maxlength="1200"></textarea>
+                <button class="sc-send" id="scSend" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+              </div>
+              <div class="sc-meta"><span class="sc-count" id="scCount">0 / 1000</span><span class="sc-count" id="scLeft">Te quedan 30 mensajes</span></div>
+            </div>
+            <div class="sc-foot">
+              <button class="sc-fin" id="scFin" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Finalizar y borrar</button>
+              <button class="sc-cancel" id="scCancel" type="button">Cancelar</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sc-ov" id="scOvFin">
+          <div class="sc-dialog">
+            <div class="di di-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>¿Finalizar soporte?</h3>
+            <p>La conversación se eliminará por completo de nuestros servidores.</p>
+            <div class="sc-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Esta acción no se puede deshacer.</div>
+            <div class="sc-dbtns"><button class="sc-db-ghost" type="button" data-sc-close-ov>Volver</button><button class="sc-db-green" id="scFinYes" type="button">Sí, finalizar</button></div>
+          </div>
+        </div>
+        <div class="sc-ov" id="scOvCancel">
+          <div class="sc-dialog">
+            <div class="di di-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+            <h3>¿Cancelar el chat?</h3>
+            <p>Se cerrará la conversación y se borrará todo lo escrito.</p>
+            <div class="sc-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Una vez cancelado, no se puede revertir.</div>
+            <div class="sc-dbtns"><button class="sc-db-ghost" type="button" data-sc-close-ov>Volver</button><button class="sc-db-red" id="scCancelYes" type="button">Sí, cancelar</button></div>
+          </div>
+        </div>
+        <div class="sc-done" id="scDone">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3 id="scDoneT">Soporte finalizado</h3>
+          <p id="scDoneP">Gracias por contactar con downloaderV. Esperamos haberte ayudado.</p>
+          <span class="trash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Conversación eliminada de la base de datos</span>
+          <button class="sc-restart" id="scRestart" type="button">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal" data-name="novedades" role="dialog" aria-modal="true">
     <button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button>
@@ -779,5 +1505,6 @@
 
 <script src="app.js"></script>
 <script type="module" src="firebase-visitas.js"></script>
+<script type="module" src="soporte-chat.js"></script>
 </body>
 </html>

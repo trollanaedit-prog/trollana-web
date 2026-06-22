@@ -1,0 +1,45 @@
+rules_version = '2';
+
+// ============================================================
+//  Reglas de seguridad de Firestore · downloaderV
+//  Pega esto en: Firebase Console > Firestore Database > Reglas
+//  Luego pulsa "Publicar".
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // (Opcional) Si quieres que tu app de administración pueda leer y
+    // responder TODOS los chats, pon aquí tu UID de administrador.
+    // Si de momento respondes desde la consola de Firebase, déjalo así.
+    function esAdmin() {
+      return request.auth != null && request.auth.uid == 'PON_AQUI_TU_UID_ADMIN';
+    }
+
+    // --- Registro de visitas (lo que ya usabas) ---
+    // Cualquiera puede crear una visita, pero nadie puede leerlas/borrarlas
+    // desde el cliente (solo tú desde la consola/Admin SDK).
+    match /visitas/{doc} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+    // --- Soporte: cada usuario solo gestiona SU propio chat ---
+    // La sesión se llama igual que el UID anónimo del visitante, así que
+    // nadie puede leer ni borrar el chat de otra persona.
+    match /soporte/{uid} {
+      allow read, create, update, delete:
+        if (request.auth != null && request.auth.uid == uid) || esAdmin();
+
+      match /mensajes/{msgId} {
+        // El usuario puede leer su conversación, escribir y borrar.
+        // (Tus respuestas como "soporte" las escribes desde la consola o
+        //  desde tu app de admin, que cumple esAdmin()).
+        allow read, create, delete:
+          if (request.auth != null && request.auth.uid == uid) || esAdmin();
+        allow update: if esAdmin();
+      }
+    }
+
+  }
+}
