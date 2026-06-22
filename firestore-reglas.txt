@@ -3,25 +3,27 @@ rules_version = '2';
 // ============================================================
 //  Reglas de seguridad de Firestore · downloaderV
 //  Pega esto en: Firebase Console > Firestore Database > Reglas
-//  Luego pulsa "Publicar".
+//  y pulsa "Publicar".
 // ============================================================
 
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // (Opcional) Si quieres que tu app de administración pueda leer y
-    // responder TODOS los chats, pon aquí tu UID de administrador.
-    // Si de momento respondes desde la consola de Firebase, déjalo así.
+    // (Opcional) Para que tu panel de administración pueda leer/responder
+    // TODOS los chats, pon aquí tu UID de administrador. Si por ahora lo
+    // gestionas desde la consola de Firebase, déjalo tal cual.
     function esAdmin() {
       return request.auth != null && request.auth.uid == 'PON_AQUI_TU_UID_ADMIN';
     }
 
-    // --- Registro de visitas (lo que ya usabas) ---
-    // Cualquiera puede crear una visita, pero nadie puede leerlas/borrarlas
-    // desde el cliente (solo tú desde la consola/Admin SDK).
+    // --- Registro de visitas ---
+    // Cualquiera puede CREAR su visita y ACTUALIZARLA (para guardar la
+    // duración y si pulsó descargar). Nadie puede LEERLAS ni BORRARLAS desde
+    // el cliente: eso solo tú, desde la consola o con el Admin SDK.
     match /visitas/{doc} {
       allow create: if true;
-      allow read, update, delete: if false;
+      allow update: if true;
+      allow read, delete: if false;
     }
 
     // --- Soporte: cada usuario solo gestiona SU propio chat ---
@@ -32,9 +34,6 @@ service cloud.firestore {
         if (request.auth != null && request.auth.uid == uid) || esAdmin();
 
       match /mensajes/{msgId} {
-        // El usuario puede leer su conversación, escribir y borrar.
-        // (Tus respuestas como "soporte" las escribes desde la consola o
-        //  desde tu app de admin, que cumple esAdmin()).
         allow read, create, delete:
           if (request.auth != null && request.auth.uid == uid) || esAdmin();
         allow update: if esAdmin();

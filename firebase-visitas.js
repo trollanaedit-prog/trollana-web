@@ -28,7 +28,6 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
       return `UTC${off>=0?'+':''}${off} (${tz})`;
     }catch(_){ return 'desconocida'; }
   }
-  // Texto bonito para la duración (15 s · 7 min 32 s · 1 h 4 min)
   function formatoDuracion(seg){
     if(seg < 60) return seg + ' s';
     const m = Math.floor(seg/60), s = seg%60;
@@ -37,114 +36,111 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
     return mm ? `${h} h ${mm} min` : `${h} h`;
   }
 
-  (async ()=>{
-    let db=null, ref=null;
+  (function(){
     const inicio = Date.now();
-    let descargo = false;     // ¿pulsó Descargar?
-    let cerrado  = false;     // para no escribir la duración dos veces
-
+    let ref = null;            // referencia al documento de la visita
+    let descargo = false;      // ¿pulsó Descargar?
     const segundos = ()=> Math.max(0, Math.round((Date.now()-inicio)/1000));
     const textoDescarga = ()=> descargo ? '✅ SÍ — pulsó descargar' : '❌ NO — solo visitó';
+    let ultimaDur = -1;        // evita escribir la misma duración dos veces
 
-    // --- Detectar clic en los botones de descarga (#heroDl, #ctaDl, .dl-btn, enlaces .exe/.apk) ---
+    // Actualiza el documento (cuando ya exista la referencia). Nunca rompe nada.
+    function actualizar(campos){
+      if(!ref) return;
+      updateDoc(ref, campos).catch(err=> console.log('visita update:', err && err.code));
+    }
+    function guardarDuracion(){
+      const s = segundos();
+      if(s === ultimaDur) return;   // si no ha cambiado, no escribe (ahorra)
+      ultimaDur = s;
+      actualizar({ _duracion: formatoDuracion(s), duracion_segundos: s,
+                   _descarga: textoDescarga(), descargo });
+    }
     function marcarDescarga(){
       if(descargo) return; descargo = true;
-      if(ref){
-        updateDoc(ref, {
-          _descarga: textoDescarga(),
-          descargo: true,
-          _duracion: formatoDuracion(segundos()),
-          duracion_segundos: segundos()
-        }).catch(()=>{});
-      }
+      actualizar({ _descarga: textoDescarga(), descargo: true,
+                   _duracion: formatoDuracion(segundos()), duracion_segundos: segundos() });
     }
-    document.addEventListener('click', (e)=>{
-      const t = e.target.closest('#heroDl, #ctaDl, .dl-btn, a[href*=".exe"], a[href*=".apk"], a[href*="releases/download"]');
-      if(t) marcarDescarga();
-    }, true);
 
-    // --- Guardar la duración al salir / cambiar de pestaña ---
-    function guardarSalida(){
-      if(cerrado || !ref) return; cerrado = true;
-      updateDoc(ref, {
-        _descarga: textoDescarga(),
-        _duracion: formatoDuracion(segundos()),
-        descargo,
-        duracion_segundos: segundos()
-      }).catch(()=>{});
+    // --- Detectar clic en botones de descarga (pointerdown = lo antes posible) ---
+    function esDescarga(e){
+      return e.target.closest('#heroDl, #ctaDl, .dl-btn, a[href*=".exe"], a[href*=".apk"], a[href*="releases/download"]');
     }
-    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') guardarSalida(); });
-    window.addEventListener('pagehide', guardarSalida);
+    document.addEventListener('pointerdown', e=>{ if(esDescarga(e)) marcarDescarga(); }, true);
+    document.addEventListener('click',       e=>{ if(esDescarga(e)) marcarDescarga(); }, true);
 
-    try{
-      const app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
+    // --- Guardar la duración al salir / cambiar de pestaña / ocultar ---
+    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') guardarDuracion(); });
+    window.addEventListener('pagehide', guardarDuracion);
+    window.addEventListener('beforeunload', guardarDuracion);
 
-      let vid = localStorage.getItem('dv_visitante_id') || '';
-      if(!vid){ vid = Date.now()+'_'+Math.floor(Math.random()*900000+100000); localStorage.setItem('dv_visitante_id', vid); }
-      const recurrente = localStorage.getItem('dv_ya_visito')==='si';
-      localStorage.setItem('dv_ya_visito','si');
+    // --- Guardar la duración en hitos (por si cierra de golpe). Pocas escrituras. ---
+    [10, 30, 60, 120, 300, 900, 1800].forEach(seg=>{
+      setTimeout(()=> guardarDuracion(), seg*1000);
+    });
 
-      const datos = {
-        // ===== ARRIBA DEL TODO (el "_" hace que salgan los primeros en Firestore) =====
-        _descarga: textoDescarga(),       // ✅ SÍ / ❌ NO  (si pulsó descargar)
-        _duracion: '0 s',                 // tiempo que estuvo en la página
-        // ===== resto de datos =====
-        descargo: descargo,               // versión booleana (para tu app)
-        duracion_segundos: 0,             // versión numérica (para tu app)
-        fecha: serverTimestamp(),
-        fecha_local: new Date().toISOString(),
-        visitante_id: vid,
-        es_recurrente: recurrente,
-        user_agent: navigator.userAgent,
-        plataforma: navigator.platform,
-        idioma: navigator.language,
-        idiomas: (navigator.languages||[]).join(', '),
-        nucleos_cpu: navigator.hardwareConcurrency || null,
-        pantalla_ancho: screen.width,
-        pantalla_alto: screen.height,
-        densidad_pixel: window.devicePixelRatio,
-        referrer: document.referrer,
-        url: location.href,
-        zona_horaria: zonaHoraria(),
-        gpu: infoGpu(),
-      };
-
-      // Ubicación aproximada por IP (sin clave)
+    (async ()=>{
       try{
-        const ctrl = new AbortController();
-        const t = setTimeout(()=>ctrl.abort(), 5000);
-        const r = await fetch('https://ipwho.is/', {signal: ctrl.signal});
-        clearTimeout(t);
-        if(r.ok){
-          const g = await r.json();
-          if(g && g.success){
-            Object.assign(datos, {
-              ip: g.ip, pais: g.country, pais_codigo: g.country_code,
-              region: g.region, ciudad: g.city,
-              latitud: g.latitude, longitud: g.longitude,
-              isp: g.connection?.isp, organizacion: g.connection?.org,
-            });
+        const app = initializeApp(firebaseConfig);
+        const db  = getFirestore(app);
+
+        let vid = localStorage.getItem('dv_visitante_id') || '';
+        if(!vid){ vid = Date.now()+'_'+Math.floor(Math.random()*900000+100000); localStorage.setItem('dv_visitante_id', vid); }
+        const recurrente = localStorage.getItem('dv_ya_visito')==='si';
+        localStorage.setItem('dv_ya_visito','si');
+
+        const datos = {
+          // ===== ARRIBA DEL TODO ("_" hace que salgan los primeros en Firestore) =====
+          _descarga: textoDescarga(),
+          _duracion: '0 s',
+          // ===== resto =====
+          descargo: descargo,
+          duracion_segundos: 0,
+          fecha: serverTimestamp(),
+          fecha_local: new Date().toISOString(),
+          visitante_id: vid,
+          es_recurrente: recurrente,
+          user_agent: navigator.userAgent,
+          plataforma: navigator.platform,
+          idioma: navigator.language,
+          idiomas: (navigator.languages||[]).join(', '),
+          nucleos_cpu: navigator.hardwareConcurrency || null,
+          pantalla_ancho: screen.width,
+          pantalla_alto: screen.height,
+          densidad_pixel: window.devicePixelRatio,
+          referrer: document.referrer,
+          url: location.href,
+          zona_horaria: zonaHoraria(),
+          gpu: infoGpu(),
+        };
+
+        // 1) CREAR EL DOCUMENTO YA (rápido) -> la referencia queda lista al instante
+        ref = await addDoc(collection(db,'visitas'), datos);
+
+        // Si ya pulsó descargar o ya pasó tiempo mientras se creaba, lo reflejamos
+        if(descargo || segundos()>0) guardarDuracion();
+
+        // 2) Ubicación aproximada por IP (sin clave) -> se añade después con updateDoc
+        try{
+          const ctrl = new AbortController();
+          const t = setTimeout(()=>ctrl.abort(), 5000);
+          const r = await fetch('https://ipwho.is/', {signal: ctrl.signal});
+          clearTimeout(t);
+          if(r.ok){
+            const g = await r.json();
+            if(g && g.success){
+              actualizar({
+                ip: g.ip, pais: g.country, pais_codigo: g.country_code,
+                region: g.region, ciudad: g.city,
+                latitud: g.latitude, longitud: g.longitude,
+                isp: g.connection?.isp, organizacion: g.connection?.org,
+              });
+            }
           }
-        }
-      }catch(_){ /* sin geo, seguimos */ }
+        }catch(_){ /* sin geo, seguimos */ }
 
-      // Crear el documento de la visita y guardar su referencia
-      ref = await addDoc(collection(db,'visitas'), datos);
-
-      // Si ya había pulsado descargar mientras cargaba, lo reflejamos
-      if(descargo){ updateDoc(ref, { _descarga: textoDescarga(), descargo:true }).catch(()=>{}); }
-
-      // Guardar la duración en hitos (1, 5, 15, 30 min) por si cierra de golpe.
-      // Pocas escrituras = entra de sobra en el plan GRATUITO de Firebase.
-      [60, 300, 900, 1800].forEach(seg=>{
-        setTimeout(()=>{
-          if(cerrado || !ref) return;
-          updateDoc(ref, { _duracion: formatoDuracion(segundos()), duracion_segundos: segundos() }).catch(()=>{});
-        }, seg*1000);
-      });
-
-    }catch(e){
-      console.log('Registro de visita falló (no crítico):', e);
-    }
+      }catch(e){
+        console.log('Registro de visita falló (no crítico):', e);
+      }
+    })();
   })();
