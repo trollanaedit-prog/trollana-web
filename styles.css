@@ -1304,3 +1304,53 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
   .chip:active, .pchip:active, .feat:active, .os:active, .stat:active, .sup-card:active,
   .vrow:active, .ma-btn:active, .modal-x:active, .foot-col a:active{ transform:none; }
 }
+
+/* ===== Subtítulos sin descargar (debajo de la demo de Opciones) ===== */
+.sx{margin-top:84px}
+.sx-line{display:flex; align-items:center; gap:18px; margin-bottom:56px}
+.sx-line>span{flex:1; height:2px; border-radius:2px; transition:transform 1.1s cubic-bezier(.2,.8,.2,1) .2s; transform:scaleX(0)}
+.sx-line>span:first-child{background:linear-gradient(90deg,transparent,var(--blue)); transform-origin:right}
+.sx-line>span:last-child{background:linear-gradient(90deg,var(--purple),transparent); transform-origin:left}
+.sx-line i{position:relative; width:52px; height:52px; border-radius:16px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,var(--blue),#6D28D9); box-shadow:0 14px 30px -10px rgba(26,115,232,.6); transform:scale(.4) rotate(-14deg); transition:transform .9s cubic-bezier(.34,1.56,.64,1) .1s}
+.sx-line i::after{content:""; position:absolute; inset:0; border-radius:inherit; border:2px solid var(--blue); opacity:0; animation:sxPulse 2.6s ease-out infinite 1.2s}
+.sx-line.in>span{transform:scaleX(1)}
+.sx-line.in i{transform:none}
+@keyframes sxPulse{0%{transform:scale(1); opacity:.5}100%{transform:scale(1.7); opacity:0}}
+.sx-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:center}
+.sx-copy h3{font-family:var(--font-display); font-weight:700; font-size:clamp(26px,3.4vw,40px); letter-spacing:-.02em; line-height:1.1; margin-bottom:16px}
+.sx-copy>p{color:var(--ink-soft); font-size:clamp(15px,1.5vw,17px); max-width:520px}
+.sx-list{list-style:none; display:flex; flex-direction:column; gap:15px; margin:26px 0 24px}
+.sx-list li.reveal{display:flex; gap:14px; align-items:flex-start; transition-delay:calc(var(--i)*.1s + .15s)}
+.sx-ic{flex:none; width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:var(--c); background:color-mix(in srgb,var(--c) 12%,#fff)}
+.sx-list b{display:block; font-size:15px; color:var(--ink)}
+.sx-list .t{display:block; font-size:14px; color:var(--ink-soft); line-height:1.5}
+.sx-copy>p.sx-ex{font-size:14.5px; color:#374151; padding:4px 0 4px 16px; border-left:3px solid; border-image:linear-gradient(var(--blue),var(--purple)) 1}
+.sx-demo{background:#fff; border:1px solid var(--line); border-radius:26px; padding:16px; box-shadow:var(--shadow-lg)}
+.sx-stage{position:relative; aspect-ratio:16/9; border-radius:16px; overflow:hidden; container-type:inline-size; background:radial-gradient(circle at 20% 25%,rgba(139,92,246,.55),transparent 45%),radial-gradient(circle at 80% 75%,rgba(6,182,212,.4),transparent 45%),linear-gradient(135deg,#0F172A,#1E1B4B)}
+.sx-stage::after{content:""; position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .25s; background:linear-gradient(90deg,transparent calc(33.3% - .5px),rgba(255,255,255,.22) 33.3%,transparent calc(33.3% + .5px),transparent calc(66.6% - .5px),rgba(255,255,255,.22) 66.6%,transparent calc(66.6% + .5px)),linear-gradient(transparent calc(33.3% - .5px),rgba(255,255,255,.22) 33.3%,transparent calc(33.3% + .5px),transparent calc(66.6% - .5px),rgba(255,255,255,.22) 66.6%,transparent calc(66.6% + .5px))}
+.sx-stage.drag::after{opacity:1}
+.sx-tag,.sx-hint{position:absolute; top:10px; z-index:2; display:flex; align-items:center; gap:6px; padding:6px 11px; border-radius:999px; font-size:11px; font-weight:700; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.2); backdrop-filter:blur(8px)}
+.sx-tag{left:10px}
+.sx-hint{right:10px; transition:opacity .4s; animation:sxFloat 2.4s ease-in-out infinite}
+.sx-hint .material-symbols-rounded{font-size:15px}
+.sx-stage.touched .sx-hint{opacity:0; animation:none}
+@keyframes sxFloat{50%{transform:translateY(-3px)}}
+.sx-cap{position:absolute; left:50%; top:84%; z-index:1; transform:translate(-50%,-50%); cursor:grab; user-select:none; touch-action:none; white-space:nowrap; font-family:var(--font-display); font-weight:800; font-size:20px; font-size:clamp(14px,5.4cqw,28px); line-height:1.2; padding:.15em .4em; transition:left .7s cubic-bezier(.2,.8,.2,1), top .7s cubic-bezier(.2,.8,.2,1)}
+.sx-stage.drag .sx-cap{transition:none; cursor:grabbing}
+.sx-cap:focus-visible{outline:2px dashed #fff; outline-offset:4px; border-radius:8px}
+.sx-cap[data-st=d3]{color:#fff; text-shadow:1px 1px 0 #7C3AED,2px 2px 0 #7C3AED,3px 3px 0 #6D28D9,4px 4px 0 #5B21B6,5px 5px 0 #4C1D95,6px 10px 16px rgba(0,0,0,.55)}
+.sx-cap[data-st=pt]{background:linear-gradient(90deg,#F43F5E,#F59E0B,#10B981,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-stroke:.04em #fff; filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+.sx-cap[data-st=ne]{color:#fff; text-shadow:0 0 6px #fff,0 0 14px #06B6D4,0 0 30px #06B6D4,0 0 48px #3B82F6}
+.sx-cap[data-st=fu]{color:#FBBF24; text-shadow:0 -2px 6px #F97316,0 -6px 16px #EF4444,0 3px 10px rgba(0,0,0,.8)}
+.sx-bar{position:absolute; left:0; right:0; bottom:0; height:4px; background:rgba(255,255,255,.15)}
+.sx-bar i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--blue),var(--purple)); animation:sxBar 9s linear infinite}
+@keyframes sxBar{to{width:100%}}
+.sx-ctl{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px}
+.sx-ctl .lbl{min-width:58px; font-size:12px; font-weight:700; color:var(--ink-soft)}
+.sx-chip{font:inherit; font-size:13px; font-weight:700; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:#fff; color:#1f2937; cursor:pointer; transition:transform .2s, box-shadow .2s, color .2s, border-color .2s}
+.sx-chip:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}
+.sx-chip:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+.sx-chip.on{background:linear-gradient(135deg,var(--blue),#6D28D9); color:#fff; border-color:transparent}
+@media(max-width:880px){ .sx{margin-top:60px} .sx-line{margin-bottom:40px} .sx-grid{grid-template-columns:1fr; gap:36px} }
+@media(max-width:480px){ .sx-tag{display:none} }
+@media (prefers-reduced-motion: reduce){ .sx-line>span,.sx-line i{transition:none; transform:none} .sx-line i::after,.sx-hint{animation:none} .sx-bar i{animation:none; width:35%} .sx-cap{transition:none} }
