@@ -494,3 +494,32 @@ document.documentElement.classList.add(esMovil ? 'dev-mobile' : 'dev-desktop');
     }); }, {threshold:.5}).observe(st);
   }
 })();
+
+/* ====== LISTAS Y CANALES: demo de selección y calidad por vídeo ====== */
+(function(){
+  const box = document.getElementById('bkRows'); if(!box) return;
+  const rows = [...box.children], segs = [...document.querySelectorAll('.bk-s')], cnt = document.getElementById('bkCount');
+  const Q = ['4K','2K','1080p','720p','360p'];
+  let timer = null, i = 0;
+  const count = ()=>{ cnt.textContent = rows.filter(r=> r.classList.contains('on')).length; };
+  function toggle(r){ r.setAttribute('aria-checked', r.classList.toggle('on')); count(); }
+  function setQ(r, q){ const b = r.querySelector('.bk-q'); b.textContent = q; r.dataset.q = q; b.animate({scale:['1','1.2','1']},{duration:300}); }
+  const stop = ()=> clearInterval(timer);
+  rows.forEach(r=>{
+    r.addEventListener('click', e=>{
+      stop();
+      if(e.target.closest('.bk-q')){ setQ(r, Q[(Q.indexOf(r.dataset.q)+1) % Q.length]); segs.forEach(s=> s.classList.remove('on')); }
+      else toggle(r);
+    });
+    r.addEventListener('keydown', e=>{ if(e.target===r && (e.key===' ' || e.key==='Enter')){ e.preventDefault(); stop(); toggle(r); } });
+  });
+  segs.forEach(s=> s.addEventListener('click', ()=>{ stop(); segs.forEach(x=> x.classList.toggle('on', x===s)); rows.forEach(r=> setQ(r, s.dataset.q)); }));
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){   // "este sí, este no": demo automática hasta que el usuario toque
+    let done = false;
+    new IntersectionObserver(es=>{ es.forEach(e=>{
+      stop();
+      if(e.isIntersecting && !done) timer = setInterval(()=>{ const r = rows[i % rows.length]; toggle(r); setQ(r, Q[(i*2+1) % Q.length]); i++; }, 1900);
+    }); }, {threshold:.4}).observe(box);
+    box.addEventListener('click', ()=>{ done = true; });
+  }
+})();
