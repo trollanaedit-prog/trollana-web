@@ -1,8 +1,7 @@
 PARA WINDOWS
 
 
-( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.3/DownloaderV.2.0.3.exe
-
+( https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.7/DownloaderV.2.0.7.exe
 
 
 
