@@ -2,11 +2,27 @@
    downloaderV — lógica ULTRA (detección + animaciones premium)
    ============================================================ */
 
-/* ====== ENLACES DE DESCARGA ====== */
+/* ====== ENLACES DE DESCARGA ======
+   Se leen SOLOS del archivo LINKSSSSSSSSSSS.txt (misma carpeta).
+   Para actualizar la app: cambia el enlace en ese .txt y súbelo. Nada más.
+   - El enlace que termina en .exe  -> botón de Windows
+   - El enlace que termina en .apk  -> botón de Android
+   Los de abajo solo se usan de respaldo si el .txt no se pudiera leer. */
+const ARCHIVO_LINKS = 'LINKSSSSSSSSSSS.txt';
 const CONFIG = {
-  descargaWindows: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.3/DownloaderV.2.0.3.exe',
+  descargaWindows: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/2.0.7/DownloaderV.2.0.7.exe',
   descargaAndroid: 'https://github.com/trollanaedit-prog/trollana-releases/releases/download/1.0.6/DownloaderV.1.0.6.apk',
 };
+const linksListos = fetch(ARCHIVO_LINKS + '?v=' + Date.now(), { cache: 'no-store' })
+  .then(r => r.ok ? r.text() : '')
+  .then(txt => {
+    const urls = (txt.match(/https?:\/\/[^\s()"'<>]+/gi) || []).map(u => u.replace(/[),.;]+$/, ''));
+    const exe = urls.find(u => /\.exe(\?|$)/i.test(u));
+    const apk = urls.find(u => /\.apk(\?|$)/i.test(u));
+    if (exe) CONFIG.descargaWindows = exe;
+    if (apk) CONFIG.descargaAndroid = apk;
+  })
+  .catch(() => {});
 
 const ICON_WIN = '<svg viewBox="0 0 24 24" fill="#1A73E8"><path d="M3 3h8.5v8.5H3zM12.5 3H21v8.5h-8.5zM3 12.5h8.5V21H3zM12.5 12.5H21V21h-8.5z"/></svg>';
 const ICON_AND = '<svg viewBox="0 0 24 24" fill="#10B981"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg>';
@@ -26,10 +42,15 @@ const esMovil = (() => {
 
 function configurarBoton(iconEl, labelEl, btnEl){
   if(!btnEl) return;
-  const url = esMovil ? CONFIG.descargaAndroid : CONFIG.descargaWindows;
   if(iconEl) iconEl.innerHTML = esMovil ? ICON_AND : ICON_WIN;
   if(labelEl) labelEl.textContent = esMovil ? 'Android' : 'Windows';
-  btnEl.onclick = ()=>{ if(url && url !== '#') location.href = url; };
+  btnEl.onclick = ()=>{
+    // espera (como mucho 1,5 s) a tener los enlaces del .txt y descarga el más reciente
+    Promise.race([linksListos, new Promise(r => setTimeout(r, 1500))]).then(()=>{
+      const url = esMovil ? CONFIG.descargaAndroid : CONFIG.descargaWindows;
+      if(url && url !== '#') location.href = url;
+    });
+  };
 }
 configurarBoton(document.getElementById('heroDlIcon'), document.getElementById('heroDlLabel'), document.getElementById('heroDl'));
 configurarBoton(document.getElementById('ctaDlIcon'),  document.getElementById('ctaDlLabel'),  document.getElementById('ctaDl'));
