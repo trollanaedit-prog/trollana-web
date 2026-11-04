@@ -6,7 +6,7 @@
 <title>downloaderV — Descarga y edición al más alto nivel</title>
 <meta name="description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en calidad 8K. Edita, añade subtítulos automáticos y clona voces con IA desde el Creator Studio." />
 <link rel="canonical" href="https://downloaderv.com/" />
-<meta name="theme-color" content="#0B1220" />
+<meta name="theme-color" content="#FFFFFF" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -31,9 +31,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pro.css">
+<link rel="stylesheet" href="tema-rosa.css">
+<script>
+/* Capa PRO: prepara la intro antes de pintar (y se auto-rescata si algo falla) */
+(function(d){var h=d.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+h.classList.add('pro-js');try{if(sessionStorage.getItem('dv_intro'))h.classList.add('pro-skip');else h.classList.add('pro-loading')}catch(e){h.classList.add('pro-skip')}
+setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-hero-go')},4600)})(document);
+</script>
 </head>
 <body>
+
+<!-- INTRO DE MARCA (capa PRO) -->
+<div class="pro-intro" id="proIntro" aria-hidden="true">
+  <div class="pro-intro-in">
+    <div class="pro-intro-logo"><img src="icono.png" alt=""></div>
+    <div class="pro-intro-name"><span style="animation-delay:0.320s">d</span><span style="animation-delay:0.365s">o</span><span style="animation-delay:0.410s">w</span><span style="animation-delay:0.455s">n</span><span style="animation-delay:0.500s">l</span><span style="animation-delay:0.545s">o</span><span style="animation-delay:0.590s">a</span><span style="animation-delay:0.635s">d</span><span style="animation-delay:0.680s">e</span><span style="animation-delay:0.725s">r</span><span class="v" style="animation-delay:0.770s">V</span></div>
+    <div class="pro-intro-bar"><i></i></div>
+    <div class="pro-intro-tag">Descarga y edición al más alto nivel</div>
+  </div>
+</div>
 
 <!-- NAV -->
 <header class="nav" id="top">
@@ -41,7 +60,10 @@
     <a class="brand" href="#top"><img src="icono.png" alt="" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;>V</span>'"> downloaderV</a>
     <nav class="nav-links">
       <a href="#funciones">FUNCIONES</a>
+      <a href="#flash">FLASH</a>
+      <a href="#voz">VOZ IA</a>
       <a href="#soporte">SOPORTE</a>
+      <a href="#faq">AYUDA</a>
       <a class="nav-cta" href="#descargar">Descargar</a>
     </nav>
   </div>
@@ -70,6 +92,24 @@
         <span class="chip hl"><span class="material-symbols-rounded c-amber">download</span>Descarga en todas las plataformas hasta 8K</span>
       </div>
       <button class="dl-btn" id="heroDl"><span class="ic" id="heroDlIcon"></span><span><small>Descargar para</small><b id="heroDlLabel">Windows</b></span></button>
+      <!-- DEMO VIVA (capa PRO): así funciona la app en 5 segundos -->
+      <div class="pro-demo" id="proDemo" aria-hidden="true">
+        <div class="pro-demo-card">
+          <div class="pro-demo-bar">
+            <span class="pro-plat"><svg data-k="link" class="on" viewBox="0 0 24 24" fill="none" stroke="#c9d3e6" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><svg data-k="yt" viewBox="0 0 24 24" fill="#fff"><path d="M9 7.5v9l7.5-4.5z"/></svg><svg data-k="tt" viewBox="0 0 24 24" fill="#fff"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg><svg data-k="ig" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".9" fill="#fff" stroke="none"/></svg><svg data-k="fb" viewBox="0 0 24 24" fill="#fff"><path d="M14 8.5h2.2V5h-2.9c-2.4 0-3.9 1.6-3.9 4v2H7v3.5h2.4V22h3.7v-7.5h2.8l.6-3.5h-3.4V9.4c0-.6.4-.9.9-.9z"/></svg><svg data-k="x" viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></span>
+            <span class="pro-url"></span>
+            <span class="pro-go"><span class="spin"></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg><span class="lbl">ANALIZAR</span></span>
+          </div>
+          <div class="pro-res"><div>
+            <div class="pro-res-in">
+              <div class="pro-thumb"><span class="pl"></span><b></b></div>
+              <div class="pro-meta"><strong></strong><small></small><div class="pro-qs"></div></div>
+            </div>
+            <div class="pro-prog"><div class="pro-track"><i></i></div><span class="pro-pct"></span></div>
+          </div></div>
+        </div>
+        <div class="pro-demo-foot"><span><i></i>+1.500 plataformas</span><span><i></i>Hasta 8K · 60 FPS</span><span><i></i>Sin marca de agua</span></div>
+      </div>
     </div>
   </section>
 </div>
@@ -85,12 +125,22 @@
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
+    <span class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg>Instagram</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg>Twitter / X</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
     <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
+    <span class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
   </div>
 </div>
 
@@ -134,7 +184,7 @@
         <p class="lead">En cuanto pegas un enlace, downloaderV analiza el vídeo y te abre todas las opciones: la calidad que quieras hasta 8K, y qué guardar junto al vídeo — subtítulos, miniatura y metadatos con capítulos.</p>
         <p class="lead" style="margin-top:16px">Y lo mejor: activa los <b>subtítulos automáticos</b> y se <b>incrustan dentro del vídeo</b> con un estilo profesional. Funciona con cualquier MP4 de las +1500 plataformas, eliges entre 46 estilos y el idioma que necesites.</p>
         <div class="pchips" style="margin-top:26px">
-          <span class="pchip"><span class="material-symbols-rounded" style="color:#1A73E8">check_circle</span> Hasta 8K · 60FPS</span>
+          <span class="pchip"><span class="material-symbols-rounded" style="color:#E91E63">check_circle</span> Hasta 8K · 60FPS</span>
           <span class="pchip"><span class="material-symbols-rounded" style="color:#F59E0B">subtitles</span> Subtítulos incrustados</span>
           <span class="pchip"><span class="material-symbols-rounded" style="color:#8B5CF6">language</span> +40 idiomas</span>
           <span class="pchip"><span class="material-symbols-rounded" style="color:#10B981">format_list_bulleted</span> Metadatos y miniatura</span>
@@ -213,7 +263,7 @@
               <div class="sd-vig"></div>
               <div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div>
               <div class="sd-center">
-                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#1A73E8"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#1A73E8"/></svg>Activar subtítulos</button>
+                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#E91E63"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#E91E63"/></svg>Activar subtítulos</button>
                 <div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div>
               </div>
               <div class="sd-cap-wrap"><div class="sd-cap"></div></div>
@@ -309,7 +359,7 @@
               <div class="sd-vig"></div>
               <div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div>
               <div class="sd-center">
-                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#1A73E8"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#1A73E8"/></svg>Activar subtítulos</button>
+                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#E91E63"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#E91E63"/></svg>Activar subtítulos</button>
                 <div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div>
               </div>
               <div class="sd-cap-wrap"><div class="sd-cap"></div></div>
@@ -336,7 +386,7 @@
           <h3 class="reveal">No hace falta bajar el vídeo para ponerle subtítulos</h3>
           <p class="reveal d1">Ten el enlace listo, pégalo en la app y elige los subtítulos que quieras: modernos, en 3D, con pintura y muchos más. Antes de descargar, actívalos y el vídeo se guarda con los subtítulos incrustados.</p>
           <ul class="sx-list">
-            <li class="reveal" style="--i:1;--c:#1A73E8"><span class="sx-ic"><span class="material-symbols-rounded">open_with</span></span><div><b>Muévelos libremente por la pantalla</b><span class="t">Arriba, a la izquierda o donde prefieras: tú decides dónde se ven antes de descargar.</span></div></li>
+            <li class="reveal" style="--i:1;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">open_with</span></span><div><b>Muévelos libremente por la pantalla</b><span class="t">Arriba, a la izquierda o donde prefieras: tú decides dónde se ven antes de descargar.</span></div></li>
             <li class="reveal" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">download</span></span><div><b>Se descarga tal como lo dejaste</b><span class="t">El vídeo sale con los subtítulos puestos exactamente donde los colocaste.</span></div></li>
             <li class="reveal" style="--i:3;--c:#8B5CF6"><span class="sx-ic"><span class="material-symbols-rounded">palette</span></span><div><b>Estilos para todos los gustos</b><span class="t">Modernos, en 3D, con pintura y más: escoge el que te guste y aplícalo.</span></div></li>
             <li class="reveal" style="--i:4;--c:#F59E0B"><span class="sx-ic"><span class="material-symbols-rounded">public</span></span><div><b>No solo YouTube: +1.500 plataformas</b><span class="t">Pega el enlace de donde quieras. Es libre: úsalo para lo que quieras.</span></div></li>
@@ -359,7 +409,7 @@
 </section>
 
 <!-- DESCARGAS · MOTOR PROPIO -->
-<section class="section sec-dark">
+<section class="section sec-dark" id="motor">
   <div class="wrap">
     <div class="split">
       <div class="reveal">
@@ -441,6 +491,7 @@
 <section class="section sec-soft" id="masiva">
   <div class="wrap">
     <div class="bk-head reveal">
+      <span class="eyebrow">Descarga masiva</span>
       <h2>Listas y canales enteros.<br>Con un solo enlace.</h2>
       <p>Pega el enlace de una lista de reproducción o de un canal y descarga decenas o cientos de vídeos de una vez. Tú decides cuáles, en qué calidad y en qué formato.</p>
     </div>
@@ -449,22 +500,22 @@
         <div class="bk-top"><span class="bk-pi"><span class="material-symbols-rounded">playlist_play</span></span><div><b>Mi lista de reproducción</b><small>48 vídeos · <span id="bkCount">3</span> seleccionados</small></div></div>
         <div class="bk-seg" role="group" aria-label="Calidad para todos los vídeos"><button type="button" class="bk-s" data-q="4K">Máxima</button><button type="button" class="bk-s" data-q="1080p">Decente</button><button type="button" class="bk-s" data-q="360p">Baja</button></div>
         <ul class="bk-rows" id="bkRows">
-          <li class="on" data-q="4K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#1A73E8;--b:#6D28D9"></span><span class="bk-ti">Tutorial: primeros pasos</span><button type="button" class="bk-q">4K</button></li>
+          <li class="on" data-q="4K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#E91E63;--b:#6D28D9"></span><span class="bk-ti">Tutorial: primeros pasos</span><button type="button" class="bk-q">4K</button></li>
           <li data-q="1080p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#F59E0B;--b:#EF4444"></span><span class="bk-ti">Entrevista completa</span><button type="button" class="bk-q">1080p</button></li>
           <li class="on" data-q="2K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#10B981;--b:#047857"></span><span class="bk-ti">El mejor momento<b class="bk-tag">Short</b></span><button type="button" class="bk-q">2K</button></li>
           <li data-q="720p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#8B5CF6;--b:#EC4899"></span><span class="bk-ti">Resumen de la semana</span><button type="button" class="bk-q">720p</button></li>
-          <li class="on" data-q="360p" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#06B6D4;--b:#1A73E8"></span><span class="bk-ti">Directo grabado</span><button type="button" class="bk-q">360p</button></li>
+          <li class="on" data-q="360p" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#06B6D4;--b:#E91E63"></span><span class="bk-ti">Directo grabado</span><button type="button" class="bk-q">360p</button></li>
         </ul>
         <div class="bk-dl"><span class="material-symbols-rounded">download</span>Descargar selección<i></i></div>
       </div>
       <ul class="sx-list">
-        <li class="reveal" style="--i:1;--c:#1A73E8"><span class="sx-ic"><span class="material-symbols-rounded">playlist_add_check</span></span><div><b>Listas enteras, también de 40 o 50 vídeos</b><span class="t">Pega la lista y descárgala completa. Elige una calidad para todos (máxima, decente o baja) o ajusta cada vídeo por separado: unos en 4K, otros en 2K y otros en baja calidad y pocos FPS.</span></div></li>
+        <li class="reveal" style="--i:1;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">playlist_add_check</span></span><div><b>Listas enteras, también de 40 o 50 vídeos</b><span class="t">Pega la lista y descárgala completa. Elige una calidad para todos (máxima, decente o baja) o ajusta cada vídeo por separado: unos en 4K, otros en 2K y otros en baja calidad y pocos FPS.</span></div></li>
         <li class="reveal" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">checklist</span></span><div><b>Este sí, este no</b><span class="t">Marca solo los vídeos que quieras. Descarga solo vídeos, solo shorts o los shorts más populares.</span></div></li>
         <li class="reveal" style="--i:3;--c:#8B5CF6"><span class="sx-ic"><span class="material-symbols-rounded">notes</span></span><div><b>Descarga también la transcripción</b><span class="t">Guarda el texto hablado de cada vídeo cuando lo necesites.</span></div></li>
       </ul>
     </div>
     <div class="bk-cards reveal">
-      <div class="bk-card" style="--i:0;--c:#1A73E8"><span class="sx-ic"><span class="material-symbols-rounded">video_library</span></span><b>Todos los vídeos del canal</b><p>Descarga el canal completo a partir de un solo enlace.</p></div>
+      <div class="bk-card" style="--i:0;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">video_library</span></span><b>Todos los vídeos del canal</b><p>Descarga el canal completo a partir de un solo enlace.</p></div>
       <div class="bk-card" style="--i:1;--c:#F59E0B"><span class="sx-ic"><span class="material-symbols-rounded">music_note</span></span><b>Todo el canal en MP3</b><p>Todos sus vídeos, pero solo el audio.</p></div>
       <div class="bk-card" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">trending_up</span></span><b>Solo los 10 más populares</b><p>Quédate con lo más visto del canal y olvídate del resto.</p></div>
       <div class="bk-card" style="--i:3;--c:#EC4899"><span class="sx-ic"><span class="material-symbols-rounded">smart_display</span></span><b>Solo shorts</b><p>Todos los shorts del canal, o únicamente los más populares.</p></div>
@@ -479,7 +530,7 @@
 </section>
 
 <!-- CREATOR STUDIO -->
-<section class="section wrap">
+<section class="section wrap" id="studio">
   <div class="split rev">
     <div class="reveal">
       <span class="eyebrow c-pink">Creator Studio</span>
@@ -527,7 +578,7 @@
 </section>
 
 <!-- FLASH DOWNLOAD · ANDROID -->
-<section class="section sec-dark">
+<section class="section sec-dark" id="flash">
   <div class="wrap">
     <div class="split">
       <div class="reveal">
@@ -539,7 +590,7 @@
         <div class="fdx-wrap">
         <style>
         /* ---------- raíz / marco ---------- */
-        .fdx{--w:300px;--sb:30px;--nav:36px;--blue:#2f6bff;--green:#10b981;
+        .fdx{--w:300px;--sb:30px;--nav:36px;--blue:#E91E63;--green:#10b981;
           width:var(--w);max-width:88vw;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;
           font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
         .fdx *{box-sizing:border-box}
@@ -593,7 +644,7 @@
         .fdx-paste{display:flex;align-items:center;gap:9px;background:#eceff4;border-radius:14px;padding:11px 12px}
         .fdx-paste .lk{color:#7b8493;font-size:16px;flex:none}
         .fdx-paste .ph{flex:1;font-size:13px;font-weight:800;color:#2b2f3a;letter-spacing:-.2px}
-        .fdx-paste .cb{color:#2f6bff;font-size:15px}
+        .fdx-paste .cb{color:#E91E63;font-size:15px}
         .fdx-analyze{background:#0b0b0f;color:#fff;border-radius:15px;padding:13px;text-align:center;font-size:13px;font-weight:800;letter-spacing:.4px;
           display:flex;align-items:center;justify-content:center;gap:8px}
         .fdx-analyze svg{width:16px;height:16px}
@@ -601,7 +652,7 @@
           box-shadow:0 8px 20px -10px rgba(0,0,0,.22);transition:transform .15s ease}
         .fdx-flash .fi{width:24px;height:24px;border-radius:8px;background:linear-gradient(140deg,#FF8A00,#FF3D71);display:grid;place-items:center;color:#fff;font-size:13px}
         .fdx-flash b{font-size:14px;font-weight:800;color:#15171e}
-        .fdx-flash .nw{font-size:8px;font-weight:800;color:#2f6bff;background:#e7efff;padding:3px 7px;border-radius:7px;letter-spacing:.5px}
+        .fdx-flash .nw{font-size:8px;font-weight:800;color:#E91E63;background:#FCE4EC;padding:3px 7px;border-radius:7px;letter-spacing:.5px}
         .fdx-recent{margin-top:16px;font-size:11px;font-weight:900;letter-spacing:.6px;color:#15171e;padding:0 4px;opacity:.85}
 
         /* =================== ESCENA 2 (overlay) · MODAL Flash =================== */
@@ -612,31 +663,31 @@
         .fdx-screen.m-open .fdx-modal{transform:translateY(0)}
         .fdx-grab{width:42px;height:5px;border-radius:999px;background:#d7dbe3;margin:4px auto 12px}
         .fdx-mhead{display:flex;align-items:center;gap:11px;margin-bottom:13px}
-        .fdx-mhead .ic{width:34px;height:34px;border-radius:50%;background:#e7efff;display:grid;place-items:center;color:#2f6bff;font-size:16px;flex:none}
+        .fdx-mhead .ic{width:34px;height:34px;border-radius:50%;background:#FCE4EC;display:grid;place-items:center;color:#E91E63;font-size:16px;flex:none}
         .fdx-mhead b{font-size:18px;font-weight:900;flex:1}
         .fdx-mhead .x{width:30px;height:30px;border-radius:50%;background:#f1f3f7;display:grid;place-items:center;color:#9aa3b2;font-size:14px}
-        .fdx-info{background:#eaf1ff;border-radius:16px;padding:12px;display:flex;gap:10px;margin-bottom:15px}
-        .fdx-info .ic{color:#2f6bff;font-size:18px;flex:none}
-        .fdx-info b{display:block;font-size:13px;color:#1a73e8;margin-bottom:5px}
-        .fdx-info p{margin:0 0 6px;font-size:10.5px;line-height:1.45;color:#3f6dab;font-weight:500}
+        .fdx-info{background:#FCE4EC;border-radius:16px;padding:12px;display:flex;gap:10px;margin-bottom:15px}
+        .fdx-info .ic{color:#E91E63;font-size:18px;flex:none}
+        .fdx-info b{display:block;font-size:13px;color:#E91E63;margin-bottom:5px}
+        .fdx-info p{margin:0 0 6px;font-size:10.5px;line-height:1.45;color:#8E2456;font-weight:500}
         .fdx-info p:last-child{margin:0}
         .fdx-lbl{font-size:14px;font-weight:900;margin:0 0 9px}
         .fdx-opts{display:flex;gap:9px;overflow:hidden;margin-bottom:16px}
         .fdx-opt{flex:0 0 41%;background:#fff;border:1.6px solid #e6e9ef;border-radius:15px;padding:11px;position:relative;transition:border-color .2s,background .2s}
         .fdx-opt .bd{width:32px;height:32px;border-radius:9px;background:#eef1f6;display:grid;place-items:center;font-size:9px;font-weight:900;color:#5a6478;margin-bottom:9px}
-        .fdx-opt .bd.blue{background:#2f6bff;color:#fff}
+        .fdx-opt .bd.blue{background:#E91E63;color:#fff}
         .fdx-opt .ti{display:block;font-size:14px;font-weight:900}
         .fdx-opt .de{display:block;font-size:9.5px;color:#9aa3b2;font-weight:700;margin-top:2px;white-space:nowrap}
-        .fdx-opt .ck{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:#2f6bff;display:grid;place-items:center;opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s}
+        .fdx-opt .ck{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:#E91E63;display:grid;place-items:center;opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s}
         .fdx-opt .ck svg{width:11px;height:11px}
-        .fdx-opt.sel{border-color:#2f6bff;background:#eef4ff}
+        .fdx-opt.sel{border-color:#E91E63;background:#eef4ff}
         .fdx-opt.sel .ck{opacity:1;transform:scale(1)}
         .fdx-opt.fmt .bd{border-radius:9px}
         .fdx-opt.fmt .bd.vid{background:#E5342B;color:#fff}
         .fdx-opt.fmt .ck{background:#E5342B}
         .fdx-opt.fmt.sel{border-color:#E5342B;background:#fdecec}
-        .fdx-act{background:linear-gradient(135deg,#2f7bff,#2f6bff);color:#fff;border-radius:16px;padding:14px;text-align:center;font-size:13px;font-weight:900;letter-spacing:.4px;
-          display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 14px 26px -12px rgba(47,107,255,.7);transition:transform .15s,filter .15s}
+        .fdx-act{background:linear-gradient(135deg,#F06292,#E91E63);color:#fff;border-radius:16px;padding:14px;text-align:center;font-size:13px;font-weight:900;letter-spacing:.4px;
+          display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 14px 26px -12px rgba(233,30,99,.7);transition:transform .15s,filter .15s}
 
         /* =================== ESCENA · HOME (lanzador) =================== */
         .fdx-home{background:linear-gradient(165deg,#1b2440,#0d1426 55%,#10182b);display:flex;flex-direction:column;align-items:center;padding:26px 18px 0}
@@ -691,7 +742,7 @@
         .fdx-srow{display:flex;justify-content:space-around}
         .fdx-sa{display:flex;flex-direction:column;align-items:center;gap:7px;color:#e7ecf6;font-size:10px;font-weight:700;transition:transform .15s}
         .fdx-sa .ci{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:19px}
-        .fdx-sa.copy .ci{background:#2f6bff;color:#fff}
+        .fdx-sa.copy .ci{background:#E91E63;color:#fff}
         .fdx-sa.send .ci{background:#10b981;color:#fff}
         .fdx-sa.save .ci{background:#39414f;color:#cdd5e2}
 
@@ -706,14 +757,14 @@
         .fdx-ndclock span{font-size:12px;font-weight:500;opacity:.95}
         .fdx-notif{background:#f4f5f7;border-radius:20px;padding:13px 14px;box-shadow:0 18px 40px -14px rgba(0,0,0,.4)}
         .fdx-nhead{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#5a6478;font-weight:600;margin-bottom:8px}
-        .fdx-nhead .ap{width:22px;height:22px;border-radius:50%;background:#2f6bff;display:grid;place-items:center;color:#fff;font-size:12px;flex:none}
+        .fdx-nhead .ap{width:22px;height:22px;border-radius:50%;background:#E91E63;display:grid;place-items:center;color:#fff;font-size:12px;flex:none}
         .fdx-nhead .ap svg{width:13px;height:13px}
         .fdx-nhead b{color:#1b1f27;font-weight:700}
         .fdx-ntitle{font-size:15px;font-weight:800;color:#15171e;margin-bottom:7px}
         .fdx-nbody{font-size:11.5px;line-height:1.5;color:#4a5160;margin-bottom:11px;transition:color .3s}
         .fdx-nprog{height:6px;border-radius:999px;background:#dfe2e8;overflow:hidden;margin-bottom:9px;opacity:0;max-height:0;transition:opacity .3s,max-height .3s,margin .3s}
         .fdx-screen.dl .fdx-nprog{opacity:1;max-height:10px}
-        .fdx-nprog i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#2f6bff,#22b8d6,#10b981);background-size:200% 100%}
+        .fdx-nprog i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#E91E63,#F06292,#10b981);background-size:200% 100%}
         .fdx-nacts{display:flex;gap:26px;padding-left:2px}
         .fdx-nbtn{font-size:13px;font-weight:800;color:#a14a38;display:flex;align-items:center;gap:5px}
         .fdx-nbtn.ghost{color:#7a8190}
@@ -726,7 +777,7 @@
         .fdx-toast.show{opacity:1;transform:translate(-50%,0)}
         .fdx-toast .ic{width:22px;height:22px;border-radius:50%;background:#10b981;display:grid;place-items:center;flex:none}
         .fdx-toast .ic svg{width:13px;height:13px}
-        .fdx-toast.link .ic{background:#2f6bff}
+        .fdx-toast.link .ic{background:#E91E63}
 
         /* =================== Dedo =================== */
         .fdx-finger{position:absolute;width:36px;height:36px;left:50%;top:50%;border-radius:50%;z-index:70;pointer-events:none;
@@ -776,7 +827,7 @@
                 <section class="fdx-scene fdx-app">
                   <div class="fdx-head">
                     <div class="fdx-logo">
-                      <svg viewBox="0 0 48 48"><path fill="#42A5F5" d="M30 4 9 25l6 6L42 4z"/><path fill="#42A5F5" d="M30 23 19 34l6 6 5-5 12-12z"/><path fill="#0D47A1" d="m19 34 6 6 5-5-6-6z"/><path fill="#0a1f4d" d="M22 8l-2.6 2.6 4 4L20 19l3 3 4-4-7-10z" opacity="0"/></svg>
+                      <svg viewBox="0 0 48 48"><path fill="#42A5F5" d="M30 4 9 25l6 6L42 4z"/><path fill="#42A5F5" d="M30 23 19 34l6 6 5-5 12-12z"/><path fill="#AD1457" d="m19 34 6 6 5-5-6-6z"/><path fill="#0a1f4d" d="M22 8l-2.6 2.6 4 4L20 19l3 3 4-4-7-10z" opacity="0"/></svg>
                     </div>
                     <div class="fdx-title">DownloaderV</div>
                     <div class="fdx-sub">Universal Media Downloader</div>
@@ -1094,16 +1145,16 @@
       <h2>Pequeña función,<br>cambio enorme.</h2>
     </div>
     <div class="features">
-      <article class="feat reveal" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico ic-green"><span class="material-symbols-rounded">bolt</span></div><h3 style="color:#fff">Sin abrir la app</h3><p style="color:#94A3B8">Tu downloaderV puede estar cerrada. La notificación funciona en segundo plano.</p></article>
-      <article class="feat reveal d1" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico ic-blue"><span class="material-symbols-rounded">apps</span></div><h3 style="color:#fff">En cualquier plataforma</h3><p style="color:#94A3B8">TikTok, YouTube, Instagram, Facebook, Reddit... Funciona en todas.</p></article>
-      <article class="feat reveal d2" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico ic-amber"><span class="material-symbols-rounded">speed</span></div><h3 style="color:#fff">Velocidad inmediata</h3><p style="color:#94A3B8">No hay que esperar a que cargue una app. Pegas y descarga.</p></article>
-      <article class="feat reveal d3" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)"><div class="ico ic-purple"><span class="material-symbols-rounded">settings</span></div><h3 style="color:#fff">Configurable en segundos</h3><p style="color:#94A3B8">Cambia formato o calidad desde la notificación con un solo tap.</p></article>
+      <article class="feat reveal"><div class="ico ic-green"><span class="material-symbols-rounded">bolt</span></div><h3>Sin abrir la app</h3><p>Tu downloaderV puede estar cerrada. La notificación funciona en segundo plano.</p></article>
+      <article class="feat reveal d1"><div class="ico ic-blue"><span class="material-symbols-rounded">apps</span></div><h3>En cualquier plataforma</h3><p>TikTok, YouTube, Instagram, Facebook, Reddit... Funciona en todas.</p></article>
+      <article class="feat reveal d2"><div class="ico ic-amber"><span class="material-symbols-rounded">speed</span></div><h3>Velocidad inmediata</h3><p>No hay que esperar a que cargue una app. Pegas y descarga.</p></article>
+      <article class="feat reveal d3"><div class="ico ic-purple"><span class="material-symbols-rounded">settings</span></div><h3>Configurable en segundos</h3><p>Cambia formato o calidad desde la notificación con un solo tap.</p></article>
     </div>
   </div>
 </section>
 
 <!-- CLONACIÓN DE VOZ -->
-<section class="section wrap">
+<section class="section wrap" id="voz">
   <div class="split rev">
     <div class="reveal">
       <span class="eyebrow c-purple">Clonación neural</span>
@@ -1157,7 +1208,7 @@
 </section>
 
 <!-- ACTUALIZACIONES -->
-<section class="section sec-dark">
+<section class="section sec-dark" id="novedades">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow c-blue">Siempre al día</span>
@@ -1200,14 +1251,14 @@
       <h3>Reporta directamente al equipo</h3>
       <p>Sin bots ni tickets eternos: tu reporte llega a quien puede arreglarlo. Y cada incidencia reportada ayuda a mejorar la aplicación para todos los usuarios.</p>
       <div class="sp-actions">
-        <a class="dl-btn sp-cta" href="mailto:soporte@downloaderv.com?subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ic"><span class="material-symbols-rounded" style="color:#1A73E8">mail</span></span><span><small>Abre tu correo</small><b>Reportar al equipo</b></span></a>
+        <a class="dl-btn sp-cta" href="mailto:soporte@downloaderv.com?subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ic"><span class="material-symbols-rounded" style="color:#E91E63">mail</span></span><span><small>Abre tu correo</small><b>Reportar al equipo</b></span></a>
         <button class="btn-ghost sp-ghost" data-modal="reportes">Ver cómo reportar</button>
       </div>
     </div>
     <div class="sp-right">
       <div class="sp-status">
         <div class="sps-head"><span>Estado del sistema</span><span class="sps-ok"><span class="sp-dot"></span>Operativo</span></div>
-        <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#1A73E8">download</span>Motor de descargas</span><span class="sps-pill">Operativo</span></div>
+        <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#E91E63">download</span>Motor de descargas</span><span class="sps-pill">Operativo</span></div>
         <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#8B5CF6">subtitles</span>Subtítulos IA</span><span class="sps-pill">Operativo</span></div>
         <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#10B981">dns</span>Servidores</span><span class="sps-pill">Operativo</span></div>
         <div class="sps-foot"><span class="material-symbols-rounded">schedule</span>Tiempo medio de respuesta · menos de 5 min</div>
@@ -1235,7 +1286,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="section sec-soft">
+<section class="section sec-soft" id="faq">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Preguntas frecuentes</span>
@@ -1336,7 +1387,7 @@
 <style>
 /* ===== Botón "Chat en directo" que se añade DENTRO del soporte original ===== */
 .sc-open{display:flex;align-items:center;gap:12px;width:100%;border:none;cursor:pointer;text-align:left;font:inherit;
-  background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;border-radius:16px;padding:14px 15px;margin:0 0 18px;
+  background:linear-gradient(135deg,#E91E63,#6D28D9);color:#fff;border-radius:16px;padding:14px 15px;margin:0 0 18px;
   box-shadow:0 14px 28px -12px rgba(47,90,230,.65);transition:transform .15s,filter .15s;position:relative;overflow:hidden}
 .sc-open:hover{filter:brightness(1.05)}.sc-open:active{transform:scale(.99)}
 .sc-open::after{content:"";position:absolute;inset:-50% -10% auto;height:160%;background:radial-gradient(circle at 25% 20%,rgba(255,255,255,.22),transparent 55%)}
@@ -1344,7 +1395,7 @@
 .sc-open .ic svg{width:22px;height:22px}
 .sc-open .tx{position:relative;flex:1}
 .sc-open .tx b{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:800}
-.sc-open .tx b em{font-style:normal;font-size:9px;font-weight:800;background:#fff;color:#1A73E8;padding:2px 7px;border-radius:6px;letter-spacing:.5px}
+.sc-open .tx b em{font-style:normal;font-size:9px;font-weight:800;background:#fff;color:#E91E63;padding:2px 7px;border-radius:6px;letter-spacing:.5px}
 .sc-open .tx span{font-size:11.5px;opacity:.92}
 .sc-open .go{position:relative;font-size:20px;opacity:.9}
 
@@ -1353,7 +1404,7 @@
 .sc{font-family:var(--font-body,'Inter',system-ui,sans-serif);-webkit-font-smoothing:antialiased;width:100%}
 .sc *{box-sizing:border-box}
 .sc-card{position:relative;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);display:flex;flex-direction:column;height:min(600px,84vh)}
-.sc-head{position:relative;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;padding:18px;overflow:hidden;flex:none}
+.sc-head{position:relative;background:linear-gradient(135deg,#E91E63,#6D28D9);color:#fff;padding:18px;overflow:hidden;flex:none}
 .sc-head::after{content:"";position:absolute;inset:-40% -10% auto;height:140%;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 55%)}
 .sc-head-row{position:relative;display:flex;align-items:center;gap:12px}
 .sc-av{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none;position:relative}
@@ -1377,21 +1428,21 @@
 
 /* --- Pantalla CONECTAR --- */
 .sc-connect{align-items:center;justify-content:center;text-align:center;padding:30px 26px}
-.sc-connect .big{width:80px;height:80px;border-radius:24px;background:linear-gradient(135deg,#1A73E8,#6D28D9);display:grid;place-items:center;margin-bottom:20px;box-shadow:0 20px 40px -16px rgba(47,90,230,.6)}
+.sc-connect .big{width:80px;height:80px;border-radius:24px;background:linear-gradient(135deg,#E91E63,#6D28D9);display:grid;place-items:center;margin-bottom:20px;box-shadow:0 20px 40px -16px rgba(47,90,230,.6)}
 .sc-connect .big svg{width:40px;height:40px}
 .sc-connect h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:21px;margin:0 0 10px;color:#15171e}
 .sc-connect p{font-size:13.5px;color:#5A6478;line-height:1.6;max-width:290px;margin:0 0 22px}
 .sc-go{border:none;border-radius:14px;padding:14px 26px;font:inherit;font-size:14px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
-  background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;box-shadow:0 14px 28px -12px rgba(26,115,232,.7);transition:transform .15s,filter .15s}
+  background:linear-gradient(135deg,#E91E63,#E91E63);color:#fff;box-shadow:0 14px 28px -12px rgba(233,30,99,.7);transition:transform .15s,filter .15s}
 .sc-go:hover{filter:brightness(1.07)}.sc-go:active{transform:scale(.98)}.sc-go svg{width:17px;height:17px}
 .sc-connect .note{margin-top:18px;font-size:11.5px;color:#9aa3b2;display:flex;align-items:center;gap:7px}
 .sc-connect .note svg{width:14px;height:14px}
 
 /* --- Pantalla ESPERA --- */
 .sc-waiting{align-items:center;justify-content:center;text-align:center;padding:30px 26px}
-.sc-spin{width:64px;height:64px;border-radius:50%;border:4px solid #E3E9F2;border-top-color:#1A73E8;animation:scSpin 1s linear infinite;margin-bottom:8px}
+.sc-spin{width:64px;height:64px;border-radius:50%;border:4px solid #E3E9F2;border-top-color:#E91E63;animation:scSpin 1s linear infinite;margin-bottom:8px}
 @keyframes scSpin{to{transform:rotate(360deg)}}
-.sc-wclock{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:32px;font-weight:700;color:#1A73E8;font-variant-numeric:tabular-nums;margin:14px 0 6px}
+.sc-wclock{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:32px;font-weight:700;color:#E91E63;font-variant-numeric:tabular-nums;margin:14px 0 6px}
 .sc-waiting h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:18px;margin:0 0 8px;color:#15171e}
 .sc-waiting p{font-size:13px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 8px}
 .sc-dots{display:inline-flex;gap:5px;margin:6px 0 20px}
@@ -1407,9 +1458,9 @@
 .sc-noagents .big svg{width:34px;height:34px}
 .sc-noagents h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:19px;margin:0 0 9px;color:#15171e}
 .sc-noagents p{font-size:13px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 18px}
-.sc-mailbtn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:13px;padding:13px 22px;background:linear-gradient(135deg,#1A73E8,#0D47A1);color:#fff;font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer;margin-bottom:12px}
+.sc-mailbtn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:13px;padding:13px 22px;background:linear-gradient(135deg,#E91E63,#AD1457);color:#fff;font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer;margin-bottom:12px}
 .sc-mailbtn svg{width:18px;height:18px}
-.sc-retry{border:none;background:none;color:#1A73E8;font:inherit;font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline}
+.sc-retry{border:none;background:none;color:#E91E63;font:inherit;font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline}
 
 /* --- Pantalla CHAT --- */
 .sc-banner{background:#ECFDF5;color:#047857;font-size:12px;font-weight:700;text-align:center;padding:8px;border-bottom:1px solid #d1f0e2;display:flex;align-items:center;justify-content:center;gap:7px;flex:none}
@@ -1420,21 +1471,21 @@
 .sc-row{display:flex;gap:8px;max-width:84%;animation:scIn .35s ease both}
 @keyframes scIn{from{opacity:0;transform:translateY(8px)}}
 .sc-row.me{align-self:flex-end;flex-direction:row-reverse}
-.sc-ava{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#1A73E8,#6D28D9);flex:none;display:grid;place-items:center;align-self:flex-end}
+.sc-ava{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#E91E63,#6D28D9);flex:none;display:grid;place-items:center;align-self:flex-end}
 .sc-ava svg{width:15px;height:15px}
 .sc-bub{padding:10px 13px;border-radius:16px;font-size:13.5px;line-height:1.45;color:#15171e;background:#fff;border:1px solid #ECEFF4;box-shadow:0 4px 12px -8px rgba(20,40,90,.2);border-bottom-left-radius:5px;word-wrap:break-word;overflow-wrap:anywhere}
-.sc-row.me .sc-bub{background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;border:none;border-radius:16px;border-bottom-right-radius:5px}
+.sc-row.me .sc-bub{background:linear-gradient(135deg,#E91E63,#E91E63);color:#fff;border:none;border-radius:16px;border-bottom-right-radius:5px}
 .sc-time{font-size:10px;color:#aab2c0;margin-top:5px;display:block}
 .sc-row.me .sc-time{color:rgba(255,255,255,.75);text-align:right}
 .sc-sess{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 16px;background:#fff;border-top:1px solid #EDF0F5;font-size:11px;color:#7a8394;font-weight:600;flex:none}
 .sc-sess .t{display:flex;align-items:center;gap:6px}.sc-sess .t svg{width:13px;height:13px}
-.sc-clock{font-variant-numeric:tabular-nums;font-weight:800;color:#1A73E8}.sc-clock.warn{color:#F59E0B}.sc-clock.crit{color:#EF4444}
+.sc-clock{font-variant-numeric:tabular-nums;font-weight:800;color:#E91E63}.sc-clock.warn{color:#F59E0B}.sc-clock.crit{color:#EF4444}
 .sc-sess .e{display:flex;align-items:center;gap:6px;color:#10B981}.sc-sess .e svg{width:13px;height:13px}
 .sc-comp{padding:11px 13px;background:#fff;border-top:1px solid #EDF0F5;flex:none}
 .sc-inrow{display:flex;align-items:flex-end;gap:9px;background:#F2F4F8;border-radius:16px;padding:7px 7px 7px 14px;transition:box-shadow .2s}
-.sc-inrow:focus-within{box-shadow:0 0 0 2px rgba(26,115,232,.35)}
+.sc-inrow:focus-within{box-shadow:0 0 0 2px rgba(233,30,99,.35)}
 .sc-ta{flex:1;border:none;background:transparent;resize:none;font:inherit;font-size:13.5px;line-height:1.4;max-height:96px;padding:6px 0;color:#15171e;outline:none}
-.sc-send{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,#1A73E8,#2f6bff);color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .15s,filter .15s,opacity .2s}
+.sc-send{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,#E91E63,#E91E63);color:#fff;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .15s,filter .15s,opacity .2s}
 .sc-send:hover{filter:brightness(1.08)}.sc-send:active{transform:scale(.9)}.sc-send:disabled{opacity:.4;cursor:default;filter:grayscale(.3)}.sc-send svg{width:18px;height:18px}
 .sc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:7px;padding:0 4px}
 .sc-count{font-size:10.5px;color:#aab2c0;font-weight:600}.sc-count.over{color:#EF4444}
@@ -1468,7 +1519,7 @@
 .sc-done h3{font-family:var(--font-display,'Space Grotesk',sans-serif);font-size:21px;margin:0 0 9px;color:#15171e}
 .sc-done p{font-size:13.5px;color:#5A6478;line-height:1.55;max-width:280px;margin:0 0 22px}
 .sc-done .trash{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#10B981;font-weight:700;background:#ECFDF5;padding:7px 14px;border-radius:999px;margin-bottom:22px}.sc-done .trash svg{width:14px;height:14px}
-.sc-restart{border:none;background:linear-gradient(135deg,#1A73E8,#6D28D9);color:#fff;font:inherit;font-size:13.5px;font-weight:700;padding:12px 26px;border-radius:13px;cursor:pointer}.sc-restart:hover{filter:brightness(1.08)}
+.sc-restart{border:none;background:linear-gradient(135deg,#E91E63,#6D28D9);color:#fff;font:inherit;font-size:13.5px;font-weight:700;padding:12px 26px;border-radius:13px;cursor:pointer}.sc-restart:hover{filter:brightness(1.08)}
 </style>
 
     <div class="sc" id="soporteChat" data-state="connect">
@@ -1573,6 +1624,7 @@
 </div>
 
 <script src="app.js"></script>
+<script src="pro.js"></script>
 <script type="module" src="firebase-visitas.js"></script>
 <script type="module" src="soporte-chat.js"></script>
 </body>
