@@ -1,210 +1,255 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>downloaderV — Descarga y edición al más alto nivel</title>
-<meta name="description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en calidad 8K. Edita, añade subtítulos automáticos y clona voces con IA desde el Creator Studio." />
-<link rel="canonical" href="https://downloaderv.com/" />
-<meta name="theme-color" content="#FFFFFF" />
+<meta name="description" content="Descarga vídeos de YouTube, TikTok, Instagram, Facebook y +1.500 webs hasta en 8K. Subtítulos automáticos, emojis 3D, Creator Studio y clonación de voz con IA. Gratis para Windows y Android.">
+<link rel="canonical" href="https://downloaderv.com/">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light">
 
-<link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="manifest" href="site.webmanifest" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="downloaderV" />
-<meta property="og:locale" content="es_ES" />
-<meta property="og:url" content="https://downloaderv.com/" />
-<meta property="og:title" content="downloaderV — Descarga y edición al más alto nivel" />
-<meta property="og:description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en 8K. Edita y clona voces con IA." />
-<meta property="og:image" content="https://downloaderv.com/og-image.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="downloaderV — Descarga y edición al más alto nivel" />
-<meta name="twitter:description" content="Descarga vídeos de YouTube, TikTok, Instagram y Facebook en 8K. Edita y clona voces con IA." />
-<meta name="twitter:image" content="https://downloaderv.com/og-image.png" />
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="downloaderV">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://downloaderv.com/">
+<meta property="og:title" content="downloaderV — Descarga y edición al más alto nivel">
+<meta property="og:description" content="Descarga vídeos de +1.500 webs hasta en 8K. Subtítulos automáticos, emojis 3D y clonación de voz con IA. Gratis para Windows y Android.">
+<meta property="og:image" content="https://downloaderv.com/og-dv.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="downloaderV, el descargador más completo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="downloaderV — Descarga y edición al más alto nivel">
+<meta name="twitter:description" content="Descarga vídeos de +1.500 webs hasta en 8K. Subtítulos automáticos, emojis 3D y clonación de voz con IA.">
+<meta name="twitter:image" content="https://downloaderv.com/og-dv.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"downloaderV","applicationCategory":"MultimediaApplication","operatingSystem":"Windows, Android","description":"Descarga vídeos de YouTube, TikTok, Instagram, Facebook y +1.500 webs hasta en 8K, con subtítulos automáticos, emojis 3D, Creator Studio y clonación de voz con IA.","url":"https://downloaderv.com/","image":"https://downloaderv.com/og-dv.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Trollana"}}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="pro.css">
-<link rel="stylesheet" href="tema-rosa.css">
-<script>
-/* Capa PRO: prepara la intro antes de pintar (y se auto-rescata si algo falla) */
-(function(d){var h=d.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-h.classList.add('pro-js');try{if(sessionStorage.getItem('dv_intro'))h.classList.add('pro-skip');else h.classList.add('pro-loading')}catch(e){h.classList.add('pro-skip')}
-setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-hero-go')},4600)})(document);
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..600,0..1,0&amp;icon_names=add_circle,apps,auto_awesome,bolt,campaign,category,check,check_circle,checklist,chevron_left,chevron_right,close,computer,content_copy,description,devices,dns,download,drag_pan,format_list_bulleted,forum,language,location_on,lock,mail,mic,movie,music_note,notes,notifications_active,open_in_full,open_in_new,open_with,palette,pause,play_arrow,playlist_add_check,playlist_play,public,record_voice_over,remove_circle,reorder,report,restart_alt,schedule,search,sentiment_satisfied,sentiment_very_satisfied,settings,skip_previous,smart_display,speed,sticky_note_2,subtitles,tag,text_fields,translate,trending_up,tune,video_library,warning&amp;display=block">
+<link rel="stylesheet" href="dv.css?v=202611162101">
+<script>(function(d){var h=d.documentElement;h.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('hero-go');return}h.classList.add('pro-js');try{if(sessionStorage.getItem('dv_intro'))h.classList.add('pro-skip');else h.classList.add('pro-loading')}catch(e){h.classList.add('pro-skip')}setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('hero-go')},4600)})(document);</script>
+<script src="emojis.js?v=202611162101" defer></script>
+<script src="dv.js?v=202611162101" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Saltar al contenido</a>
 
-<!-- INTRO DE MARCA (capa PRO) -->
-<div class="pro-intro" id="proIntro" aria-hidden="true">
-  <div class="pro-intro-in">
-    <div class="pro-intro-logo"><img src="icono.png" alt=""></div>
-    <div class="pro-intro-name"><span style="animation-delay:0.320s">d</span><span style="animation-delay:0.365s">o</span><span style="animation-delay:0.410s">w</span><span style="animation-delay:0.455s">n</span><span style="animation-delay:0.500s">l</span><span style="animation-delay:0.545s">o</span><span style="animation-delay:0.590s">a</span><span style="animation-delay:0.635s">d</span><span style="animation-delay:0.680s">e</span><span style="animation-delay:0.725s">r</span><span class="v" style="animation-delay:0.770s">V</span></div>
-    <div class="pro-intro-bar"><i></i></div>
-    <div class="pro-intro-tag">Descarga y edición al más alto nivel</div>
+<!-- Intro con el logo -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-in">
+    <div class="intro-logo"><img src="icono.png" alt="" width="74" height="74"></div>
+    <div class="intro-name"><span style="animation-delay:0.320s">d</span><span style="animation-delay:0.365s">o</span><span style="animation-delay:0.410s">w</span><span style="animation-delay:0.455s">n</span><span style="animation-delay:0.500s">l</span><span style="animation-delay:0.545s">o</span><span style="animation-delay:0.590s">a</span><span style="animation-delay:0.635s">d</span><span style="animation-delay:0.680s">e</span><span style="animation-delay:0.725s">r</span><span class="v" style="animation-delay:.770s">V</span></div>
+    <div class="intro-bar"><i></i></div>
+    <div class="intro-tag">Descarga y edición al más alto nivel</div>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- ===================== CABECERA ===================== -->
 <header class="nav" id="top">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top"><img src="icono.png" alt="" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;>V</span>'"> downloaderV</a>
-    <nav class="nav-links">
-      <a href="#funciones">FUNCIONES</a>
-      <a href="#flash">FLASH</a>
-      <a href="#voz">VOZ IA</a>
-      <a href="#soporte">SOPORTE</a>
-      <a href="#faq">AYUDA</a>
-      <a class="nav-cta" href="#descargar">Descargar</a>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="downloaderV, inicio"><img src="icono.png" alt="" width="34" height="34"><span>downloaderV</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Principal">
+      <a href="#fotos">La app</a>
+      <a href="#funciones">Funciones</a>
+      <a href="#emojis">Emojis 3D</a>
+      <a href="#flash">Flash</a>
+      <a href="#voz">Voz IA</a>
+      <a href="#soporte">Soporte</a>
+      <a href="#faq">Ayuda</a>
+      <a class="nav-dl-m" href="#descargar">Descargar gratis</a>
     </nav>
+    <a class="nav-cta" href="#descargar"><span class="ms">download</span>Descargar</a>
+    <button class="nav-menu" id="navMenu" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir el menú"><i></i><i></i></button>
   </div>
 </header>
 
-<!-- HERO -->
-<div class="hero-pad">
-  <section class="hero">
-    <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span><span class="a4"></span></div>
-    <div class="hero-mesh"></div>
-    <div class="hero-dots"></div>
-    <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="orb o4"></span>
-    <div class="badge-row">
-      <span class="glass"><span class="live-dot"></span>PREVIEW</span>
-      <span class="glass">8K · 60FPS</span>
-    </div>
-    <div class="hero-inner">
-      <span class="glass hero-pill"><img src="icono.png" alt="" onerror="this.style.display='none'">downloaderV</span>
-      <h1><span class="l1">Descarga y edición</span><span class="l2">al más alto nivel.</span></h1>
-      <p class="sub">Mucho más que un descargador. Extrae vídeos de YouTube, Facebook, TikTok e Instagram en calidad nativa 8K. Edita, añade subtítulos automáticos y genera clonaciones de voz con Inteligencia Artificial desde nuestro Creator Studio integrado.</p>
-      <div class="chips">
-        <span class="chip"><span class="material-symbols-rounded c-blue">subtitles</span>Subtítulos IA</span>
-        <span class="chip"><span class="material-symbols-rounded c-purple">record_voice_over</span>Clonación de Voz</span>
-        <span class="chip"><span class="material-symbols-rounded c-pink">auto_awesome</span>Filtros PRO</span>
-        <span class="chip"><span class="material-symbols-rounded c-green">movie</span>Creator Studio</span>
-        <span class="chip hl"><span class="material-symbols-rounded c-amber">download</span>Descarga en todas las plataformas hasta 8K</span>
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio" data-anim>
+  <div class="hstage" id="hstage">
+    <div class="hs-bg" aria-hidden="true"><i class="hb hb1"></i><i class="hb hb2"></i><i class="hb hb3"></i><span class="hs-dots"></span><span class="hs-light"></span><span class="hs-sparks" id="hsSparks"></span><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i></div>
+    <div class="hs-badges" aria-hidden="true"><span class="glass"><i class="live"></i>PREVIEW</span><span class="glass">8K · 60FPS</span></div>
+    <div class="hs-in">
+      <span class="hs-pill glass"><img src="icono.png" alt="" width="26" height="26">downloaderV</span>
+      <h1 class="hs-title"><span class="l1">Descarga y edición</span> <span class="l2"><span class="g">al más alto nivel.</span><span class="h1-anchor"><span class="h1-emo" id="heroEmo" aria-hidden="true"></span></span></span></h1>
+      <p class="hs-sub">Mucho más que un descargador. Extrae vídeos de YouTube, Facebook, TikTok, Instagram y +1.500 webs en calidad nativa 8K. Edita, añade subtítulos automáticos con emojis 3D y genera clonaciones de voz con Inteligencia Artificial desde nuestro Creator Studio integrado.</p>
+      <ul class="hs-chips">
+        <li style="--i:0"><span class="ms" style="color:#E91E63">subtitles</span>Subtítulos IA</li>
+        <li style="--i:1"><span class="ms" style="color:#F59E0B">sentiment_very_satisfied</span>Emojis 3D</li>
+        <li style="--i:2"><span class="ms" style="color:#8B5CF6">record_voice_over</span>Clonación de voz</li>
+        <li style="--i:3" class="opt"><span class="ms" style="color:#EC4899">auto_awesome</span>Filtros PRO</li>
+        <li style="--i:4"><span class="ms" style="color:#0E9F5E">movie</span>Creator Studio</li>
+        <li style="--i:5" class="hl"><span class="ms">download</span><span class="hl-l">Descarga en todas las plataformas hasta 8K</span><span class="hl-s">Todas las plataformas hasta 8K</span></li>
+      </ul>
+      <div class="hs-cta">
+        <button class="dl-btn" id="heroDl" type="button" data-dl="auto"><span class="dl-ic" data-dl-icon><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg></span><span class="dl-tx"><small>Descargar gratis para</small><b data-dl-label>Windows</b></span></button>
+        <a class="hs-alt" href="#" data-dl="other">También para Android</a>
       </div>
-      <button class="dl-btn" id="heroDl"><span class="ic" id="heroDlIcon"></span><span><small>Descargar para</small><b id="heroDlLabel">Windows</b></span></button>
-      <!-- DEMO VIVA (capa PRO): así funciona la app en 5 segundos -->
-      <div class="pro-demo" id="proDemo" aria-hidden="true">
-        <div class="pro-demo-card">
-          <div class="pro-demo-bar">
-            <span class="pro-plat"><svg data-k="link" class="on" viewBox="0 0 24 24" fill="none" stroke="#c9d3e6" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><svg data-k="yt" viewBox="0 0 24 24" fill="#fff"><path d="M9 7.5v9l7.5-4.5z"/></svg><svg data-k="tt" viewBox="0 0 24 24" fill="#fff"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg><svg data-k="ig" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".9" fill="#fff" stroke="none"/></svg><svg data-k="fb" viewBox="0 0 24 24" fill="#fff"><path d="M14 8.5h2.2V5h-2.9c-2.4 0-3.9 1.6-3.9 4v2H7v3.5h2.4V22h3.7v-7.5h2.8l.6-3.5h-3.4V9.4c0-.6.4-.9.9-.9z"/></svg><svg data-k="x" viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></span>
-            <span class="pro-url"></span>
-            <span class="pro-go"><span class="spin"></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg><span class="lbl">ANALIZAR</span></span>
+      <div class="hs-demo">
+      <div class="pd" id="pasteDemo" aria-hidden="true">
+        <div class="pd-win"><span class="pd-app"><img src="icono.png" alt="" width="20" height="20">DownloaderV</span><span class="pd-dots"><i></i><i></i><i></i></span></div>
+        <div class="pd-body">
+          <div class="pd-bar">
+            <span class="pd-plat"><svg data-k="link" class="on" viewBox="0 0 24 24" fill="none" stroke="#8B8299" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><svg data-k="yt" viewBox="0 0 24 24" fill="#fff"><path d="M9 7.5v9l7.5-4.5z"/></svg><svg data-k="tt" viewBox="0 0 24 24" fill="#fff"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg><svg data-k="ig" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".9" fill="#fff" stroke="none"/></svg><svg data-k="fb" viewBox="0 0 24 24" fill="#fff"><path d="M14 8.5h2.2V5h-2.9c-2.4 0-3.9 1.6-3.9 4v2H7v3.5h2.4V22h3.7v-7.5h2.8l.6-3.5h-3.4V9.4c0-.6.4-.9.9-.9z"/></svg><svg data-k="x" viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></span>
+            <span class="pd-url"></span>
+            <span class="pd-go"><span class="spin"></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg><span class="lbl">Analizar</span></span>
           </div>
-          <div class="pro-res"><div>
-            <div class="pro-res-in">
-              <div class="pro-thumb"><span class="pl"></span><b></b></div>
-              <div class="pro-meta"><strong></strong><small></small><div class="pro-qs"></div></div>
+          <div class="pd-res">
+            <div class="pd-skel"><i></i><span><i></i><i></i><i class="short"></i></span></div>
+            <div class="pd-res-c">
+              <div class="pd-res-in">
+                <div class="pd-thumb"><span class="pl"></span><b></b></div>
+                <div class="pd-meta"><strong></strong><small></small><div class="pd-qs"></div></div>
+              </div>
+              <div class="pd-prog"><div class="pd-track"><i></i></div><span class="pd-pct"></span></div>
             </div>
-            <div class="pro-prog"><div class="pro-track"><i></i></div><span class="pro-pct"></span></div>
-          </div></div>
+          </div>
         </div>
-        <div class="pro-demo-foot"><span><i></i>+1.500 plataformas</span><span><i></i>Hasta 8K · 60 FPS</span><span><i></i>Sin marca de agua</span></div>
+      </div>
+        <div class="pd-foot"><span><i></i>+1.500 plataformas</span><span><i></i>Hasta 8K · 60 FPS</span><span><i></i>Sin marca de agua</span></div>
       </div>
     </div>
-  </section>
-</div>
-
-<!-- MARQUEE de plataformas -->
-<div class="marquee">
-  <div class="track">
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg>Instagram</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg>Twitter / X</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
-    <span class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg>Instagram</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg>Twitter / X</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
-    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
-    <span class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
-  </div>
-</div>
-
-<!-- FUNCIONALIDADES CORE -->
-<section class="section wrap" id="funciones">
-  <div class="sec-head reveal">
-    <span class="eyebrow">Funcionalidades core</span>
-    <h2>Potencia real. Resultados reales.</h2>
-    <p>Descarga, transcribe y edita sin saltar entre programas. Todo potenciado con inteligencia artificial.</p>
-  </div>
-  <div class="features">
-    <article class="feat reveal">
-      <div class="glow gl-blue"></div>
-      <div class="ico ic-blue"><span class="material-symbols-rounded">description</span></div>
-      <h3>Transcripciones automáticas</h3>
-      <p>Analiza cualquier vídeo al instante y obtén la transcripción completa, etiquetas virales y descripción lista para publicar.</p>
-    </article>
-    <article class="feat reveal d1">
-      <div class="glow gl-amber"></div>
-      <span class="tag bg-amber">8K · 60 FPS</span>
-      <div class="ico ic-amber"><span class="material-symbols-rounded">high_quality</span></div>
-      <h3>Hasta 8K y 60 FPS</h3>
-      <p>Descarga en todas las calidades disponibles. Fusiona vídeo y audio por separado en máxima resolución sin pérdidas.</p>
-    </article>
-    <article class="feat reveal d2">
-      <div class="glow gl-green"></div>
-      <div class="ico ic-green"><span class="material-symbols-rounded">movie</span></div>
-      <h3>Creator Studio integrado</h3>
-      <p>Edita tus vídeos antes de descargarlos. Añade subtítulos, recorta escenas, aplica efectos y exporta hasta en 8K.</p>
-    </article>
   </div>
 </section>
 
-<!-- OPCIONES DE DESCARGA (pantalla de la app) -->
-<section class="section sec-soft" id="opciones">
+<!-- Plataformas -->
+<div class="marquee" aria-label="Algunas plataformas compatibles" data-anim>
+  <div class="mq-track">
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg>Instagram</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg>Twitter / X</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
+    <span class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
+    <span class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>YouTube</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg>TikTok</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg>Instagram</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>Facebook</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg>Twitter / X</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2.9.5 1.7 1.4 1.7 1.7 0 2.9-2.2 2.9-4.7 0-1.9-1.3-3.4-3.7-3.4a4.2 4.2 0 0 0-4.4 4.2c0 .8.3 1.4.6 1.8l-.3 1c0 .3-.2.4-.5.2-1.2-.5-1.8-2-1.8-3.3 0-2.7 2.3-5.9 6.7-5.9 3.6 0 6 2.6 6 5.4 0 3.7-2 6.4-5 6.4-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.9-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"/></svg>Pinterest</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11 8v9h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.3-2.5A2 2 0 0 0 11 8zM9 9v8h1V9zm-2 1v7h1v-7zm-2 1v6h1v-6zm-2 1v5h1v-5z"/></svg>SoundCloud</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#0066DC"><circle cx="12" cy="12" r="10"/><path d="M10 8v8l6-4z" fill="#fff"/></svg>Dailymotion</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#9146FF"><path d="M4.3 2 3 5.4V20h5v2.6h2.8L13.4 20h4L23 14.4V2zm16.8 11.5-3.2 3.2h-5l-2.8 2.8v-2.8H5.9V3.9h15.2z"/><path d="M15.4 7.1h1.9v5.6h-1.9zm-5.2 0h1.9v5.6h-1.9z"/></svg>Twitch</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#FF4500"/><ellipse cx="12" cy="14" rx="6.2" ry="4.2" fill="#fff"/><circle cx="9.6" cy="13.6" r="1" fill="#FF4500"/><circle cx="14.4" cy="13.6" r="1" fill="#FF4500"/><circle cx="17.2" cy="9.6" r="1.4" fill="#fff"/><path d="M12 9.8 13 5.6l3 .7" stroke="#fff" stroke-width="1.1" fill="none"/></svg>Reddit</span>
+    <span aria-hidden="true" class="mq-item"><svg viewBox="0 0 24 24" fill="#1AB7EA"><path d="M22 7.4c-.1 2-1.5 4.7-4.2 8.2C15 19.2 12.7 21 10.8 21c-1.2 0-2.2-1.1-3-3.3L6.2 11.6C5.6 9.4 5 8.3 4.3 8.3c-.1 0-.7.3-1.6 1L1.8 8.1l3-2.6c1.3-1.2 2.3-1.8 3-1.8 1.6-.2 2.5.9 2.9 3.2.4 2.5.7 4 .8 4.6.4 2 .9 3 1.4 3 .4 0 1.1-.7 2-2.1.9-1.4 1.4-2.5 1.5-3.2.1-1.2-.3-1.8-1.5-1.8-.5 0-1.1.1-1.6.4 1.1-3.5 3.1-5.2 6.1-5.1 2.2.1 3.3 1.5 3.1 4.3z"/></svg>Vimeo</span>
+    <span aria-hidden="true" class="mq-item pro-more"><b>+1.500</b>&nbsp;plataformas más</span>
+  </div>
+</div>
+
+<!-- ===================== FOTOS DE LA APP ===================== -->
+<section class="sec stage" id="fotos">
+  <div class="wrap">
+    <div class="sh">
+      <h2>Mírala por dentro antes de instalarla.</h2>
+      <p>Capturas reales de downloaderV. Elige tu sistema y pasa las fotos: así se ve cada función.</p>
+    </div>
+    <div class="gal" id="gal">
+      <div class="gal-tabs" role="tablist" aria-label="Elige el sistema">
+        <button class="gal-tab" role="tab" type="button" data-set="win" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg>Windows<small>13</small></button>
+        <button class="gal-tab" role="tab" type="button" data-set="and" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg>Android<small>10</small></button>
+      </div>
+      <div class="gal-view">
+        <button class="gal-nav prev" type="button" aria-label="Foto anterior"><span class="ms">chevron_left</span></button>
+        <button class="gal-fig" type="button" id="galOpen" aria-label="Ampliar la foto">
+          <img id="galImg" src="img/app/win/01_portada-960.webp" srcset="img/app/win/01_portada-480.webp 480w, img/app/win/01_portada-960.webp 960w, img/app/win/01_portada-1600.webp 1600w" sizes="(max-width: 760px) 94vw, 1060px" width="1600" height="900" alt="El descargador más completo que has visto" loading="lazy" decoding="async">
+          <span class="gal-zoom"><span class="ms">open_in_full</span>Ampliar</span>
+        </button>
+        <button class="gal-nav next" type="button" aria-label="Foto siguiente"><span class="ms">chevron_right</span></button>
+      </div>
+      <div class="gal-cap">
+        <div><b id="galT">El descargador más completo que has visto</b><span id="galD">Vídeos, música, canales enteros e historias de más de 1.500 plataformas.</span></div>
+        <span class="gal-count" id="galN" aria-live="polite">1 / 13</span>
+      </div>
+      <div class="gal-thumbs" id="galThumbs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FUNCIONES (bento) ===================== -->
+<section class="sec" id="funciones">
+  <div class="wrap">
+    <div class="sh">
+      <h2>Todo para tus vídeos, en una sola app.</h2>
+      <p>Descarga, transcribe, subtitula y edita sin saltar entre programas. Todo potenciado con inteligencia artificial.</p>
+    </div>
+    <div class="bento" data-anim>
+      <article class="bx bx-dl">
+        <div class="bx-tx"><div class="bx-logos" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23 12s0-3.8-.5-5.6a3 3 0 0 0-2.1-2.1C18.6 3.8 12 3.8 12 3.8s-6.6 0-8.4.5A3 3 0 0 0 1.5 6.4C1 8.2 1 12 1 12s0 3.8.5 5.6a3 3 0 0 0 2.1 2.1c1.8.5 8.4.5 8.4.5s6.6 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg></span><span><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 5.8a4.3 4.3 0 0 1-1-2.8h-3.3v13.4a2.4 2.4 0 1 1-2.4-2.4c.2 0 .5 0 .7.1V8.3a5.8 5.8 0 1 0 5 5.7V8.7a7.5 7.5 0 0 0 4.4 1.4V6.8a4.3 4.3 0 0 1-3.4-1z"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#EC4899" stroke="none"/></svg></span><span><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg></span><span><svg viewBox="0 0 24 24" fill="#111"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></span><b>+1.500</b></div><h3>Descarga de +1.500 webs hasta en 8K</h3><p>Todas las calidades disponibles hasta 8K y 60 fps. Une vídeo y audio en máxima resolución sin perder nada.</p></div>
+        <div class="bx-q" aria-hidden="true"><span>360p</span><span>720p</span><span>1080p</span><span>4K</span><span class="on">8K</span></div>
+      </article>
+      <article class="bx bx-subs">
+        <div class="bx-tx"><h3>Subtítulos automáticos</h3><p>Más de 80 estilos (karaoke, virales, 3D, clásicos) que se incrustan dentro del vídeo.</p></div>
+        <div class="bx-stk" aria-hidden="true"><span class="stk s1">ESTO ES</span><span class="stk s2">OTRO NIVEL</span></div>
+        <a class="bx-more" href="#subtitulos">Ver los subtítulos</a>
+      </article>
+      <article class="bx bx-emo">
+        <div class="bx-face" data-face="amor" aria-hidden="true"></div>
+        <div class="bx-tx"><h3>Emojis 3D</h3><p>Caras que reaccionan a lo que dices.</p></div>
+        <a class="bx-more" href="#emojis">Verlos en acción</a>
+      </article>
+      <article class="bx bx-voz">
+        <div class="bx-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="bx-tx"><h3>Clonación de voz</h3><p>Narra con tu propia voz sin volver a grabar.</p></div>
+      </article>
+      <article class="bx bx-studio">
+        <div class="bx-tx"><h3>Creator Studio integrado</h3><p>Edita antes de descargar: recorta, añade subtítulos, filtros y efectos, y exporta hasta en 8K.</p></div>
+        <div class="bx-tl" aria-hidden="true"><span class="t1"><i style="flex:1.2"></i><i style="flex:.5"></i><i style="flex:1.6"></i></span><span class="t2"><i style="flex:2.2"></i><i></i></span><span class="t3"><i style="flex:.6"></i><i></i><i style="flex:.8"></i><i style="flex:.5"></i></span><b></b></div>
+      </article>
+      <article class="bx bx-trans"><span class="bx-ic ms">description</span><h3>Transcripciones automáticas</h3><p>Analiza cualquier vídeo y obtén la transcripción completa, etiquetas virales y una descripción lista para publicar.</p></article>
+      <article class="bx bx-flash"><span class="bx-ic ms">bolt</span><h3>Flash Download</h3><p>En Android, descarga desde la notificación sin abrir la app.</p></article>
+      <article class="bx bx-canal"><span class="bx-ic ms">video_library</span><h3>Canales y listas enteras</h3><p>Cientos de vídeos con un solo enlace, en la calidad que elijas.</p></article>
+      <article class="bx bx-vault"><span class="bx-ic ms">lock</span><h3>Bóveda cifrada</h3><p>Guarda vídeos, fotos y notas con tu propia clave.</p></article>
+    </div>
+    <div class="extras">
+      <h3>Y además</h3>
+      <ul class="chips">
+        <li>Sin marcas de agua</li><li>Historias</li><li>Lo más visto del vídeo</li><li>Reproductor con herramientas</li><li>Mapa del vídeo</li><li>Modo música</li><li>Radar de enlaces</li><li>Contraseña señuelo</li><li>Borrado total</li><li>Gestor de espacio</li><li>Copia automática</li><li>Capturar fotogramas</li><li>Test de velocidad</li><li>+20 herramientas de canal</li><li>243 idiomas</li><li>Soporte humano</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OPCIONES + SUBTÍTULOS ===================== -->
+<section class="sec tint" id="opciones">
   <div class="wrap">
     <div class="split">
-      <div class="reveal">
-        <span class="eyebrow" style="color:var(--blue)">Opciones de descarga</span>
-        <h2>Pega el enlace.<br>Tú decides el resto.</h2>
-        <p class="lead">En cuanto pegas un enlace, downloaderV analiza el vídeo y te abre todas las opciones: la calidad que quieras hasta 8K, y qué guardar junto al vídeo — subtítulos, miniatura y metadatos con capítulos.</p>
-        <p class="lead" style="margin-top:16px">Y lo mejor: activa los <b>subtítulos automáticos</b> y se <b>incrustan dentro del vídeo</b> con un estilo profesional. Funciona con cualquier MP4 de las +1500 plataformas, eliges entre 46 estilos y el idioma que necesites.</p>
-        <div class="pchips" style="margin-top:26px">
-          <span class="pchip"><span class="material-symbols-rounded" style="color:#E91E63">check_circle</span> Hasta 8K · 60FPS</span>
-          <span class="pchip"><span class="material-symbols-rounded" style="color:#F59E0B">subtitles</span> Subtítulos incrustados</span>
-          <span class="pchip"><span class="material-symbols-rounded" style="color:#8B5CF6">language</span> +40 idiomas</span>
-          <span class="pchip"><span class="material-symbols-rounded" style="color:#10B981">format_list_bulleted</span> Metadatos y miniatura</span>
-        </div>
+      <div class="split-copy">
+        <h2>Pega el enlace. Tú decides el resto.</h2>
+        <p class="lead">En cuanto pegas un enlace, downloaderV analiza el vídeo y te abre todas las opciones: la calidad que quieras hasta 8K, y qué guardar junto al vídeo: subtítulos, miniatura y metadatos con capítulos.</p>
+        <p class="lead">Y lo mejor: activa los <b>subtítulos automáticos</b> y se <b>incrustan dentro del vídeo</b> con un estilo profesional. Funciona con cualquier MP4 de las +1.500 plataformas, con más de 80 estilos y en el idioma que necesites.</p>
+        <ul class="ticks">
+          <li><span class="ms">check_circle</span>Hasta 8K a 60 fps</li>
+          <li><span class="ms">subtitles</span>Subtítulos incrustados</li>
+          <li><span class="ms">language</span>En tu idioma</li>
+          <li><span class="ms">format_list_bulleted</span>Metadatos y miniatura</li>
+        </ul>
       </div>
-
-      <div class="visual reveal scale">
-        <!-- ===== WINDOWS / ESCRITORIO: monitor ===== -->
-        <div class="demo-desktop">
+      <div class="split-vis">
+        <div class="demo-desktop" data-anim>
           <div class="monitor">
             <div class="mon-bezel">
               <div class="app-win">
-                <div class="aw-bar"><span class="aw-logo"><img src="icono.png" alt="" onerror="this.style.display='none'">DownloaderV</span><span class="aw-dots"><i></i><i></i><i></i></span></div>
+                <div class="aw-bar"><span class="aw-logo"><img src="icono.png" alt="" width="18" height="18">DownloaderV</span><span class="aw-dots"><i></i><i></i><i></i></span></div>
                 <div class="aw-sub"><span class="aw-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><path d="M15 5l-7 7 7 7"/></svg></span>Descargar</div>
                 <div class="aw-body">
-                  <div class="aw-video"><div class="subdemo">
-              <div class="sd-scene">
-                <div class="sd-bokeh sb1"></div><div class="sd-bokeh sb2"></div><div class="sd-bokeh sb3"></div><div class="sd-bokeh sb4"></div><div class="sd-bokeh sb5"></div><div class="sd-bokeh sb6"></div>
-                <div class="sd-ring"></div>
-                <svg class="sd-person" viewBox="0 0 400 225" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                  <div class="aw-video"><div class="subdemo"><div class="sd-scene"><div class="sd-bokeh sb1"></div><div class="sd-bokeh sb2"></div><div class="sd-bokeh sb3"></div><div class="sd-bokeh sb4"></div><div class="sd-bokeh sb5"></div><div class="sd-bokeh sb6"></div><div class="sd-ring"></div><svg class="sd-person" viewBox="0 0 400 225" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="sdSkin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0C3A4"/><stop offset="1" stop-color="#D89E7C"/></linearGradient>
                     <linearGradient id="sdHair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A3327"/><stop offset="1" stop-color="#2A1B14"/></linearGradient>
@@ -257,69 +302,51 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
                   <ellipse cx="178" cy="138" rx="7" ry="9" fill="#1b1b27"/><ellipse cx="178" cy="138" rx="4" ry="6" fill="#3a3a4d"/>
                   <!-- rim light borde izquierdo -->
                   <path d="M163 150 C 150 120 152 78 176 70" stroke="#34E7E4" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55" class="sd-rimline"/>
-                </svg>
-                <div class="sd-scan"></div>
-              </div>
-              <div class="sd-vig"></div>
-              <div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div>
-              <div class="sd-center">
-                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#E91E63"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#E91E63"/></svg>Activar subtítulos</button>
-                <div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div>
-              </div>
-              <div class="sd-cap-wrap"><div class="sd-cap"></div></div>
-              <div class="sd-bar"><i></i></div>
-            </div></div>
+                </svg><div class="sd-scan"></div></div><div class="sd-vig"></div><div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div><div class="sd-center"><span class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#fff"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#fff"/></svg>Activar subtítulos</span><div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div></div><div class="sd-cap-wrap"><div class="sd-cap" aria-hidden="true"></div></div><div class="sd-bar"><i></i></div></div><div class="aw-meta"><b>Tutorial: primeros pasos con la cámara</b><small>YouTube · 12:48 · hasta 4K</small></div><div class="aw-opts"><span class="on">Vídeo · MP4</span><span>Solo audio · MP3</span><span>Miniatura</span><span>Capítulos</span></div></div>
                   <div class="aw-side">
-                    <div class="aw-side-lbl">EN EL VÍDEO</div>
-                    <div class="dvp-autosub awc">
+                    <div class="aw-side-lbl">En el vídeo</div>
+                    <div class="dvp-autosub">
                       <span class="dvp-autoic"><svg viewBox="0 0 24 24" fill="#fff" width="18" height="18"><rect x="2" y="6" width="20" height="13" rx="3"/><rect x="5" y="13" width="6" height="2.5" rx="1" fill="#F97316"/><rect x="13" y="13" width="6" height="2.5" rx="1" fill="#F97316"/></svg></span>
-                      <div class="dvp-auto-meta"><span class="dvp-tags"><b>AUTO</b></span><strong>Subtítulos automáticos</strong></div>
+                      <div class="dvp-auto-meta"><span class="dvp-tag">AUTO</span><strong>Subtítulos automáticos</strong></div>
                       <span class="dvp-toggle on"><i></i></span>
                     </div>
                     <div class="aw-chips"><span class="awchip ex-pop">Estrella Pop</span><span class="awchip ex-fire">Fuego Viral</span><span class="awchip">Cyber Bolt</span></div>
                     <div class="aw-lang"><span>Idioma</span><b>Español</b></div>
-                    <div class="dvp-dlbtn awdl"><span class="dvp-q">4K</span><div class="dvp-dl-tx"><b>Mejor calidad</b><small>4K (2160p) · Fusión auto</small></div><span class="dvp-dl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" width="16" height="16"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></span></div>
+                    <div class="dvp-dlbtn"><span class="dvp-q">4K</span><div class="dvp-dl-tx"><b>Mejor calidad</b><small>4K (2160p) · Fusión auto</small></div><span class="dvp-dl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" width="16" height="16"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></span></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="mon-neck"></div>
-            <div class="mon-foot"></div>
+            <div class="mon-neck"></div><div class="mon-foot"></div>
           </div>
         </div>
-
-        <!-- ===== ANDROID: teléfono ===== -->
-        <div class="demo-mobile">
+        <div class="demo-mobile" data-anim>
           <div class="dphone">
             <span class="pbtn pwr"></span><span class="pbtn vu"></span><span class="pbtn vd"></span>
             <div class="dph-screen">
-              <div class="dph-status"><span>14:47</span><span class="dph-st-ic"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M2 16h3v4H2zM7 12h3v8H7zM12 8h3v12h-3zM17 4h3v16h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 4C7 4 2.7 6 0 9l12 14L24 9c-2.7-3-7-5-12-5z"/></svg><svg viewBox="0 0 26 14" fill="none" width="19" height="11"><rect x="1" y="2" width="19" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="4" width="13" height="6" rx="1" fill="currentColor"/><rect x="21.5" y="5" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+              <div class="dph-status"><span>14:47</span><span class="dph-st-ic"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M2 16h3v4H2zM7 12h3v8H7zM12 8h3v12h-3zM17 4h3v16h-3z"/></svg><svg viewBox="0 0 26 14" fill="none" width="19" height="11"><rect x="1" y="2" width="19" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="4" width="13" height="6" rx="1" fill="currentColor"/><rect x="21.5" y="5" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
               <div class="dph-head"><span class="dph-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="17" height="17"><path d="M15 5l-7 7 7 7"/></svg></span><b>Descargar</b></div>
               <div class="dph-body">
-                <div class="dph-video"><div class="subdemo">
-              <div class="sd-scene">
-                <div class="sd-bokeh sb1"></div><div class="sd-bokeh sb2"></div><div class="sd-bokeh sb3"></div><div class="sd-bokeh sb4"></div><div class="sd-bokeh sb5"></div><div class="sd-bokeh sb6"></div>
-                <div class="sd-ring"></div>
-                <svg class="sd-person" viewBox="0 0 400 225" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <div class="dph-video"><div class="subdemo"><div class="sd-scene"><div class="sd-bokeh sb1"></div><div class="sd-bokeh sb2"></div><div class="sd-bokeh sb3"></div><div class="sd-bokeh sb4"></div><div class="sd-bokeh sb5"></div><div class="sd-bokeh sb6"></div><div class="sd-ring"></div><svg class="sd-person" viewBox="0 0 400 225" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="sdSkin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0C3A4"/><stop offset="1" stop-color="#D89E7C"/></linearGradient>
-                    <linearGradient id="sdHair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A3327"/><stop offset="1" stop-color="#2A1B14"/></linearGradient>
-                    <linearGradient id="sdTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C4DFF"/><stop offset="1" stop-color="#B5179E"/></linearGradient>
-                    <linearGradient id="sdRim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34E7E4"/><stop offset="1" stop-color="#34E7E4" stop-opacity="0"/></linearGradient>
-                    <radialGradient id="sdKey" cx="0.3" cy="0.25" r="0.8"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+                    <linearGradient id="sdSkinM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0C3A4"/><stop offset="1" stop-color="#D89E7C"/></linearGradient>
+                    <linearGradient id="sdHairM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A3327"/><stop offset="1" stop-color="#2A1B14"/></linearGradient>
+                    <linearGradient id="sdTopM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C4DFF"/><stop offset="1" stop-color="#B5179E"/></linearGradient>
+                    <linearGradient id="sdRimM" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34E7E4"/><stop offset="1" stop-color="#34E7E4" stop-opacity="0"/></linearGradient>
+                    <radialGradient id="sdKeyM" cx="0.3" cy="0.25" r="0.8"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
                   </defs>
                   <!-- hombros / ropa -->
-                  <path d="M58 225 C 70 184 130 168 200 168 C 270 168 330 184 342 225 Z" fill="url(#sdTop)"/>
+                  <path d="M58 225 C 70 184 130 168 200 168 C 270 168 330 184 342 225 Z" fill="url(#sdTopM)"/>
                   <path d="M168 176 C 184 196 216 196 232 176 L 232 168 L 168 168 Z" fill="#0d0d18" opacity=".18"/>
                   <!-- cuello -->
-                  <path d="M186 150 L 214 150 L 214 178 C 214 186 186 186 186 178 Z" fill="url(#sdSkin)"/>
+                  <path d="M186 150 L 214 150 L 214 178 C 214 186 186 186 186 178 Z" fill="url(#sdSkinM)"/>
                   <path d="M186 168 C 195 176 205 176 214 168 L 214 178 C 205 184 195 184 186 178 Z" fill="#000" opacity=".12"/>
                   <!-- pelo trasero -->
-                  <path d="M150 118 C 146 60 254 60 250 118 C 256 150 250 182 244 196 L 236 150 C 236 150 232 96 200 96 C 168 96 164 150 164 150 L 156 196 C 150 182 144 150 150 118 Z" fill="url(#sdHair)"/>
+                  <path d="M150 118 C 146 60 254 60 250 118 C 256 150 250 182 244 196 L 236 150 C 236 150 232 96 200 96 C 168 96 164 150 164 150 L 156 196 C 150 182 144 150 150 118 Z" fill="url(#sdHairM)"/>
                   <!-- cara -->
-                  <ellipse cx="200" cy="112" rx="40" ry="47" fill="url(#sdSkin)"/>
+                  <ellipse cx="200" cy="112" rx="40" ry="47" fill="url(#sdSkinM)"/>
                   <!-- orejas -->
-                  <ellipse cx="161" cy="116" rx="7" ry="10" fill="url(#sdSkin)"/><ellipse cx="239" cy="116" rx="7" ry="10" fill="url(#sdSkin)"/>
+                  <ellipse cx="161" cy="116" rx="7" ry="10" fill="url(#sdSkinM)"/><ellipse cx="239" cy="116" rx="7" ry="10" fill="url(#sdSkinM)"/>
                   <!-- mejillas -->
                   <ellipse cx="178" cy="124" rx="8" ry="5" fill="#E8917A" opacity=".4"/><ellipse cx="222" cy="124" rx="8" ry="5" fill="#E8917A" opacity=".4"/>
                   <!-- cejas -->
@@ -338,13 +365,13 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
                     <path d="M191 131 Q 200 136 209 131" stroke="#fff" stroke-width="1.6" fill="none" opacity=".5"/>
                   </g>
                   <!-- pelo delantero / flequillo -->
-                  <path d="M160 112 C 158 72 242 72 240 112 C 240 100 232 84 200 84 C 196 96 188 100 176 100 C 170 102 162 104 160 112 Z" fill="url(#sdHair)"/>
-                  <path d="M240 112 C 242 86 236 80 224 82 C 234 92 236 100 234 112 Z" fill="url(#sdHair)"/>
+                  <path d="M160 112 C 158 72 242 72 240 112 C 240 100 232 84 200 84 C 196 96 188 100 176 100 C 170 102 162 104 160 112 Z" fill="url(#sdHairM)"/>
+                  <path d="M240 112 C 242 86 236 80 224 82 C 234 92 236 100 234 112 Z" fill="url(#sdHairM)"/>
                   <!-- luz de relleno (key light) -->
-                  <ellipse cx="186" cy="104" rx="44" ry="50" fill="url(#sdKey)"/>
+                  <ellipse cx="186" cy="104" rx="44" ry="50" fill="url(#sdKeyM)"/>
                   <!-- auriculares: diadema -->
                   <path d="M156 112 C 154 64 246 64 244 112" stroke="#15151f" stroke-width="8" fill="none" stroke-linecap="round"/>
-                  <path d="M156 112 C 154 64 246 64 244 112" stroke="url(#sdRim)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/>
+                  <path d="M156 112 C 154 64 246 64 244 112" stroke="url(#sdRimM)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/>
                   <!-- auriculares: cascos -->
                   <rect x="148" y="100" width="20" height="34" rx="9" fill="#1b1b27"/><rect x="151" y="104" width="14" height="26" rx="6" fill="#2c2c3d"/><rect x="153" y="107" width="3" height="20" rx="1.5" fill="#34E7E4" opacity=".85"/>
                   <rect x="232" y="100" width="20" height="34" rx="9" fill="#1b1b27"/><rect x="235" y="104" width="14" height="26" rx="6" fill="#2c2c3d"/>
@@ -353,24 +380,13 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
                   <ellipse cx="178" cy="138" rx="7" ry="9" fill="#1b1b27"/><ellipse cx="178" cy="138" rx="4" ry="6" fill="#3a3a4d"/>
                   <!-- rim light borde izquierdo -->
                   <path d="M163 150 C 150 120 152 78 176 70" stroke="#34E7E4" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55" class="sd-rimline"/>
-                </svg>
-                <div class="sd-scan"></div>
-              </div>
-              <div class="sd-vig"></div>
-              <div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div>
-              <div class="sd-center">
-                <button class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#E91E63"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#E91E63"/></svg>Activar subtítulos</button>
-                <div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div>
-              </div>
-              <div class="sd-cap-wrap"><div class="sd-cap"></div></div>
-              <div class="sd-bar"><i></i></div>
-            </div></div>
-                <div class="dvp-autosub awc awc-m">
+                </svg><div class="sd-scan"></div></div><div class="sd-vig"></div><div class="sd-top"><span class="sd-cc">CC</span><span class="sd-rec"><i></i>0:03</span></div><div class="sd-center"><span class="sd-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="3"/><rect x="5" y="13" width="5" height="2.4" rx="1" fill="#fff"/><rect x="12" y="13" width="7" height="2.4" rx="1" fill="#fff"/></svg>Activar subtítulos</span><div class="sd-proc"><span class="sd-spin"></span><span class="sd-proc-tx">Generando subtítulos con IA…</span></div></div><div class="sd-cap-wrap"><div class="sd-cap" aria-hidden="true"></div></div><div class="sd-bar"><i></i></div></div></div>
+                <div class="dvp-autosub">
                   <span class="dvp-autoic"><svg viewBox="0 0 24 24" fill="#fff" width="18" height="18"><rect x="2" y="6" width="20" height="13" rx="3"/><rect x="5" y="13" width="6" height="2.5" rx="1" fill="#F97316"/><rect x="13" y="13" width="6" height="2.5" rx="1" fill="#F97316"/></svg></span>
-                  <div class="dvp-auto-meta"><span class="dvp-tags"><b>AUTO</b><i>AVANZADO</i></span><strong>Subtítulos automáticos</strong></div>
+                  <div class="dvp-auto-meta"><span class="dvp-tag">AUTO</span><strong>Subtítulos automáticos</strong></div>
                   <span class="dvp-toggle on"><i></i></span>
                 </div>
-                <div class="dvp-dlbtn awdl"><span class="dvp-q">4K</span><div class="dvp-dl-tx"><b>Mejor calidad disponible</b><small>4K (2160p) · Fusión auto</small></div><span class="dvp-dl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" width="16" height="16"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></span></div>
+                <div class="dvp-dlbtn"><span class="dvp-q">4K</span><div class="dvp-dl-tx"><b>Mejor calidad disponible</b><small>4K (2160p) · Fusión auto</small></div><span class="dvp-dl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" width="16" height="16"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></span></div>
               </div>
             </div>
           </div>
@@ -378,215 +394,252 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
       </div>
     </div>
 
-    <!-- ===== SUBTÍTULOS SIN DESCARGAR (explicación justo debajo de la demo) ===== -->
-    <div class="sx">
-      <div class="sx-line reveal"><span></span><i><span class="material-symbols-rounded">subtitles</span></i><span></span></div>
-      <div class="sx-grid">
-        <div class="sx-copy">
-          <h3 class="reveal">No hace falta bajar el vídeo para ponerle subtítulos</h3>
-          <p class="reveal d1">Ten el enlace listo, pégalo en la app y elige los subtítulos que quieras: modernos, en 3D, con pintura y muchos más. Antes de descargar, actívalos y el vídeo se guarda con los subtítulos incrustados.</p>
-          <ul class="sx-list">
-            <li class="reveal" style="--i:1;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">open_with</span></span><div><b>Muévelos libremente por la pantalla</b><span class="t">Arriba, a la izquierda o donde prefieras: tú decides dónde se ven antes de descargar.</span></div></li>
-            <li class="reveal" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">download</span></span><div><b>Se descarga tal como lo dejaste</b><span class="t">El vídeo sale con los subtítulos puestos exactamente donde los colocaste.</span></div></li>
-            <li class="reveal" style="--i:3;--c:#8B5CF6"><span class="sx-ic"><span class="material-symbols-rounded">palette</span></span><div><b>Estilos para todos los gustos</b><span class="t">Modernos, en 3D, con pintura y más: escoge el que te guste y aplícalo.</span></div></li>
-            <li class="reveal" style="--i:4;--c:#F59E0B"><span class="sx-ic"><span class="material-symbols-rounded">public</span></span><div><b>No solo YouTube: +1.500 plataformas</b><span class="t">Pega el enlace de donde quieras. Es libre: úsalo para lo que quieras.</span></div></li>
-          </ul>
-          <p class="sx-ex reveal d3"><b>Un ejemplo:</b> entras al canal que te gusta, eliges su vídeo y, antes de descargarlo, le pones subtítulos muy modernos arriba o a la izquierda. Los mueves a tu gusto, aplicas y se descarga el vídeo con todo puesto donde lo dejaste.</p>
+    <!-- Subtítulos sin descargar: reproductor de la app -->
+    <div class="subs" id="subtitulos">
+      <div class="subs-copy">
+        <h2 class="h2s">No hace falta bajar el vídeo para ponerle subtítulos.</h2>
+        <p>Ten el enlace listo, pégalo en la app y elige los subtítulos que quieras: modernos, en 3D, con pintura y muchos más. Antes de descargar, actívalos y el vídeo se guarda con los subtítulos incrustados.</p>
+        <ul class="flist">
+          <li style="--c:#E91E63"><span class="ms">open_with</span><div><b>Muévelos libremente por la pantalla</b><span>Arriba, a la izquierda o donde prefieras: tú decides dónde se ven antes de descargar.</span></div></li>
+          <li style="--c:#12B76A"><span class="ms">download</span><div><b>Se descarga tal como lo dejaste</b><span>El vídeo sale con los subtítulos puestos exactamente donde los colocaste.</span></div></li>
+          <li style="--c:#7C3AED"><span class="ms">palette</span><div><b>Más de 80 estilos</b><span>Karaoke, virales, 3D y efectos, y clásicos. Con vista previa en directo.</span></div></li>
+          <li style="--c:#F59E0B"><span class="ms">text_fields</span><div><b>Una, dos o tres palabras a la vez</b><span>Elige el tamaño y cuántas palabras salen en pantalla.</span></div></li>
+          <li style="--c:#0EA5E9"><span class="ms">public</span><div><b>No solo YouTube: +1.500 plataformas</b><span>Pega el enlace de donde quieras. Es libre: úsalo para lo que quieras.</span></div></li>
+        </ul>
+        <p class="example"><b>Un ejemplo:</b> entras al canal que te gusta, eliges su vídeo y, antes de descargarlo, le pones subtítulos muy modernos arriba o a la izquierda. Los mueves a tu gusto, aplicas y se descarga el vídeo con todo puesto donde lo dejaste.</p>
+      </div>
+
+      <div class="player" id="subPlayer" data-anim>
+        <div class="pl-head"><span class="pl-live"><i></i>Vista previa</span><span class="pl-style" id="subStyleName">Caja Sticker · Clásico</span><span class="pl-ratio">16:9</span></div>
+        <div class="pl-screen scene-city" id="subStage">
+          <div class="scn" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i><span class="sky"></span><span class="town"></span></div>
+          <div class="safe" aria-hidden="true"></div>
+          <div class="cap-drag st-sticker" id="subCap" tabindex="0" role="button" aria-label="Subtítulo de ejemplo. Arrástralo o muévelo con las flechas del teclado."><div class="cap-in" id="subCapIn"><span class="ln l1">MUÉVELO</span><span class="ln l2">DONDE QUIERAS</span></div><span class="cap-grip ms" aria-hidden="true">drag_pan</span></div>
+          <span class="pl-hint"><span class="ms">open_with</span>Arrastra el subtítulo</span>
         </div>
-        <div class="sx-demo reveal scale d1">
-          <div class="sx-stage" id="sxStage">
-            <span class="sx-tag">Antes de descargar</span>
-            <span class="sx-hint"><span class="material-symbols-rounded">open_with</span>Arrastra el subtítulo</span>
-            <div class="sx-cap" id="sxCap" data-st="d3" tabindex="0" role="button" aria-label="Subtítulo de ejemplo: arrástralo o muévelo con las flechas del teclado">Muévelo donde quieras</div>
-            <div class="sx-bar"><i></i></div>
-          </div>
-          <div class="sx-ctl"><span class="lbl">Posición</span><button class="sx-chip" type="button" data-p="arriba">Arriba</button><button class="sx-chip" type="button" data-p="izquierda">Izquierda</button><button class="sx-chip on" type="button" data-p="abajo">Abajo</button></div>
-          <div class="sx-ctl"><span class="lbl">Estilo</span><button class="sx-chip on" type="button" data-st="d3">3D</button><button class="sx-chip" type="button" data-st="pt">Pintura</button><button class="sx-chip" type="button" data-st="ne">Neón</button><button class="sx-chip" type="button" data-st="fu">Fuego Viral</button></div>
+        <div class="wave" id="subWave" aria-hidden="true"><div class="wv-bars"></div><i class="wv-head"></i></div>
+        <div class="pl-ctl">
+          <span class="pl-time" id="subTime">0:00.0 / 0:08.0</span>
+          <div class="pl-tr"><button type="button" data-act="start" aria-label="Al principio"><span class="ms">skip_previous</span></button><button type="button" data-act="back" aria-label="Frase anterior"><span class="ms">chevron_left</span></button><button type="button" class="pp" data-act="play" aria-label="Pausar"><span class="ms">pause</span></button><button type="button" data-act="next" aria-label="Frase siguiente"><span class="ms">chevron_right</span></button></div>
+          <button type="button" class="pl-pos" id="subPosBtn"><span class="ms">drag_pan</span><span id="subPosTx">Centro · abajo</span><span class="ms">restart_alt</span></button>
+        </div>
+        <div class="pl-opts">
+          <div class="pl-row"><span class="pl-lbl">Estilo</span><div class="pills" role="radiogroup" aria-label="Estilo del subtítulo" id="subStyles"><button type="button" class="pill on" data-st="sticker" aria-checked="true" role="radio">Caja Sticker</button><button type="button" class="pill" data-st="d3" aria-checked="false" role="radio">3D</button><button type="button" class="pill" data-st="paint" aria-checked="false" role="radio">Pintura</button><button type="button" class="pill" data-st="neon" aria-checked="false" role="radio">Neón</button><button type="button" class="pill" data-st="fire" aria-checked="false" role="radio">Fuego Viral</button><button type="button" class="pill" data-st="kara" aria-checked="false" role="radio">Karaoke</button></div></div>
+          <div class="pl-row"><span class="pl-lbl">Posición</span><div class="pills" role="radiogroup" aria-label="Posición" id="subPos"><button type="button" class="pill" data-p="top" aria-checked="false" role="radio">Arriba</button><button type="button" class="pill" data-p="left" aria-checked="false" role="radio">Izquierda</button><button type="button" class="pill on" data-p="bottom" aria-checked="true" role="radio">Abajo</button></div></div>
+          <div class="pl-row"><span class="pl-lbl">Palabras</span><div class="pills" role="radiogroup" aria-label="Palabras a la vez" id="subWords"><button type="button" class="pill" data-w="1" aria-checked="false" role="radio">Una</button><button type="button" class="pill on" data-w="2" aria-checked="true" role="radio">Dos</button><button type="button" class="pill" data-w="3" aria-checked="false" role="radio">Tres</button></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DESCARGAS · MOTOR PROPIO -->
-<section class="section sec-dark" id="motor">
+<!-- ===================== EMOJIS 3D ===================== -->
+<section class="sec stage" id="emojis">
   <div class="wrap">
-    <div class="split">
-      <div class="reveal">
-        <span class="eyebrow c-blue">Motor propio</span>
-        <h2>Descarga desde<br>cualquier red.</h2>
-        <p class="lead">Un motor profesional que identifica los servidores, extrae las pistas en su fuente original y reconstruye el archivo sin recodificar. Calidad nativa, siempre.</p>
-        <div class="pchips">
-          <span class="pchip"><span class="c-pink">●</span> Instagram</span>
-          <span class="pchip"><span class="c-blue">●</span> Twitter / X</span>
-          <span class="pchip"><span class="c-pink">●</span> Pinterest</span>
-          <span class="pchip"><span class="c-blue">●</span> Dailymotion</span>
-          <span class="pchip"><span class="c-amber">●</span> SoundCloud</span>
-          <span class="pchip more">+1500 plataformas</span>
+    <div class="sh">
+      <h2>Emojis 3D que reaccionan a lo que dices.</h2>
+      <p>Caras animadas que salen bajo el subtítulo cuando se dicen ciertas palabras: risa, miedo, dinero, amor, asco, frío… Y objetos, mapas con bandera, números en 3D y el botón de suscribirse.</p>
+    </div>
+    <div class="emo-grid">
+      <div class="player player-emo" id="emoPlayer" data-anim>
+        <div class="pl-head"><span class="pl-live"><i></i>Vista previa</span><span class="pl-style">Caja Sticker · Emojis animados</span><span class="pl-ratio">16:9</span></div>
+        <div class="pl-screen scene-snow" id="emoStage">
+          <div class="scn" aria-hidden="true"><span class="sky"></span><span class="moon"></span><span class="pines far"></span><span class="pines near"></span><span class="ground"></span><span class="snow s1"></span><span class="snow s2"></span></div>
+          <div class="emo-cap" id="emoCap" aria-live="off"></div>
+          <div class="emo-slot" id="emoSlot"></div>
+        </div>
+        <div class="wave" id="emoWave" aria-hidden="true"><div class="wv-bars"></div><i class="wv-head"></i></div>
+        <div class="pl-ctl">
+          <span class="pl-time" id="emoTime">0:00.0</span>
+          <div class="pl-tr"><button type="button" data-act="start" aria-label="Al principio"><span class="ms">skip_previous</span></button><button type="button" data-act="back" aria-label="Frase anterior"><span class="ms">chevron_left</span></button><button type="button" class="pp" data-act="play" aria-label="Pausar"><span class="ms">pause</span></button><button type="button" data-act="next" aria-label="Frase siguiente"><span class="ms">chevron_right</span></button></div>
+          <span class="pl-pos is-static"><span class="ms">sentiment_satisfied</span><span id="emoNow">Emojis activos</span></span>
         </div>
       </div>
-      <div class="visual reveal d1">
-        <div class="mock">
-          <div class="mock-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="mock-label">downloaderV · Analizar</span></div>
-          <div class="mock-body">
-            <div class="dlbar" id="dlbar1">
-              <div class="row"><span>Descargando · 8K Ultra HD</span><span class="pct">78%</span></div>
-              <div class="bar"><i></i></div>
-              <div class="quality-tags">
-                <span class="qtag max">MÁXIMA</span>
-                <span class="qtag">5 formatos</span>
-                <span class="qtag">Audio · MP3</span>
-                <span class="qtag">8K</span>
-                <span class="qtag">60 FPS</span>
-              </div>
-            </div>
+
+      <aside class="es-card" aria-label="Ajustes de emojis (demostración)" data-anim>
+        <div class="es-top">
+          <span class="es-face" data-face="risa" aria-hidden="true"></span>
+          <div><b>Emojis animados</b><small>Caras animadas propias debajo del subtítulo. Cada una es distinta.</small></div>
+          <label class="sw"><input type="checkbox" id="esOn" checked><i></i><span class="vh">Activar emojis</span></label>
+        </div>
+        <p class="es-lbl">Cantidad de emojis</p>
+        <div class="seg" role="radiogroup" aria-label="Cantidad de emojis" id="esAmount">
+          <button type="button" role="radio" aria-checked="false" data-a="1"><span class="ms">remove_circle</span>Menos</button>
+          <button type="button" role="radio" aria-checked="true" class="on" data-a="2"><span class="ms">sentiment_satisfied</span>Normal</button>
+          <button type="button" role="radio" aria-checked="false" data-a="3"><span class="ms">add_circle</span>Más</button>
+          <button type="button" role="radio" aria-checked="false" data-a="4"><span class="ms">reorder</span>Cada frase</button>
+        </div>
+        <p class="es-hint" id="esHint">Cuando se dice una palabra con emoción y en los momentos clave.</p>
+        <label class="es-row"><span class="es-ic ms" style="--c:#F97316">category</span><span><b>Objetos</b><small>Coches, trenes, comida, deportes, el mar, dinero, fuego, peligro… cuando se nombran.</small></span><span class="sw"><input type="checkbox" data-cat="obj" checked><i></i></span></label>
+        <label class="es-row"><span class="es-ic ms" style="--c:#0EA5E9">location_on</span><span><b>Mapas y banderas</b><small>Si se nombra un país o una ciudad, sale su mapa con la chincheta, el nombre y la bandera.</small></span><span class="sw"><input type="checkbox" data-cat="map" checked><i></i></span></label>
+        <label class="es-row"><span class="es-ic ms" style="--c:#7C3AED">tag</span><span><b>Números y botones</b><small>Números en 3D con su palabra y el botón de suscribirse o seguir.</small></span><span class="sw"><input type="checkbox" data-cat="num" checked><i></i></span></label>
+      </aside>
+    </div>
+
+    <div class="mu" data-anim>
+      <div class="mu-head"><h3>Muestra: así se verán en el vídeo</h3><span>Toca una para verla en acción</span></div>
+      <div class="mu-faces" id="muFaces"></div>
+      <div class="mu-head"><h3>Objetos, mapas, números y botones</h3></div>
+      <div class="mu-objs" id="muObjs"></div>
+    </div>
+
+    <ul class="emo-facts">
+      <li><b>Entran de seis formas</b><span>Rebote, caída con aplastado, giro, gelatina, zoom y sello.</span></li>
+      <li><b>Cambian de cara a mitad</b><span>De sonrisa a carcajada, de mirada a susto… y las cejas saltan.</span></li>
+      <li><b>Están vivas</b><span>Saltan, flotan, tiemblan, parpadean, miran a los lados, lloran o echan humo.</span></li>
+      <li><b>Nunca se repiten</b><span>Cada cara se genera con piezas propias: millones de combinaciones.</span></li>
+    </ul>
+    <p class="emo-note"><span class="ms">devices</span>Se dibujan dentro del vídeo final, en Windows y en Android, igual que en la vista previa.</p>
+  </div>
+</section>
+
+<!-- ===================== MOTOR PROPIO ===================== -->
+<section class="sec" id="motor">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-copy">
+        <h2>Descarga desde cualquier red.</h2>
+        <p class="lead">Un motor profesional que identifica los servidores, extrae las pistas en su fuente original y reconstruye el archivo sin recodificar. Calidad nativa, siempre.</p>
+        <ul class="tags"><li>Instagram</li><li>Twitter / X</li><li>Pinterest</li><li>Dailymotion</li><li>SoundCloud</li><li class="more">+1.500 plataformas</li></ul>
+      </div>
+      <div class="split-vis">
+        <div class="dlm" data-anim>
+          <div class="dlm-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="dlm-lbl">downloaderV · Analizar</span></div>
+          <div class="dlm-body">
+            <div class="dlm-row"><span>Descargando · 8K Ultra HD</span><b class="dlm-pct" data-to="78">0%</b></div>
+            <div class="dlm-bar"><i></i></div>
+            <div class="dlm-tags"><span class="max">Máxima</span><span>5 formatos</span><span>Audio · MP3</span><span>8K</span><span>60 fps</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="sec-head reveal" style="margin-top:90px">
-      <span class="eyebrow c-blue">Cómo funciona el motor</span>
-      <h2>Tres pasos invisibles.<br>Un resultado perfecto.</h2>
+    <div class="sh sh-sub">
+      <h2>Tres pasos invisibles. Un resultado perfecto.</h2>
     </div>
-    <div class="steps" style="max-width:760px;margin:0 auto">
-      <div class="step reveal"><div class="num bg-blue">1</div><div><h4>Extracción</h4><p>Identifica los servidores que sirven el vídeo y obtiene los manifiestos de calidad disponibles, formato por formato.</p></div></div>
-      <div class="step reveal d1"><div class="num bg-purple">2</div><div><h4>Decodificación</h4><p>Descarga las pistas de vídeo y audio por separado, manteniendo siempre la fuente original en máxima calidad.</p></div></div>
-      <div class="step reveal d2"><div class="num bg-green">3</div><div><h4>Reconstrucción</h4><p>Fusiona vídeo y audio en un único archivo sin recodificar, conservando el 100% de la calidad original.</p></div></div>
-    </div>
+    <ol class="steps">
+      <li><b>Extracción</b><span>Identifica los servidores que sirven el vídeo y obtiene los manifiestos de calidad disponibles, formato por formato.</span></li>
+      <li><b>Decodificación</b><span>Descarga las pistas de vídeo y audio por separado, manteniendo siempre la fuente original en máxima calidad.</span></li>
+      <li><b>Reconstrucción</b><span>Une vídeo y audio en un único archivo sin recodificar, conservando el 100% de la calidad original.</span></li>
+    </ol>
 
-    <div class="sec-head reveal" style="margin-top:90px;margin-bottom:32px">
-      <span class="eyebrow c-blue">Disponibilidad multiplataforma</span>
-      <h2>En tu móvil, en tu PC,<br>pronto en todos lados.</h2>
+    <div class="sh sh-sub">
+      <h2>En tu móvil, en tu PC, pronto en todos lados.</h2>
     </div>
     <div class="os-grid">
-      <div class="os reveal">
-        <div class="osic os-and"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg></div>
-        <span class="badge badge-ok">Disponible</span><h4>Android</h4><small>APK directo · sin Play Store</small>
-      </div>
-      <div class="os reveal d1">
-        <div class="osic os-win"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg></div>
-        <span class="badge badge-ok">Disponible</span><h4>Windows</h4><small>Instalador portable .exe</small>
-      </div>
-      <div class="os reveal d2">
-        <div class="osic os-apple"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.2 5.8c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.8-1.2z"/></svg></div>
-        <span class="badge badge-soon">Próximamente</span><h4>macOS</h4><small>En desarrollo activo</small>
-      </div>
-      <div class="os reveal d3">
-        <div class="osic os-apple"><svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.2 5.8c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.8-1.2z"/></svg></div>
-        <span class="badge badge-soon">Próximamente</span><h4>iOS</h4><small>En proceso de revisión</small>
-      </div>
+      <div class="os ok"><span class="os-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg></span><div><b>Android</b><small>APK directo · sin Play Store</small></div><span class="badge">Disponible</span></div>
+      <div class="os ok"><span class="os-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg></span><div><b>Windows</b><small>Instalador .exe</small></div><span class="badge">Disponible</span></div>
+      <div class="os"><span class="os-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.2 5.8c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.8-1.2z"/></svg></span><div><b>macOS</b><small>En desarrollo activo</small></div><span class="badge soon">Próximamente</span></div>
+      <div class="os"><span class="os-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.2 5.8c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.8-1.2z"/></svg></span><div><b>iOS</b><small>En proceso de revisión</small></div><span class="badge soon">Próximamente</span></div>
     </div>
 
     <div class="stats">
-      <div class="stat reveal"><div class="n" data-count="1500" data-prefix="+">0</div><div class="l">Plataformas soportadas</div></div>
-      <div class="stat reveal d1"><div class="n">8K</div><div class="l">Calidad máxima</div></div>
-      <div class="stat reveal d2"><div class="n" data-count="60">0</div><div class="l">Frames por segundo</div></div>
-      <div class="stat reveal d3"><div class="n">0</div><div class="l">Marcas de agua</div></div>
+      <div class="stat"><b data-count="1500" data-prefix="+">+1.500</b><span>Plataformas soportadas</span></div>
+      <div class="stat"><b>8K</b><span>Calidad máxima</span></div>
+      <div class="stat"><b data-count="60">60</b><span>Fotogramas por segundo</span></div>
+      <div class="stat"><b>0</b><span>Marcas de agua</span></div>
     </div>
   </div>
 </section>
 
-<!-- LISTAS Y CANALES ENTEROS (descarga masiva) -->
-<section class="section sec-soft" id="masiva">
+<!-- ===================== DESCARGA MASIVA ===================== -->
+<section class="sec tint" id="masiva">
   <div class="wrap">
-    <div class="bk-head reveal">
-      <span class="eyebrow">Descarga masiva</span>
-      <h2>Listas y canales enteros.<br>Con un solo enlace.</h2>
+    <div class="sh">
+      <h2>Listas y canales enteros. Con un solo enlace.</h2>
       <p>Pega el enlace de una lista de reproducción o de un canal y descarga decenas o cientos de vídeos de una vez. Tú decides cuáles, en qué calidad y en qué formato.</p>
     </div>
     <div class="bk-grid">
-      <div class="bk-demo reveal scale">
-        <div class="bk-top"><span class="bk-pi"><span class="material-symbols-rounded">playlist_play</span></span><div><b>Mi lista de reproducción</b><small>48 vídeos · <span id="bkCount">3</span> seleccionados</small></div></div>
+      <div class="bk-demo" data-anim>
+        <div class="bk-top"><span class="bk-pi ms">playlist_play</span><div><b>Mi lista de reproducción</b><small>48 vídeos · <span id="bkCount">3</span> seleccionados</small></div></div>
         <div class="bk-seg" role="group" aria-label="Calidad para todos los vídeos"><button type="button" class="bk-s" data-q="4K">Máxima</button><button type="button" class="bk-s" data-q="1080p">Decente</button><button type="button" class="bk-s" data-q="360p">Baja</button></div>
         <ul class="bk-rows" id="bkRows">
-          <li class="on" data-q="4K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#E91E63;--b:#6D28D9"></span><span class="bk-ti">Tutorial: primeros pasos</span><button type="button" class="bk-q">4K</button></li>
-          <li data-q="1080p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#F59E0B;--b:#EF4444"></span><span class="bk-ti">Entrevista completa</span><button type="button" class="bk-q">1080p</button></li>
-          <li class="on" data-q="2K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#10B981;--b:#047857"></span><span class="bk-ti">El mejor momento<b class="bk-tag">Short</b></span><button type="button" class="bk-q">2K</button></li>
-          <li data-q="720p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#8B5CF6;--b:#EC4899"></span><span class="bk-ti">Resumen de la semana</span><button type="button" class="bk-q">720p</button></li>
-          <li class="on" data-q="360p" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck"><span class="material-symbols-rounded">check</span></i><span class="bk-th" style="--a:#06B6D4;--b:#E91E63"></span><span class="bk-ti">Directo grabado</span><button type="button" class="bk-q">360p</button></li>
+          <li class="on" data-q="4K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck ms">check</i><span class="bk-th" style="--a:#E91E63;--b:#6D28D9"></span><span class="bk-ti">Tutorial: primeros pasos</span><button type="button" class="bk-q">4K</button></li>
+          <li data-q="1080p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck ms">check</i><span class="bk-th" style="--a:#F59E0B;--b:#EF4444"></span><span class="bk-ti">Entrevista completa</span><button type="button" class="bk-q">1080p</button></li>
+          <li class="on" data-q="2K" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck ms">check</i><span class="bk-th" style="--a:#10B981;--b:#047857"></span><span class="bk-ti">El mejor momento<b class="bk-tag">Short</b></span><button type="button" class="bk-q">2K</button></li>
+          <li data-q="720p" role="checkbox" aria-checked="false" tabindex="0"><i class="bk-ck ms">check</i><span class="bk-th" style="--a:#8B5CF6;--b:#EC4899"></span><span class="bk-ti">Resumen de la semana</span><button type="button" class="bk-q">720p</button></li>
+          <li class="on" data-q="360p" role="checkbox" aria-checked="true" tabindex="0"><i class="bk-ck ms">check</i><span class="bk-th" style="--a:#06B6D4;--b:#E91E63"></span><span class="bk-ti">Directo grabado</span><button type="button" class="bk-q">360p</button></li>
         </ul>
-        <div class="bk-dl"><span class="material-symbols-rounded">download</span>Descargar selección<i></i></div>
+        <div class="bk-dl"><span class="ms">download</span>Descargar selección</div>
       </div>
-      <ul class="sx-list">
-        <li class="reveal" style="--i:1;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">playlist_add_check</span></span><div><b>Listas enteras, también de 40 o 50 vídeos</b><span class="t">Pega la lista y descárgala completa. Elige una calidad para todos (máxima, decente o baja) o ajusta cada vídeo por separado: unos en 4K, otros en 2K y otros en baja calidad y pocos FPS.</span></div></li>
-        <li class="reveal" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">checklist</span></span><div><b>Este sí, este no</b><span class="t">Marca solo los vídeos que quieras. Descarga solo vídeos, solo shorts o los shorts más populares.</span></div></li>
-        <li class="reveal" style="--i:3;--c:#8B5CF6"><span class="sx-ic"><span class="material-symbols-rounded">notes</span></span><div><b>Descarga también la transcripción</b><span class="t">Guarda el texto hablado de cada vídeo cuando lo necesites.</span></div></li>
+      <ul class="flist">
+        <li style="--c:#E91E63"><span class="ms">playlist_add_check</span><div><b>Listas enteras, también de 40 o 50 vídeos</b><span>Pega la lista y descárgala completa. Elige una calidad para todos (máxima, decente o baja) o ajusta cada vídeo por separado: unos en 4K, otros en 2K y otros en baja calidad y pocos fps.</span></div></li>
+        <li style="--c:#12B76A"><span class="ms">checklist</span><div><b>Este sí, este no</b><span>Marca solo los vídeos que quieras. Descarga solo vídeos, solo shorts o los shorts más populares.</span></div></li>
+        <li style="--c:#7C3AED"><span class="ms">notes</span><div><b>Descarga también la transcripción</b><span>Guarda el texto hablado de cada vídeo cuando lo necesites.</span></div></li>
       </ul>
     </div>
-    <div class="bk-cards reveal">
-      <div class="bk-card" style="--i:0;--c:#E91E63"><span class="sx-ic"><span class="material-symbols-rounded">video_library</span></span><b>Todos los vídeos del canal</b><p>Descarga el canal completo a partir de un solo enlace.</p></div>
-      <div class="bk-card" style="--i:1;--c:#F59E0B"><span class="sx-ic"><span class="material-symbols-rounded">music_note</span></span><b>Todo el canal en MP3</b><p>Todos sus vídeos, pero solo el audio.</p></div>
-      <div class="bk-card" style="--i:2;--c:#10B981"><span class="sx-ic"><span class="material-symbols-rounded">trending_up</span></span><b>Solo los 10 más populares</b><p>Quédate con lo más visto del canal y olvídate del resto.</p></div>
-      <div class="bk-card" style="--i:3;--c:#EC4899"><span class="sx-ic"><span class="material-symbols-rounded">smart_display</span></span><b>Solo shorts</b><p>Todos los shorts del canal, o únicamente los más populares.</p></div>
-      <div class="bk-card" style="--i:4;--c:#8B5CF6"><span class="sx-ic"><span class="material-symbols-rounded">sticky_note_2</span></span><b>Resumen en bloc de notas</b><p>Un archivo de texto con todos los vídeos del canal, y otro con sus shorts, para tenerlos copiados.</p></div>
-      <div class="bk-card" style="--i:5;--c:#06B6D4"><span class="sx-ic"><span class="material-symbols-rounded">notifications_active</span></span><b>Suscríbete y descarga lo nuevo</b><p>Suscríbete a un canal y la app descarga lo nuevo que publique.</p></div>
+    <div class="bk-cards">
+      <div class="bk-card" style="--c:#E91E63"><span class="ms">video_library</span><b>Todos los vídeos del canal</b><p>Descarga el canal completo a partir de un solo enlace.</p></div>
+      <div class="bk-card" style="--c:#F59E0B"><span class="ms">music_note</span><b>Todo el canal en MP3</b><p>Todos sus vídeos, pero solo el audio.</p></div>
+      <div class="bk-card" style="--c:#12B76A"><span class="ms">trending_up</span><b>Solo los 10 más populares</b><p>Quédate con lo más visto del canal y olvídate del resto.</p></div>
+      <div class="bk-card" style="--c:#EC4899"><span class="ms">smart_display</span><b>Solo shorts</b><p>Todos los shorts del canal, o únicamente los más populares.</p></div>
+      <div class="bk-card" style="--c:#7C3AED"><span class="ms">sticky_note_2</span><b>Resumen en bloc de notas</b><p>Un archivo de texto con todos los vídeos del canal, y otro con sus shorts, para tenerlos copiados.</p></div>
+      <div class="bk-card" style="--c:#0EA5E9"><span class="ms">notifications_active</span><b>Suscríbete y descarga lo nuevo</b><p>Suscríbete a un canal y la app descarga lo nuevo que publique.</p></div>
     </div>
-    <div class="bk-plat reveal">
+    <div class="bk-plat">
       <div><b>Y no solo con YouTube.</b><span>Todo lo anterior funciona igual con TikTok, Facebook, Instagram y +1.500 plataformas más.</span></div>
-      <div class="bk-chips"><em>YouTube</em><em>TikTok</em><em>Facebook</em><em>Instagram</em><em class="m">+1.500 más</em></div>
+      <ul class="tags"><li>YouTube</li><li>TikTok</li><li>Facebook</li><li>Instagram</li><li class="more">+1.500 más</li></ul>
     </div>
   </div>
 </section>
 
-<!-- CREATOR STUDIO -->
-<section class="section wrap" id="studio">
-  <div class="split rev">
-    <div class="reveal">
-      <span class="eyebrow c-pink">Creator Studio</span>
-      <h2>Edita antes<br>de descargar.</h2>
-      <p class="lead">Activa Creator Studio antes de la descarga y abre directamente un editor profesional dentro de la app. Edita, traduce, recorta y exporta hasta en 8K sin salir de un solo flujo.</p>
-    </div>
-    <div class="visual reveal d1">
-      <div class="editor">
-        <div class="scr">
-          <div class="scrtag">PREVIEW · Editando</div>
-          <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="scrtime">00:42 / 02:18</div>
-        </div>
-        <div class="timeline">
-          <div class="track2"><span class="tl">Vídeo</span><div class="clips"><span class="clip bg-blue"></span><span class="clip bg-blue" style="flex:.5"></span><span class="clip bg-blue" style="flex:1.4"></span></div></div>
-          <div class="track2"><span class="tl">Audio</span><div class="clips"><span class="clip bg-green" style="flex:2.2"></span><span class="clip bg-green"></span></div></div>
-          <div class="track2"><span class="tl">Subs</span><div class="clips"><span class="clip bg-purple" style="flex:.6"></span><span class="clip bg-purple"></span><span class="clip bg-purple" style="flex:.8"></span><span class="clip bg-purple" style="flex:.5"></span></div></div>
+<!-- ===================== CREATOR STUDIO ===================== -->
+<section class="sec" id="studio">
+  <div class="wrap">
+    <div class="split rev">
+      <div class="split-copy">
+        <h2>Edita antes de descargar.</h2>
+        <p class="lead">Activa Creator Studio antes de la descarga y abre directamente un editor profesional dentro de la app. Edita, traduce, recorta y exporta hasta en 8K sin salir de un solo flujo.</p>
+        <ul class="ticks">
+          <li><span class="ms">auto_awesome</span>436 filtros y cámaras 3D</li>
+          <li><span class="ms">mic</span>Graba, limpia y cambia tu voz</li>
+          <li><span class="ms">movie</span>Exporta en máxima calidad, o como GIF, MP3 o JPG</li>
+        </ul>
+      </div>
+      <div class="split-vis">
+        <div class="editor" data-anim>
+          <div class="ed-scr"><span class="ed-tag">Vista previa · Editando</span><span class="ed-play ms">play_arrow</span><span class="ed-time">00:42 / 02:18</span></div>
+          <div class="ed-tl"><b class="ed-head"></b>
+            <div class="ed-tr"><span>Vídeo</span><div><i class="c1"></i><i class="c1" style="flex:.5"></i><i class="c1" style="flex:1.4"></i></div></div>
+            <div class="ed-tr"><span>Audio</span><div><i class="c2" style="flex:2.2"></i><i class="c2"></i></div></div>
+            <div class="ed-tr"><span>Subs</span><div><i class="c3" style="flex:.6"></i><i class="c3"></i><i class="c3" style="flex:.8"></i><i class="c3" style="flex:.5"></i></div></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="sec-head reveal" style="margin-top:90px">
-    <span class="eyebrow" style="color:var(--pink)">Cinco pasos · un flujo perfecto</span>
-    <h2>Del enlace al vídeo final<br>sin cambiar de app.</h2>
-  </div>
-  <div class="steps" style="max-width:780px;margin:0 auto">
-    <div class="step reveal"><div class="num bg-blue">1</div><div><h4>Pega el link</h4><p>Pega cualquier enlace de YouTube, TikTok, Instagram, Facebook o cualquier plataforma soportada.</p></div></div>
-    <div class="step reveal d1"><div class="num bg-pink">2</div><div><h4>Activa Creator Studio</h4><p>Antes de descargar, activa Creator Studio desde la pantalla de calidad. Este paso es clave: tiene que activarse ANTES.</p></div></div>
-    <div class="step reveal d2"><div class="num bg-purple">3</div><div><h4>Elige la calidad</h4><p>Selecciona la calidad de partida: 1080p, 4K o 8K. El editor trabajará sobre la resolución que escojas.</p></div></div>
-    <div class="step reveal d3"><div class="num bg-amber">4</div><div><h4>Descarga temporal + editor</h4><p>La app prepara una descarga temporal y abre el editor profesional en el mismo flujo, sin pasos extra.</p></div></div>
-    <div class="step reveal d3"><div class="num bg-green">5</div><div><h4>Exporta hasta en 8K</h4><p>Cuando termines, exporta el resultado final hasta en 8K a 60 FPS sin pérdida de calidad.</p></div></div>
-  </div>
-
-  <div class="warn reveal" style="max-width:780px;margin-left:auto;margin-right:auto">
-    <div class="wi"><span class="material-symbols-rounded">warning</span></div>
-    <div><b>Importante: Creator Studio debe activarse ANTES de descargar el vídeo.</b><p>Si descargas el vídeo primero y luego intentas editarlo, el editor no se abrirá automáticamente. Actívalo en la pantalla de calidad para que la app prepare la descarga temporal y abra el editor en el mismo flujo.</p></div>
-  </div>
-
-  <div class="features" style="margin-top:56px">
-    <article class="feat reveal"><div class="glow gl-blue"></div><div class="ico ic-blue"><span class="material-symbols-rounded">subtitles</span></div><h3>Subtítulos automáticos</h3><p>Genera subtítulos en 6+ idiomas a partir del audio del vídeo.</p></article>
-    <article class="feat reveal d1"><div class="glow gl-cyan"></div><div class="ico ic-cyan"><span class="material-symbols-rounded">translate</span></div><h3>Traducción IA</h3><p>Traduce subtítulos y audio a otro idioma sin perder sincronía.</p></article>
-    <article class="feat reveal d2"><div class="glow gl-purple"></div><div class="ico ic-purple"><span class="material-symbols-rounded">tune</span></div><h3>Filtros cinematográficos</h3><p>LUTs y filtros tipo profesional listos para aplicar.</p></article>
+    <div class="sh sh-sub"><h2>Del enlace al vídeo final sin cambiar de app.</h2></div>
+    <ol class="steps steps-5">
+      <li><b>Pega el enlace</b><span>Pega cualquier enlace de YouTube, TikTok, Instagram, Facebook o cualquier plataforma compatible.</span></li>
+      <li><b>Activa Creator Studio</b><span>Antes de descargar, actívalo desde la pantalla de calidad. Este paso es clave: tiene que activarse antes.</span></li>
+      <li><b>Elige la calidad</b><span>Selecciona la calidad de partida: 1080p, 4K u 8K. El editor trabajará sobre la resolución que escojas.</span></li>
+      <li><b>Descarga temporal y editor</b><span>La app prepara una descarga temporal y abre el editor profesional en el mismo flujo, sin pasos extra.</span></li>
+      <li><b>Exporta hasta en 8K</b><span>Cuando termines, exporta el resultado final hasta en 8K a 60 fps sin pérdida de calidad.</span></li>
+    </ol>
+    <div class="warn"><span class="ms">warning</span><div><b>Importante: Creator Studio debe activarse antes de descargar el vídeo.</b><p>Si descargas el vídeo primero y luego intentas editarlo, el editor no se abrirá automáticamente. Actívalo en la pantalla de calidad para que la app prepare la descarga temporal y abra el editor en el mismo flujo.</p></div></div>
+    <div class="cards3">
+      <article><span class="ms" style="--c:#E91E63">subtitles</span><h3>Subtítulos automáticos</h3><p>Genera subtítulos a partir del audio del vídeo, en el idioma que necesites.</p></article>
+      <article><span class="ms" style="--c:#0EA5E9">translate</span><h3>Traducción IA</h3><p>Traduce subtítulos y audio a otro idioma sin perder sincronía.</p></article>
+      <article><span class="ms" style="--c:#7C3AED">tune</span><h3>Filtros cinematográficos</h3><p>LUTs y filtros de tipo profesional listos para aplicar.</p></article>
+    </div>
   </div>
 </section>
 
-<!-- FLASH DOWNLOAD · ANDROID -->
-<section class="section sec-dark" id="flash">
+<!-- ===================== FLASH DOWNLOAD (ANDROID) ===================== -->
+<section class="sec stage" id="flash">
   <div class="wrap">
     <div class="split">
-      <div class="reveal">
-        <span class="eyebrow c-green">Flash Download · Android</span>
-        <h2>Descarga sin<br>abrir la app.</h2>
+      <div class="split-copy">
+        <p class="plat-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.43 11.43 0 0 0-8.92 0L6.14 5.92a.38.38 0 1 0-.66.38L7.32 9.48A10.83 10.83 0 0 0 1.94 18h20.12a10.83 10.83 0 0 0-5.38-8.52zM7.32 14.84a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18zm9.36 0a1.18 1.18 0 1 1 1.18-1.18 1.18 1.18 0 0 1-1.18 1.18z"/></svg>Solo en Android</p>
+        <h2>Descarga sin abrir la app.</h2>
         <p class="lead">Una notificación permanente en tu Android que descarga vídeos desde cualquier plataforma sin tener que abrir downloaderV. Estés donde estés.</p>
+        <ol class="steps steps-mini">
+          <li><b>Elige tu carpeta</b><span>Selecciona una carpeta donde se guardarán automáticamente todas tus descargas.</span></li>
+          <li><b>Activa la notificación</b><span>Se activa una notificación permanente en tu Android. Esa notificación es tu acceso directo.</span></li>
+          <li><b>Pega y descarga</b><span>Desde cualquier app, copia un enlace, bájalo desde la notificación y listo.</span></li>
+        </ol>
       </div>
-      <div class="visual reveal d1">
+      <div class="split-vis flash-vis">
         <div class="fdx-wrap">
         <style>
         /* ---------- raíz / marco ---------- */
@@ -1129,260 +1182,241 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
         </div>
       </div>
     </div>
-
-    <div class="sec-head reveal" style="margin-top:90px">
-      <span class="eyebrow c-green">Configuración en 3 pasos</span>
-      <h2>Una sola configuración.<br>Para siempre.</h2>
-    </div>
-    <div class="steps" style="max-width:760px;margin:0 auto">
-      <div class="step reveal"><div class="num bg-green">1</div><div><h4>Elige tu carpeta</h4><p>Selecciona una carpeta personalizada donde se guardarán automáticamente todas tus descargas.</p></div></div>
-      <div class="step reveal d1"><div class="num bg-green">2</div><div><h4>Activa la notificación</h4><p>Se activa una notificación permanente en tu Android. Esa notificación es tu acceso directo.</p></div></div>
-      <div class="step reveal d2"><div class="num bg-green">3</div><div><h4>Pega y descarga</h4><p>Desde cualquier app, copia un enlace, bájalo desde la notificación y listo. Descargado.</p></div></div>
-    </div>
-
-    <div class="sec-head reveal" style="margin-top:90px;margin-bottom:32px">
-      <span class="eyebrow c-green">Cuatro razones para usarlo</span>
-      <h2>Pequeña función,<br>cambio enorme.</h2>
-    </div>
-    <div class="features">
-      <article class="feat reveal"><div class="ico ic-green"><span class="material-symbols-rounded">bolt</span></div><h3>Sin abrir la app</h3><p>Tu downloaderV puede estar cerrada. La notificación funciona en segundo plano.</p></article>
-      <article class="feat reveal d1"><div class="ico ic-blue"><span class="material-symbols-rounded">apps</span></div><h3>En cualquier plataforma</h3><p>TikTok, YouTube, Instagram, Facebook, Reddit... Funciona en todas.</p></article>
-      <article class="feat reveal d2"><div class="ico ic-amber"><span class="material-symbols-rounded">speed</span></div><h3>Velocidad inmediata</h3><p>No hay que esperar a que cargue una app. Pegas y descarga.</p></article>
-      <article class="feat reveal d3"><div class="ico ic-purple"><span class="material-symbols-rounded">settings</span></div><h3>Configurable en segundos</h3><p>Cambia formato o calidad desde la notificación con un solo tap.</p></article>
+    <div class="sh sh-sub"><h2>Pequeña función, cambio enorme.</h2></div>
+    <div class="cards4">
+      <article><span class="ms">bolt</span><h3>Sin abrir la app</h3><p>Tu downloaderV puede estar cerrada. La notificación funciona en segundo plano.</p></article>
+      <article><span class="ms">apps</span><h3>En cualquier plataforma</h3><p>TikTok, YouTube, Instagram, Facebook, Reddit… Funciona en todas.</p></article>
+      <article><span class="ms">speed</span><h3>Velocidad inmediata</h3><p>No hay que esperar a que cargue una app. Pegas y descarga.</p></article>
+      <article><span class="ms">settings</span><h3>Configurable en segundos</h3><p>Cambia formato o calidad desde la notificación con un solo toque.</p></article>
     </div>
   </div>
 </section>
 
-<!-- CLONACIÓN DE VOZ -->
-<section class="section wrap" id="voz">
-  <div class="split rev">
-    <div class="reveal">
-      <span class="eyebrow c-purple">Clonación neural</span>
-      <h2>Tu voz,<br>infinitas veces.</h2>
-      <p class="lead">Sube unas muestras de tu voz, guárdalas en tu biblioteca personal y úsalas directamente desde el editor para narraciones, subtítulos hablados o contenido automático sin volver a grabar.</p>
-    </div>
-    <div class="visual reveal d1">
-      <div class="mock">
-        <div class="mock-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="mock-label">Studio de clonación · LISTA</span></div>
-        <div class="mock-body">
-          <div class="wave">
-            <i style="animation-delay:0s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.5s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:0s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.45s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.15s"></i>
-          </div>
-          <div style="text-align:center;color:#94A3B8;font-size:12px;margin-top:4px">Modelo neural · entrenado con 30 s de audio · 00:12 / 00:30</div>
+<!-- ===================== CLONACIÓN DE VOZ ===================== -->
+<section class="sec" id="voz">
+  <div class="wrap">
+    <div class="split rev">
+      <div class="split-copy">
+        <h2>Tu voz, infinitas veces.</h2>
+        <p class="lead">Sube unas muestras de tu voz, guárdalas en tu biblioteca personal y úsalas directamente desde el editor para narraciones, subtítulos hablados o contenido automático sin volver a grabar.</p>
+        <p class="note-ok"><span class="ms">computer</span>La clonación funciona en tu propio equipo: tu voz no se sube a ningún servidor.</p>
+      </div>
+      <div class="split-vis">
+        <div class="vstudio" id="vStudio" data-ph="rec" data-anim>
+          <div class="vs-top"><span class="vs-st"><i></i><span id="vsLabel">Grabando muestra</span></span><span class="vs-t" id="vsTime">00:00 / 00:30</span></div>
+          <div class="vs-wave" id="vsWave" aria-hidden="true"></div>
+          <div class="vs-line" id="vsLine">Lee en voz alta: «Hola, esta es mi voz»</div>
+          <div class="vs-bar"><i id="vsBar"></i></div>
+          <div class="vs-steps"><span data-s="rec">Grabar</span><span data-s="train">Entrenar</span><span data-s="ready">Lista</span></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="sec-head reveal" style="margin-top:90px">
-    <span class="eyebrow" style="color:var(--purple)">Tres pasos · un clon perfecto</span>
-    <h2>De grabar a usar tu voz<br>en menos de un minuto.</h2>
-  </div>
-  <div class="steps" style="max-width:760px;margin:0 auto">
-    <div class="step reveal"><div class="num bg-purple">1</div><div><h4>Graba o sube</h4><p>Sube 30 segundos de tu voz limpia o grábalos directamente desde la app.</p></div></div>
-    <div class="step reveal d1"><div class="num bg-purple">2</div><div><h4>Entrenamiento</h4><p>Nuestro modelo neural analiza el timbre, tono, acento y matices únicos de tu voz.</p></div></div>
-    <div class="step reveal d2"><div class="num bg-purple">3</div><div><h4>Úsala donde quieras</h4><p>Genera audio escribiendo texto. Funciona dentro del editor y en narraciones automáticas.</p></div></div>
-  </div>
+    <div class="sh sh-sub"><h2>De grabar a usar tu voz en menos de un minuto.</h2></div>
+    <ol class="steps">
+      <li><b>Graba o sube</b><span>Sube 30 segundos de tu voz limpia o grábalos directamente desde la app.</span></li>
+      <li><b>Entrenamiento</b><span>Nuestro modelo neural analiza el timbre, el tono, el acento y los matices únicos de tu voz.</span></li>
+      <li><b>Úsala donde quieras</b><span>Genera audio escribiendo texto. Funciona dentro del editor y en narraciones automáticas.</span></li>
+    </ol>
 
-  <div class="sec-head reveal" style="margin-top:90px;margin-bottom:30px">
-    <span class="eyebrow" style="color:var(--purple)">Biblioteca personal de voces</span>
-    <h2>Crea varios estilos<br>de tu propia voz.</h2>
-  </div>
-  <div style="max-width:620px;margin:0 auto">
-    <div class="vrow reveal"><span class="vplay"><span class="material-symbols-rounded">play_arrow</span></span><div class="vmeta"><b>Tu voz · Original</b><small>Voz base entrenada</small></div><span class="vbadge">PRIMARIA</span></div>
-    <div class="vrow reveal d1"><span class="vplay"><span class="material-symbols-rounded">play_arrow</span></span><div class="vmeta"><b>Tu voz · Energético</b><small>Estilo viral / TikTok</small></div></div>
-    <div class="vrow reveal d2"><span class="vplay"><span class="material-symbols-rounded">play_arrow</span></span><div class="vmeta"><b>Tu voz · Calmado</b><small>Narrativo / Documental</small></div></div>
-    <div class="vrow reveal d3"><span class="vplay"><span class="material-symbols-rounded">play_arrow</span></span><div class="vmeta"><b>Tu voz · Serio</b><small>Profesional / Corporativo</small></div></div>
-  </div>
+    <div class="vlib-wrap">
+      <div class="sh sh-sub"><h2>Crea varios estilos de tu propia voz.</h2><p>Tu biblioteca personal de voces, lista para usar en el editor.</p></div>
+      <div class="vlib" id="vLib">
+        <button type="button" class="vrow"><span class="vplay ms">play_arrow</span><span class="vmeta"><b>Tu voz · Original</b><small>Voz base entrenada</small></span><span class="vbadge">Principal</span><span class="veq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+        <button type="button" class="vrow"><span class="vplay ms">play_arrow</span><span class="vmeta"><b>Tu voz · Energético</b><small>Estilo viral / TikTok</small></span><span class="veq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+        <button type="button" class="vrow"><span class="vplay ms">play_arrow</span><span class="vmeta"><b>Tu voz · Calmado</b><small>Narrativo / Documental</small></span><span class="veq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+        <button type="button" class="vrow"><span class="vplay ms">play_arrow</span><span class="vmeta"><b>Tu voz · Serio</b><small>Profesional / Corporativo</small></span><span class="veq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+      </div>
+    </div>
 
-  <div class="sec-head reveal" style="margin-top:90px;margin-bottom:30px">
-    <span class="eyebrow" style="color:var(--purple)">Casos de uso</span>
-    <h2>Tu voz, todo el día,<br>sin estar tú delante.</h2>
-  </div>
-  <div class="features">
-    <article class="feat reveal"><div class="ico ic-purple"><span class="material-symbols-rounded">campaign</span></div><h3>Narraciones</h3><p>Cuenta tus vídeos con tu voz sin necesidad de volver a grabar.</p></article>
-    <article class="feat reveal d1"><div class="ico ic-blue"><span class="material-symbols-rounded">subtitles</span></div><h3>Subtítulos hablados</h3><p>Convierte texto en audio con tu propia voz y sincronización.</p></article>
-    <article class="feat reveal d2"><div class="ico ic-pink"><span class="material-symbols-rounded">auto_awesome</span></div><h3>Voces IA personalizadas</h3><p>Genera variantes: serio, energético, calmado, neutral.</p></article>
-    <article class="feat reveal d3"><div class="ico ic-green"><span class="material-symbols-rounded">movie</span></div><h3>Contenido automático</h3><p>Genera vídeos enteros narrados con tu voz en minutos.</p></article>
+    <div class="sh sh-sub"><h2>Tu voz, todo el día, sin estar tú delante.</h2></div>
+    <div class="cards4">
+      <article><span class="ms" style="--c:#7C3AED">campaign</span><h3>Narraciones</h3><p>Cuenta tus vídeos con tu voz sin necesidad de volver a grabar.</p></article>
+      <article><span class="ms" style="--c:#E91E63">subtitles</span><h3>Subtítulos hablados</h3><p>Convierte texto en audio con tu propia voz y sincronización.</p></article>
+      <article><span class="ms" style="--c:#EC4899">auto_awesome</span><h3>Voces IA personalizadas</h3><p>Genera variantes: serio, energético, calmado, neutral.</p></article>
+      <article><span class="ms" style="--c:#12B76A">movie</span><h3>Contenido automático</h3><p>Genera vídeos enteros narrados con tu voz en minutos.</p></article>
+    </div>
   </div>
 </section>
 
-<!-- ACTUALIZACIONES -->
-<section class="section sec-dark" id="novedades">
+<!-- ===================== NOVEDADES ===================== -->
+<section class="sec tint" id="novedades">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow c-blue">Siempre al día</span>
-      <h2>Si una plataforma cambia,<br>nosotros también.</h2>
-      <p>Mantenemos el motor parcheado a la velocidad del cambio. Cuando una plataforma rompe algo, nosotros lo arreglamos.</p>
-    </div>
-    <div class="stats" style="grid-template-columns:repeat(3,1fr);max-width:720px;margin:0 auto 70px">
-      <div class="stat reveal"><div class="n">&lt;24h</div><div class="l">Tiempo medio de parche</div></div>
-      <div class="stat reveal d1"><div class="n" data-count="50" data-prefix="+">0</div><div class="l">Mejoras este año</div></div>
-      <div class="stat reveal d2"><div class="n" data-count="12" data-suffix="+">0</div><div class="l">Releases al año</div></div>
-    </div>
-
-    <div class="sec-head reveal" style="margin-bottom:24px">
-      <span class="eyebrow c-blue">Changelog · últimas releases</span>
-      <h2>Lo último que hemos<br>empujado al motor.</h2>
-    </div>
-    <div class="changelog">
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Parche extracción TikTok tras cambio de API</b><small>Esta semana</small></div></div>
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Nuevo motor de subtítulos con detección automática de idioma</b><small>Semana pasada</small></div></div>
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Soporte para listas privadas de YouTube y Spotify</b><small>Hace 2 semanas</small></div></div>
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Mejora del exportador 8K — un 40% más rápido</b><small>Hace 3 semanas</small></div></div>
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Flash Download ahora soporta MP3 y WAV de forma nativa</b><small>Hace 1 mes</small></div></div>
-      <div class="clog reveal"><span class="cdot"></span><div class="cmeta"><b>Clonación de voz neural disponible para todos</b><small>Hace 1 mes</small></div></div>
+    <div class="split split-top">
+      <div class="split-copy">
+        <h2>Si una plataforma cambia, nosotros también.</h2>
+        <p class="lead">Mantenemos el motor al día a la velocidad del cambio. Cuando una plataforma rompe algo, nosotros lo arreglamos.</p>
+        <div class="stats stats-3">
+          <div class="stat"><b>&lt;24h</b><span>Tiempo medio de parche</span></div>
+          <div class="stat"><b data-count="50" data-prefix="+">+50</b><span>Mejoras este año</span></div>
+          <div class="stat"><b data-count="12" data-suffix="+">12+</b><span>Versiones al año</span></div>
+        </div>
+      </div>
+      <div class="split-vis">
+        <h3 class="clog-t">Lo último que hemos añadido</h3>
+        <ol class="clog">
+          <li class="new"><b>Emojis 3D animados que reaccionan a lo que dices</b><small>Nuevo</small></li>
+          <li><b>Parche de extracción de TikTok tras un cambio de su API</b><small>Reciente</small></li>
+          <li><b>Nuevo motor de subtítulos con detección automática de idioma</b><small>Reciente</small></li>
+          <li><b>Soporte para listas privadas de YouTube y Spotify</b><small>Anterior</small></li>
+          <li><b>Exportador 8K un 40% más rápido</b><small>Anterior</small></li>
+          <li><b>Flash Download ahora admite MP3 y WAV de forma nativa</b><small>Anterior</small></li>
+          <li><b>Clonación de voz neural disponible para todos</b><small>Anterior</small></li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SOPORTE / REPORTES -->
-<section class="section wrap" id="soporte">
-  <div class="sec-head reveal">
-    <span class="eyebrow" style="color:var(--blue)">Soporte · Reportes</span>
-    <h2>¿Algo no funciona?<br>Cuéntanoslo.</h2>
-    <p>¿Has encontrado un bug, un fallo de descarga o algún problema visual? Repórtalo directamente al equipo. Cuanto antes lo sepamos, antes podremos solucionarlo.</p>
-  </div>
-
-  <div class="support-panel reveal scale">
-    <div class="sp-glow"></div>
-    <div class="sp-left">
-      <span class="sp-badge"><span class="sp-dot"></span>Equipo activo</span>
-      <h3>Reporta directamente al equipo</h3>
-      <p>Sin bots ni tickets eternos: tu reporte llega a quien puede arreglarlo. Y cada incidencia reportada ayuda a mejorar la aplicación para todos los usuarios.</p>
-      <div class="sp-actions">
-        <a class="dl-btn sp-cta" href="mailto:soporte@downloaderv.com?subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ic"><span class="material-symbols-rounded" style="color:#E91E63">mail</span></span><span><small>Abre tu correo</small><b>Reportar al equipo</b></span></a>
-        <button class="btn-ghost sp-ghost" data-modal="reportes">Ver cómo reportar</button>
-      </div>
-    </div>
-    <div class="sp-right">
-      <div class="sp-status">
-        <div class="sps-head"><span>Estado del sistema</span><span class="sps-ok"><span class="sp-dot"></span>Operativo</span></div>
-        <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#E91E63">download</span>Motor de descargas</span><span class="sps-pill">Operativo</span></div>
-        <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#8B5CF6">subtitles</span>Subtítulos IA</span><span class="sps-pill">Operativo</span></div>
-        <div class="sps-row"><span class="sps-name"><span class="material-symbols-rounded" style="color:#10B981">dns</span>Servidores</span><span class="sps-pill">Operativo</span></div>
-        <div class="sps-foot"><span class="material-symbols-rounded">schedule</span>Tiempo medio de respuesta · menos de 5 min</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="support-steps">
-    <article class="sup-card reveal">
-      <span class="sup-ic blue"><span class="material-symbols-rounded">chat</span></span>
-      <h4>1 · Describe el problema</h4>
-      <p>Cuéntanos qué fallaba, en qué plataforma y, si puedes, adjunta una captura. Cuanto más claro, más rápido.</p>
-    </article>
-    <article class="sup-card reveal d1">
-      <span class="sup-ic purple"><span class="material-symbols-rounded">search</span></span>
-      <h4>2 · El equipo lo revisa</h4>
-      <p>Investigamos la incidencia y reproducimos el fallo para encontrar el origen y prepararlo para corrección.</p>
-    </article>
-    <article class="sup-card reveal d2">
-      <span class="sup-ic green"><span class="material-symbols-rounded">task_alt</span></span>
-      <h4>3 · Se soluciona para todos</h4>
-      <p>La corrección llega en la siguiente actualización. Un reporte tuyo mejora downloaderV para toda la comunidad.</p>
-    </article>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section sec-soft" id="faq">
+<!-- ===================== SOPORTE ===================== -->
+<section class="sec" id="soporte">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Preguntas frecuentes</span>
-      <h2>Todo lo que quieres saber.</h2>
-      <p>Y si te queda alguna duda, nuestro soporte responde en menos de 5 minutos.</p>
+    <div class="sh">
+      <h2>¿Algo no funciona? Cuéntanoslo.</h2>
+      <p>¿Has encontrado un fallo de descarga, un error o algún problema visual? Escríbenos directamente al equipo. Cuanto antes lo sepamos, antes lo arreglamos.</p>
     </div>
-    <div class="faq">
-      <div class="faq-item reveal">
-        <div class="faq-q">¿Es gratis descargar con downloaderV?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">Sí. Puedes descargar sin límites absurdos, sin marcas de agua y sin tener que pagar. Descargas, editas y exportas completamente gratis.</div></div>
+    <div class="sup">
+      <div class="sup-l">
+        <p class="sup-badge"><i></i>Equipo activo</p>
+        <h3>Escribe directamente al equipo</h3>
+        <p>Sin bots ni tickets eternos: tu mensaje llega a quien puede arreglarlo. Y cada fallo reportado ayuda a mejorar la app para todos.</p>
+        <div class="sup-mail"><span class="ms">mail</span><span id="supMail">downloadervtrollana@gmail.com</span><button type="button" class="copy" data-copy-email><span>Copiar</span></button></div>
+        <div class="sup-actions">
+          <a class="btn btn-pink" href="mailto:downloadervtrollana@gmail.com?subject=Reporte%20de%20error%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ms">mail</span>Reportar un fallo</a>
+          <button class="btn btn-line" type="button" data-modal="soporte"><span class="ms">forum</span>Otras formas de contacto</button>
+        </div>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">¿En qué calidad puedo descargar los vídeos?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">Hasta 8K a 60 FPS en su calidad nativa. También puedes extraer solo el audio en MP3 o WAV. Tú eliges el formato y la resolución antes de descargar.</div></div>
+      <div class="sup-r">
+        <div class="status">
+          <div class="st-head"><b>Estado del sistema</b><span class="st-ok"><i></i>Operativo</span></div>
+          <div class="st-row"><span><span class="ms" style="color:#E91E63">download</span>Motor de descargas</span><em>Operativo</em></div>
+          <div class="st-row"><span><span class="ms" style="color:#7C3AED">subtitles</span>Subtítulos IA</span><em>Operativo</em></div>
+          <div class="st-row"><span><span class="ms" style="color:#12B76A">dns</span>Servidores</span><em>Operativo</em></div>
+          <p class="st-foot"><span class="ms">schedule</span>Tiempo medio de respuesta: menos de 5 min</p>
+        </div>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">¿De qué plataformas puedo descargar?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">De YouTube, TikTok, Instagram, Facebook y más de 1500 plataformas en total. Si lo puedes ver en el navegador, lo puedes descargar.</div></div>
+    </div>
+    <ol class="steps steps-3c">
+      <li><b>Describe el problema</b><span>Cuéntanos qué fallaba, en qué plataforma y, si puedes, adjunta una captura. Cuanto más claro, más rápido.</span></li>
+      <li><b>El equipo lo revisa</b><span>Investigamos el fallo y lo reproducimos para encontrar el origen.</span></li>
+      <li><b>Se arregla para todos</b><span>La corrección llega en la siguiente actualización. Tu aviso mejora downloaderV para toda la comunidad.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec tint" id="faq">
+  <div class="wrap wrap-n">
+    <div class="sh sh-c">
+      <h2>Preguntas frecuentes</h2>
+      <p>Y si te queda alguna duda, escríbenos a <a href="mailto:downloadervtrollana@gmail.com">downloadervtrollana@gmail.com</a>.</p>
+    </div>
+    <label class="faq-search"><span class="ms">search</span><input type="search" id="faqQ" placeholder="Busca una duda: 8K, Android, subtítulos…" autocomplete="off"><span class="faq-n" id="faqN"></span></label>
+    <div class="faq" id="faqList">
+      <details><summary>¿Es gratis descargar con downloaderV?</summary><div><p>Sí. Puedes descargar sin límites absurdos, sin marcas de agua y sin pagar. Descargas, editas y exportas completamente gratis.</p></div></details>
+      <details><summary>¿En qué calidad puedo descargar los vídeos?</summary><div><p>Hasta 8K a 60 fps en su calidad original. También puedes sacar solo el audio en MP3 o WAV. Tú eliges el formato y la resolución antes de descargar.</p></div></details>
+      <details><summary>¿De qué plataformas puedo descargar?</summary><div><p>De YouTube, TikTok, Instagram, Facebook y más de 1.500 plataformas en total. Si lo puedes ver en el navegador, normalmente lo puedes descargar.</p></div></details>
+      <details><summary>¿Necesito crear una cuenta?</summary><div><p>No. No hace falta registrarse ni iniciar sesión. Descargas la app, pegas el enlace y listo.</p></div></details>
+      <details><summary>¿Funciona en Android y Windows?</summary><div><p>Sí, con apps para Android (APK directo) y Windows (instalador .exe). Las versiones de macOS e iOS están en camino.</p></div></details>
+      <details><summary>¿Qué son los emojis 3D de los subtítulos?</summary><div><p>Caras animadas que aparecen debajo del subtítulo cuando en el vídeo se dicen ciertas palabras (risa, miedo, dinero, amor…). También salen objetos, mapas con bandera, números en 3D y el botón de suscribirse. Puedes elegir cuántos salen o desactivarlos.</p></div></details>
+      <details><summary>¿Qué es Creator Studio?</summary><div><p>Un editor profesional dentro de la app. Te permite recortar, añadir subtítulos automáticos, traducir, clonar voces con IA y aplicar filtros, todo antes de descargar, y exportar hasta en 8K. Eso sí: actívalo antes de descargar el vídeo.</p></div></details>
+      <details><summary>Windows me muestra un aviso al instalar, ¿es normal?</summary><div><p>Sí. Windows SmartScreen avisa con los programas nuevos que aún tienen pocas descargas. Pulsa «Más información» y después «Ejecutar de todas formas». Descarga siempre desde esta web para tener el archivo original.</p></div></details>
+      <details><summary>¿Cómo instalo el APK en Android?</summary><div><p>Al abrir el archivo descargado, Android te pedirá permiso para instalar apps de esta fuente. Acéptalo solo para tu navegador o gestor de archivos, instala downloaderV y listo.</p></div></details>
+    </div>
+    <p class="faq-empty" id="faqEmpty" hidden>No hay ninguna pregunta con esas palabras. <a href="mailto:downloadervtrollana@gmail.com">Escríbenos tu duda</a> y te respondemos.</p>
+  </div>
+</section>
+
+<!-- ===================== DESCARGA FINAL ===================== -->
+<section class="sec" id="descargar">
+  <div class="wrap">
+    <div class="cta" data-anim>
+      <div class="cta-emo" aria-hidden="true"><span class="ce ce1" data-face="cool"></span><span class="ce ce2" data-face="amor"></span><span class="ce ce3" data-face="sorpresa"></span></div>
+      <h2>Tu próximo vídeo viral empieza aquí.</h2>
+      <p>Descarga, edita y exporta como un profesional. Sin marcas de agua. Sin cuentas. Sin esperas.</p>
+      <div class="cta-btns">
+        <button class="dl-btn dl-light" id="ctaDl" type="button" data-dl="auto"><span class="dl-ic" data-dl-icon><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM10.5 12.5v7L3 18.5v-6zM11.8 4.3 21 3v8.5h-9.2zM21 12.5V21l-9.2-1.3v-7.2z"/></svg></span><span class="dl-tx"><small>Descargar gratis para</small><b data-dl-label>Windows</b></span></button>
+        <a class="cta-other" href="#" data-dl="other">También para Android</a>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">¿Necesito crear una cuenta?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">No. No hace falta registrarse ni iniciar sesión. Descargas la app, pegas el enlace y listo. Sin tracking ni datos personales.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">¿Funciona en Android y Windows?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">Sí, con aplicaciones nativas para Android (APK directo) y Windows (instalador .exe). Las versiones de macOS e iOS están en camino.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">¿Qué es el Creator Studio?<span class="plus"><span class="material-symbols-rounded">add</span></span></div>
-        <div class="faq-a"><div class="faq-a-inner">Un editor profesional integrado en la app. Te permite recortar, añadir subtítulos automáticos, traducir, clonar voces con IA y aplicar filtros, todo antes de descargar y exportar hasta en 8K. Eso sí: actívalo ANTES de descargar el vídeo.</div></div>
-      </div>
+      <ul class="cta-feats"><li><span class="ms">check_circle</span>Sin marca de agua</li><li><span class="ms">check_circle</span>Sin cuenta</li><li><span class="ms">check_circle</span>Hasta 8K</li><li><span class="ms">check_circle</span>Soporte de personas reales</li></ul>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="section wrap" id="descargar">
-  <div class="cta reveal">
-    <h2>Tu próximo vídeo viral<br><span class="g">empieza aquí.</span></h2>
-    <p>Descarga, edita y exporta como un profesional. Sin marcas de agua. Sin pasos absurdos. Sin esperas.</p>
-    <div class="cta-btns">
-      <button class="dl-btn" id="ctaDl"><span class="ic" id="ctaDlIcon"></span><span><small>Descargar para</small><b id="ctaDlLabel">Windows</b></span></button>
-      <a class="btn-ghost" href="#funciones">Ver tutoriales</a>
-    </div>
-    <div class="cta-feats">
-      <span>Sin marca de agua</span><span>Sin cuenta requerida</span><span>Sin tracking</span><span>Sin esperas</span>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-glow"></div>
+<!-- ===================== PIE ===================== -->
+<footer class="foot">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="brand" href="#top"><img src="icono.png" alt="" onerror="this.outerHTML='<span class=&quot;brand-dot&quot;>V</span>'"> downloaderV</a>
-      <p>Descarga y edición al más alto nivel. Vídeo en 8K, subtítulos con IA, clonación de voz y Creator Studio. Todo en una sola app.</p>
-      <span class="foot-maker">Desarrollado por el equipo <b>TROLLANA</b></span>
-      <p class="foot-team">Proyecto liderado principalmente por TROLLANA junto a colaboradores independientes enfocados en herramientas de descarga, edición y automatización multimedia.</p>
+      <a class="brand" href="#top"><img src="icono.png" alt="" width="34" height="34" loading="lazy"><span>downloaderV</span></a>
+      <p>Descarga y edición al más alto nivel. Vídeo en 8K, subtítulos con IA, emojis 3D, clonación de voz y Creator Studio. Todo en una sola app.</p>
+      <p class="foot-team">Desarrollado por el equipo <b>Trollana</b>, junto a colaboradores independientes enfocados en herramientas de descarga, edición y automatización multimedia.</p>
     </div>
-    <div class="foot-col">
-      <h5>Producto</h5>
-      <a href="#funciones">Funciones</a>
-      <a href="#opciones">Subtítulos IA</a>
-      <a href="#descargar">Descargar</a>
-      <a href="#" data-modal="novedades">Novedades</a>
-    </div>
-    <div class="foot-col">
-      <h5>Plataformas</h5>
-      <a href="#descargar">Android</a>
-      <a href="#descargar">Windows</a>
-      <a href="#descargar">macOS · iOS</a>
-    </div>
-    <div class="foot-col">
-      <h5>Ayuda y legal</h5>
-      <a href="#" data-modal="soporte">Soporte</a>
-      <a href="#" data-modal="reportes">Reportes</a>
-      <a href="privacidad.html">Privacidad</a>
-    </div>
+    <div class="foot-col"><h3>Producto</h3><a href="#fotos">La app en fotos</a><a href="#funciones">Funciones</a><a href="#subtitulos">Subtítulos IA</a><a href="#emojis">Emojis 3D</a><a href="#" data-modal="novedades">Novedades</a></div>
+    <div class="foot-col"><h3>Descargas</h3><a href="#" data-dl="android">Android (APK)</a><a href="#" data-dl="windows">Windows (.exe)</a><a href="#motor">macOS · iOS, pronto</a></div>
+    <div class="foot-col"><h3>Ayuda y legal</h3><a href="#" data-modal="soporte">Soporte</a><a href="#" data-modal="reportes">Reportar un fallo</a><a href="mailto:downloadervtrollana@gmail.com">downloadervtrollana@gmail.com</a><a href="privacidad.html">Privacidad</a></div>
   </div>
-  <div class="foot-bar">
-    <div class="wrap foot-bar-inner">
-      <small>© 2026 downloaderV · Desarrollado por el equipo <b>TROLLANA</b> · Todos los derechos reservados.</small>
-      <small class="foot-legal"><a href="privacidad.html">Privacidad</a> · <a href="#" data-modal="reportes">Reportes</a> · <a href="#" data-modal="soporte">Soporte</a></small>
-    </div>
-  </div>
-  <div class="foot-watermark">downloaderV</div>
+  <div class="wrap foot-bar"><small>© 2026 downloaderV · Desarrollado por el equipo Trollana. Todos los derechos reservados.</small><small>Usa downloaderV de forma responsable y respeta los derechos de autor de cada plataforma.</small></div>
 </footer>
 
-<!-- MODALES (contenido real) -->
+<!-- Barra de descarga fija (móvil) -->
+<div class="mbar" id="mbar" aria-hidden="true">
+  <img src="icono.png" alt="" width="40" height="40" loading="lazy">
+  <div class="mbar-tx"><b>downloaderV</b><small>Gratis · sin cuenta · hasta 8K</small></div>
+  <button class="dl-btn dl-mini" type="button" data-dl="auto" tabindex="-1"><span class="ms">download</span>Descargar</button>
+</div>
+
+<!-- Visor de fotos a pantalla completa -->
+<div class="lb" id="lb" hidden>
+  <div class="lb-top"><span id="lbN">1 / 13</span><b id="lbT"></b><button type="button" class="lb-x" id="lbX" aria-label="Cerrar"><span class="ms">close</span></button></div>
+  <button type="button" class="lb-nav prev" id="lbP" aria-label="Foto anterior"><span class="ms">chevron_left</span></button>
+  <img id="lbImg" alt="" decoding="async">
+  <button type="button" class="lb-nav next" id="lbN2" aria-label="Foto siguiente"><span class="ms">chevron_right</span></button>
+</div>
+
+<!-- ===================== MODALES ===================== -->
 <div class="modal-root" id="modalRoot" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
 
-  <div class="modal" data-name="reportes" role="dialog" aria-modal="true"><button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button><div class="modal-head"><span class="modal-ic amber"><span class="material-symbols-rounded">report</span></span><div><h3>Cómo reportar un error</h3><span class="modal-sub">5 pasos · menos de 1 minuto</span></div></div><div class="modal-body"><p>Si encuentras un <b>bug</b>, un <b>fallo de descarga</b> o un <b>problema visual</b>, repórtalo en segundos. Tu reporte llega directo al equipo y la corrección llega a todos.</p><ol class="rep-steps"><li><span class="rs-n">1</span><div><b>Pulsa «Abrir correo y reportar»</b><span>El botón azul de aquí abajo.</span></div></li><li><span class="rs-n">2</span><div><b>Se abre tu aplicación de correo</b><span>Con el destinatario, el asunto y una plantilla ya rellenados.</span></div></li><li><span class="rs-n">3</span><div><b>Explica el problema con detalle</b><span>Completa la plantilla: dispositivo, sistema, plataforma del enlace…</span></div></li><li><span class="rs-n">4</span><div><b>Adjunta capturas o vídeos</b><span>Si puedes, ayudan muchísimo a localizar el fallo.</span></div></li><li><span class="rs-n">5</span><div><b>Pulsa Enviar</b><span>Lo revisamos y lo solucionamos en la próxima actualización.</span></div></li></ol><div class="mail-preview"><div class="mp-row"><span>Para</span><b>soporte@downloaderv.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-divider"></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div><div class="modal-actions"><a class="ma-primary" href="mailto:soporte@downloaderv.com?subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Abrir correo y reportar</a><div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte%40downloaderv.com&su=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=soporte%40downloaderv.com&subject=Reporte%20de%20error%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Outlook</a></div><span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span></div></div></div>
+  <div class="modal" data-name="reportes" role="dialog" aria-modal="true" aria-labelledby="mRepT">
+    <button class="modal-x" data-close aria-label="Cerrar"><span class="ms">close</span></button>
+    <div class="modal-head"><span class="modal-ic amber ms">report</span><div><h3 id="mRepT">Cómo reportar un fallo</h3><span class="modal-sub">5 pasos · menos de 1 minuto</span></div></div>
+    <div class="modal-body">
+      <p>Si encuentras un <b>error</b>, un <b>fallo de descarga</b> o un <b>problema visual</b>, avísanos en segundos. Tu mensaje llega directo al equipo y la corrección llega a todos.</p>
+      <ol class="rep-steps">
+        <li><b>Pulsa «Abrir correo y reportar»</b><span>El botón de aquí abajo.</span></li>
+        <li><b>Se abre tu aplicación de correo</b><span>Con el destinatario, el asunto y una plantilla ya rellenados.</span></li>
+        <li><b>Explica el problema con detalle</b><span>Completa la plantilla: dispositivo, sistema, plataforma del enlace…</span></li>
+        <li><b>Adjunta capturas o vídeos</b><span>Si puedes, ayudan muchísimo a localizar el fallo.</span></li>
+        <li><b>Pulsa Enviar</b><span>Lo revisamos y lo arreglamos en la próxima actualización.</span></li>
+      </ol>
+      <div class="mail-preview"><div class="mp-row"><span>Para</span><b>downloadervtrollana@gmail.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div>
+      <div class="modal-actions">
+        <a class="ma-primary" href="mailto:downloadervtrollana@gmail.com?subject=Reporte%20de%20error%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ms">mail</span>Abrir correo y reportar</a>
+        <div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><span class="ms">content_copy</span><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=downloadervtrollana%40gmail.com&amp;su=Reporte%20de%20error%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><span class="ms">open_in_new</span>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=downloadervtrollana%40gmail.com&amp;subject=Reporte%20de%20error%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><span class="ms">open_in_new</span>Outlook</a></div>
+        <span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span>
+      </div>
+    </div>
+  </div>
 
-  <div class="modal" data-name="soporte" role="dialog" aria-modal="true"><button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button><div class="modal-head"><span class="modal-ic green"><span class="material-symbols-rounded">forum</span></span><div><h3>Contactar con el equipo</h3><span class="modal-sub">Personas reales · respuesta &lt; 5 min</span></div></div><div class="modal-body"><button class="sc-open" data-modal="chat" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></span><span class="tx"><b>Chat en directo <em>BETA</em></b><span>Habla ahora con un agente del equipo</span></span><span class="go">›</span></button><p>Detrás de downloaderV hay un equipo de personas, no bots ni tickets eternos. Escríbenos por correo y te respondemos rápido.</p><h4>¿Qué puedes consultar?</h4><ul class="modal-list"><li>Problemas de descarga o de calidad.</li><li>Dudas sobre subtítulos, idiomas o Creator Studio.</li><li>Sugerencias de nuevas funciones.</li><li>Cualquier incompatibilidad con tu dispositivo.</li></ul><div class="mail-preview"><div class="mp-row"><span>Para</span><b>soporte@downloaderv.com</b></div><div class="mp-row"><span>Asunto</span><b>Reporte de error - downloaderV</b></div><div class="mp-divider"></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div><div class="modal-actions"><a class="ma-primary" href="mailto:soporte@downloaderv.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Abrir correo y escribir</a><div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte%40downloaderv.com&su=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=soporte%40downloaderv.com&subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Outlook</a></div><span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span></div></div></div>
+  <div class="modal" data-name="soporte" role="dialog" aria-modal="true" aria-labelledby="mSopT">
+    <button class="modal-x" data-close aria-label="Cerrar"><span class="ms">close</span></button>
+    <div class="modal-head"><span class="modal-ic green ms">forum</span><div><h3 id="mSopT">Contactar con el equipo</h3><span class="modal-sub">Personas reales · respuesta rápida</span></div></div>
+    <div class="modal-body">
+      <button class="sc-open" data-modal="chat" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></span><span class="tx"><b>Chat en directo <em>BETA</em></b><span>Habla ahora con una persona del equipo</span></span><span class="go">›</span></button>
+      <p>Detrás de downloaderV hay un equipo de personas, no bots ni tickets eternos. Escríbenos por correo y te respondemos rápido.</p>
+      <h4>¿Qué puedes consultar?</h4>
+      <ul class="modal-list"><li>Problemas de descarga o de calidad.</li><li>Dudas sobre subtítulos, emojis, idiomas o Creator Studio.</li><li>Sugerencias de nuevas funciones.</li><li>Cualquier incompatibilidad con tu dispositivo.</li></ul>
+      <div class="mail-preview"><div class="mp-row"><span>Para</span><b>downloadervtrollana@gmail.com</b></div><div class="mp-row"><span>Asunto</span><b>Consulta de soporte - downloaderV</b></div><div class="mp-body"><span class="mp-write">Describe aquí tu problema…</span><br><br>• Dispositivo:<br>• Sistema operativo:<br>• Versión de la aplicación:<br>• Plataforma del enlace:<br>• Pasos para reproducirlo:</div></div>
+      <div class="modal-actions">
+        <a class="ma-primary" href="mailto:downloadervtrollana@gmail.com?subject=Consulta%20de%20soporte%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21"><span class="ms">mail</span>Abrir correo y escribir</a>
+        <div class="ma-alt"><button class="ma-btn" type="button" data-copy-email><span class="ms">content_copy</span><span>Copiar correo</span></button><a class="ma-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=downloadervtrollana%40gmail.com&amp;su=Consulta%20de%20soporte%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><span class="ms">open_in_new</span>Gmail</a><a class="ma-btn" href="https://outlook.office.com/mail/deeplink/compose?to=downloadervtrollana%40gmail.com&amp;subject=Consulta%20de%20soporte%20-%20downloaderV&amp;body=Hola%20equipo%20de%20downloaderV%3A%0D%0A%0D%0ADescribe%20aqu%C3%AD%20tu%20problema%20con%20el%20mayor%20detalle%20posible%3A%0D%0A%28escribe%20tu%20mensaje%20en%20estas%20l%C3%ADneas%29%0D%0A%0D%0A%0D%0ADatos%20que%20nos%20ayudan%20a%20resolverlo%20m%C3%A1s%20r%C3%A1pido%3A%0D%0A%E2%80%A2%20Dispositivo%3A%20%0D%0A%E2%80%A2%20Sistema%20operativo%20%28Windows%20%2F%20Android%29%3A%20%0D%0A%E2%80%A2%20Versi%C3%B3n%20de%20la%20aplicaci%C3%B3n%3A%20%0D%0A%E2%80%A2%20Plataforma%20del%20enlace%20%28YouTube%2C%20TikTok%2C%20Instagram%2C%20etc.%29%3A%20%0D%0A%E2%80%A2%20Pasos%20para%20reproducirlo%3A%20%0D%0A%0D%0A%28Si%20puedes%2C%20adjunta%20una%20captura%20de%20pantalla%20o%20un%20v%C3%ADdeo%20del%20fallo.%29%0D%0A%0D%0A%C2%A1Gracias%21" target="_blank" rel="noopener"><span class="ms">open_in_new</span>Outlook</a></div>
+        <span class="ma-note">¿No se abre tu correo? Copia la dirección o usa Gmail / Outlook.</span>
+      </div>
+    </div>
+  </div>
+
   <div class="modal sc-modal" data-name="chat" role="dialog" aria-modal="true">
 <style>
 /* ===== Botón "Chat en directo" que se añade DENTRO del soporte original ===== */
@@ -1555,7 +1589,7 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
             <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
             <h3>Ahora mismo no hay agentes</h3>
             <p>No hemos podido conectarte con un agente en este momento. Puedes escribirnos por correo y te responderemos.</p>
-            <a class="sc-mailbtn" href="mailto:soporte@downloaderv.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%2C%20mi%20consulta%20es%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Escribir por correo</a><br>
+            <a class="sc-mailbtn" href="mailto:downloadervtrollana@gmail.com?subject=Consulta%20de%20soporte%20-%20downloaderV&body=Hola%2C%20mi%20consulta%20es%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Escribir por correo</a><br>
             <button class="sc-retry" id="scRetry" type="button">Reintentar el chat</button>
           </div>
 
@@ -1610,21 +1644,20 @@ setTimeout(function(){h.classList.remove('pro-loading');h.classList.add('pro-her
     </div>
   </div>
 
-  <div class="modal" data-name="novedades" role="dialog" aria-modal="true">
-    <button class="modal-x" data-close aria-label="Cerrar"><span class="material-symbols-rounded">close</span></button>
-    <div class="modal-head"><span class="modal-ic purple"><span class="material-symbols-rounded">campaign</span></span><div><h3>Novedades</h3><span class="modal-sub">Lo último que hemos lanzado</span></div></div>
+  <div class="modal" data-name="novedades" role="dialog" aria-modal="true" aria-labelledby="mNovT">
+    <button class="modal-x" data-close aria-label="Cerrar"><span class="ms">close</span></button>
+    <div class="modal-head"><span class="modal-ic purple ms">campaign</span><div><h3 id="mNovT">Novedades</h3><span class="modal-sub">Lo último que hemos lanzado</span></div></div>
     <div class="modal-body">
-      <div class="news"><span class="news-tag new">Nuevo</span><div><b>Subtítulos automáticos incrustados</b><p>Genera subtítulos con IA y quémalos dentro del vídeo en 46 estilos y +40 idiomas, para cualquier MP4 de las +1500 plataformas.</p></div></div>
-      <div class="news"><span class="news-tag">Mejora</span><div><b>Descargas hasta 8K · 60 FPS</b><p>Motor de descarga más rápido y fusión automática de vídeo y audio en máxima calidad, sin pérdidas.</p></div></div>
+      <div class="news"><span class="news-tag new">Nuevo</span><div><b>Emojis 3D animados</b><p>Caras, objetos, mapas con bandera, números en 3D y el botón de suscribirse, debajo de tus subtítulos.</p></div></div>
+      <div class="news"><span class="news-tag new">Nuevo</span><div><b>Subtítulos automáticos incrustados</b><p>Genera subtítulos con IA y quémalos dentro del vídeo con más de 80 estilos, para cualquier MP4 de las +1.500 plataformas.</p></div></div>
+      <div class="news"><span class="news-tag">Mejora</span><div><b>Descargas hasta 8K · 60 fps</b><p>Motor de descarga más rápido y unión automática de vídeo y audio en máxima calidad, sin pérdidas.</p></div></div>
       <div class="news"><span class="news-tag">Mejora</span><div><b>Creator Studio integrado</b><p>Edita antes de descargar: recortes, filtros, clonación de voz y subtítulos, todo dentro de la app.</p></div></div>
       <div class="news"><span class="news-tag">Android</span><div><b>Flash Download</b><p>Una notificación permanente que descarga vídeos sin abrir la app. Pega el enlace y listo.</p></div></div>
-      <p class="modal-foot-note">¿Quieres proponer una función? Escríbenos a <a href="mailto:soporte@downloaderv.com">soporte@downloaderv.com</a>.</p>
+      <p class="modal-foot-note">¿Quieres proponer una función? Escríbenos a <a href="mailto:downloadervtrollana@gmail.com">downloadervtrollana@gmail.com</a>.</p>
     </div>
   </div>
 </div>
 
-<script src="app.js"></script>
-<script src="pro.js"></script>
 <script type="module" src="firebase-visitas.js"></script>
 <script type="module" src="soporte-chat.js"></script>
 </body>

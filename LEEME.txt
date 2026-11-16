@@ -1,0 +1,41 @@
+WEB NUEVA DE DOWNLOADERV (16/11/2026)
+=====================================
+
+Copia TODO el contenido de esta carpeta dentro de tu carpeta de la web
+(C:\Users\h\Documents\GitHub\trollana-web) y acepta reemplazar.
+
+ARCHIVOS NUEVOS
+  dv.css        -> todos los estilos en un solo archivo
+  dv.js         -> toda la lógica (enlaces, galería, demos, ventanas)
+  emojis.js     -> los emojis 3D hechos a mano (SVG)
+  og-dv.jpg     -> imagen que sale al compartir el enlace (WhatsApp, X...)
+  img/app/win/  -> 13 fotos de Windows optimizadas (WebP, 3 tamaños)
+  img/app/and/  -> 10 fotos de Android optimizadas (WebP, 3 tamaños)
+
+ARCHIVOS QUE SE REEMPLAZAN
+  index.html        -> la página nueva
+  privacidad.html   -> solo cambia el correo de soporte
+  soporte-demo.html -> solo cambia el correo de soporte
+  sitemap.xml       -> fecha actualizada y página de privacidad añadida
+  site.webmanifest  -> descripción actualizada
+
+ICONOS (icono.png y favicon.png)
+  Son exactamente los mismos que ya tienes en tu repositorio. Van aquí
+  solo para que, si abres esta carpeta suelta en el navegador, se vea el
+  logo. Al copiarla a tu web puedes reemplazarlos sin problema.
+
+NO SE TOCAN (siguen funcionando igual)
+  LINKSSSSSSSSSSS.txt  (los botones de descarga siguen leyendo los enlaces de aquí)
+  firebase-visitas.js, soporte-chat.js, CNAME, robots.txt, icon-192.png,
+  icon-512.png, apple-touch-icon.png, favicon-16.png, googlee3ca5d9d5b841e47.html
+
+YA NO SE USAN (puedes dejarlos o borrarlos, no molestan)
+  styles.css, pro.css, tema-rosa.css, app.js, pro.js, flash-demo.html
+
+NOTA AL PROBARLA EN TU PC
+  Si abres index.html con doble clic, el navegador no deja cargar algunas
+  cosas (los enlaces reales de descarga y el chat). En tu web publicada
+  funciona todo. Para verla completa en local, abre la carpeta en VS Code
+  con "Live Server" o súbela a GitHub.
+
+Correo de soporte en toda la web: downloadervtrollana@gmail.com

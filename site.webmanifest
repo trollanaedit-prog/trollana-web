@@ -1,7 +1,7 @@
 {
   "name": "downloaderV",
   "short_name": "downloaderV",
-  "description": "Descarga vídeos de YouTube, TikTok, Instagram y Facebook en calidad 8K. Edita y clona voces con IA.",
+  "description": "Descarga vídeos de YouTube, TikTok, Instagram, Facebook y +1.500 webs hasta en 8K. Subtítulos automáticos, emojis 3D y clonación de voz con IA.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
