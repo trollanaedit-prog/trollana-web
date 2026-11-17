@@ -69,7 +69,7 @@ svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 .pn-banner .pn-banner-x{background:none;color:#6B4A00;font-size:1.3rem;padding:4px 8px}
 
 /* Distribución */
-.pn-main{display:grid;grid-template-columns:minmax(290px,370px) minmax(0,1fr);min-height:0}
+.pn-main{grid-row:3;display:grid;grid-template-columns:minmax(290px,370px) minmax(0,1fr);min-height:0}
 .pn-lista{display:flex;flex-direction:column;min-height:0;background:#fff;border-right:1px solid var(--ln)}
 .pn-lista-h{padding:16px 14px 10px}
 .pn-lista-h h2{margin:0 0 12px;font-size:1.2rem;font-weight:800;letter-spacing:-.01em}
