@@ -2,7 +2,8 @@
    soporte-chat.js · Chat de soporte en directo de downloaderV
    ---------------------------------------------------------------------
    · Escribes y tu mensaje queda EN ESPERA hasta que el equipo responde.
-   · 3 mensajes al día por persona (lo controla el servidor por IP).
+   · 3 conversaciones al día por persona (lo controla el servidor por IP).
+     Dentro de una conversación abierta puede escribir lo que quiera.
    · Puedes adjuntar imágenes (se comprimen en tu navegador).
    · "Finalizar" borra la conversación entera al instante. No queda nada.
    Firebase solo se carga cuando abres el chat (la web no va más lenta).
@@ -42,7 +43,7 @@ const ic = (k, extra = '') => `<svg class="scx-i ${extra}" viewBox="0 0 24 24" f
 const S = {
   fb: null, user: null, abierto: false, vista: 'cargando',
   chat: null, chatVisto: false, mensajes: [], locales: [], urls: new Map(),
-  quedan: null, reinicio: null, online: false, imagen: null, enviando: false,
+  quedan: null, reinicio: null, enCurso: false, online: false, imagen: null, enviando: false,
   subs: [], noLeidas: 0, tituloBase: d.title, finTexto: '',
 };
 
@@ -160,7 +161,7 @@ async function pedirCuota() {
     const t = await token();
     const r = await fetch(SOPORTE.worker + '/cuota', { headers: t ? { Authorization: 'Bearer ' + t } : {} });
     if (!r.ok) return;
-    const j = await r.json(); S.quedan = j.quedan; S.reinicio = j.reinicio; pintarCuota();
+    const j = await r.json(); S.quedan = j.quedan; S.reinicio = j.reinicio; S.enCurso = !!j.enCurso; pintarCuota();
   } catch (_) {}
 }
 
@@ -172,7 +173,7 @@ async function enviar() {
   const img = S.imagen;
   if (!texto && !img) return;
   if (texto.length > MAX_TEXTO) return aviso(`Máximo ${MAX_TEXTO} caracteres por mensaje.`);
-  if (S.quedan === 0) return pintarCuota();
+  if (bloqueado()) return pintarCuota();
   S.enviando = true; pintarComposer();
   const local = { id: 'l' + Date.now(), de: 'cliente', texto, local: 'enviando', imgUrl: img ? img.url : null, imgW: img && img.w, imgH: img && img.h, hora: new Date() };
   S.locales.push(local); S.bajar = true;
@@ -190,9 +191,11 @@ async function enviar() {
     let r = await llamar('/enviar', cuerpo);
     if (r.status === 401) r = await llamar('/enviar', cuerpo, true);
     const j = await r.json().catch(() => ({}));
-    if (r.status === 429) { S.quedan = 0; S.reinicio = j.reinicio; local.local = 'limite'; pintarCuota(); pintarMensajes(); return; }
+    if (r.status === 429 && j.error === 'limite') { S.quedan = 0; S.enCurso = false; S.reinicio = j.reinicio; local.local = 'limite'; pintarCuota(); pintarMensajes(); return; }
+    if (r.status === 429 && j.error === 'rapido') { local.local = 'error'; local.reintento = { texto, img }; aviso('Espera un segundo entre mensaje y mensaje.'); pintarMensajes(); return; }
+    if (r.status === 429 && j.error === 'conversacion') { local.local = 'error'; local.reintento = { texto, img }; aviso('Esta conversación ha llegado al máximo de mensajes. Finalízala y abre otra.'); pintarMensajes(); return; }
     if (!r.ok) throw new Error(j.error || 'http' + r.status);
-    S.quedan = j.quedan; S.reinicio = j.reinicio; local.id = j.id; local.local = img ? 'subiendo' : 'enviado';
+    S.quedan = j.quedan; S.reinicio = j.reinicio; S.enCurso = true; local.id = j.id; local.local = img ? 'subiendo' : 'enviado';
     try { localStorage.setItem(LS_ACTIVO, '1'); } catch (_) {}
     pintarCuota(); pintarMensajes();
     if (img) {
@@ -236,7 +239,7 @@ async function cerrarConversacion(texto) {
   S.subs.forEach((u) => { try { u(); } catch (_) {} }); S.subs = [];
   S.urls.forEach((u) => URL.revokeObjectURL(u)); S.urls.clear();
   S.locales.forEach((l) => l.imgUrl && URL.revokeObjectURL(l.imgUrl));
-  Object.assign(S, { chat: null, chatVisto: false, mensajes: [], locales: [], noLeidas: 0, vista: 'fin', finTexto: texto });
+  Object.assign(S, { chat: null, chatVisto: false, enCurso: false, mensajes: [], locales: [], noLeidas: 0, vista: 'fin', finTexto: texto });
   try { localStorage.removeItem(LS_ACTIVO); } catch (_) {}
   if (S.fb && S.fb.auth.currentUser) {
     try { await S.fb.U.deleteUser(S.fb.auth.currentUser); } catch (_) { try { await S.fb.U.signOut(S.fb.auth); } catch (__) {} }
@@ -320,7 +323,7 @@ function plantilla() {
           <p>Somos el equipo de downloaderV. Cuéntanos qué te pasa: un fallo, una duda o una idea. Si puedes, adjunta una captura y lo vemos antes.</p>
         </div>
         <ul class="scx-pills">
-          <li>${ic('chat')}<span><b>${LIMITE} mensajes</b> al día</span></li>
+          <li>${ic('chat')}<span><b>${LIMITE} conversaciones</b> al día</span></li>
           <li>${ic('foto')}<span>Puedes enviar <b>imágenes</b></span></li>
           <li>${ic('borrar')}<span>Se borra <b>todo</b> al finalizar</span></li>
         </ul>
@@ -353,7 +356,7 @@ function plantilla() {
         <span class="scx-cuota"><span class="scx-dots"></span><span class="scx-cuota-t"></span></span>
         <span class="scx-len"></span>
       </div>
-      <p class="scx-legal">${ic('candado')}<span>Tu IP solo se usa, cifrada, para el límite de ${LIMITE} mensajes al día. Al finalizar se borra todo. <a href="privacidad.html#soporte" target="_blank" rel="noopener">Privacidad</a></span></p>
+      <p class="scx-legal">${ic('candado')}<span>Tu IP solo se usa, cifrada, para el límite de ${LIMITE} conversaciones al día. Al finalizar se borra todo. <a href="privacidad.html#soporte" target="_blank" rel="noopener">Privacidad</a></span></p>
     </footer>
     <div class="scx-ov" hidden>
       <div class="scx-dlg" role="alertdialog" aria-modal="true" aria-labelledby="scxDlgT">
@@ -406,7 +409,7 @@ function pintar() {
   const conChat = S.vista === 'chat';
   $('.scx-fin').hidden = !(conChat && (S.chat || S.mensajes.length));
   $('.scx-ov').hidden = true;
-  if (S.vista === 'fin') $('.scx-done-t').textContent = S.finTexto;
+  if (S.vista === 'fin') textoFin();
   $('.scx-nueva').hidden = S.quedan === 0;
   pintarCabecera(); pintarMensajes(); pintarComposer(); pintarCuota();
 }
@@ -451,7 +454,7 @@ function pintarMensajes() {
       if (m.local === 'enviando') estado = `<span class="scx-est">${ic('reloj')}Enviando</span>`;
       else if (m.local === 'subiendo') estado = `<span class="scx-est">${ic('reloj')}Subiendo imagen</span>`;
       else if (m.local === 'error') estado = `<button type="button" class="scx-retry" data-id="${m.id}">${ic('reintentar')}No se envió · Reintentar</button>`;
-      else if (m.local === 'limite') estado = `<span class="scx-est err">Límite de hoy alcanzado</span>`;
+      else if (m.local === 'limite') estado = `<span class="scx-est err">Ya has usado tus ${LIMITE} conversaciones de hoy</span>`;
       else if (visto && visto >= ms) estado = `<span class="scx-est visto">${ic('doble')}${m === ultCliente ? 'Visto' : ''}</span>`;
       else estado = `<span class="scx-est">${ic('check')}${m === ultCliente ? 'Enviado' : ''}</span>`;
     }
@@ -474,10 +477,10 @@ function pintarMensajes() {
 
 function pintarComposer() {
   const ta = $('.scx-ta'), send = $('.scx-send'), prev = $('.scx-prev'), len = $('.scx-len');
-  const sinCuota = S.quedan === 0;
+  const sinCuota = bloqueado();
   ta.disabled = sinCuota;
   $('.scx-adj').disabled = sinCuota || S.enviando;
-  ta.placeholder = sinCuota ? `Has usado tus ${LIMITE} mensajes de hoy` : (S.vista === 'chat' ? 'Escribe tu mensaje…' : 'Cuéntanos qué te pasa…');
+  ta.placeholder = sinCuota ? `Has usado tus ${LIMITE} conversaciones de hoy` : (S.vista === 'chat' ? 'Escribe tu mensaje…' : 'Cuéntanos qué te pasa…');
   const n = ta.value.length;
   send.disabled = S.enviando || sinCuota || n > MAX_TEXTO || (!ta.value.trim() && !S.imagen);
   len.textContent = n > MAX_TEXTO * 0.8 ? `${n} / ${MAX_TEXTO}` : '';
@@ -487,13 +490,21 @@ function pintarComposer() {
   send.classList.toggle('cargando', S.enviando);
 }
 
+function enCurso() { return !!(S.chat || S.enCurso); }
+function textoFin() {
+  $('.scx-done-t').textContent = S.finTexto + (S.quedan === 0 ? ` Ya has usado tus ${LIMITE} conversaciones de hoy: podrás abrir otra ${S.reinicio ? 'mañana a partir de las ' + new Date(S.reinicio).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : 'mañana'}.` : '');
+}
+function bloqueado() { return S.quedan === 0 && !enCurso(); }
+
 function pintarCuota() {
   const t = $('.scx-cuota-t'), dots = $('.scx-dots');
-  if (S.quedan == null) { t.textContent = `${LIMITE} mensajes al día`; dots.innerHTML = ''; pintarComposer(); return; }
+  if (S.quedan == null) { t.textContent = enCurso() ? 'Conversación en curso' : `${LIMITE} conversaciones al día`; dots.innerHTML = ''; pintarComposer(); return; }
   dots.innerHTML = Array.from({ length: LIMITE }, (_, i) => `<i class="${i < LIMITE - S.quedan ? 'usado' : ''}"></i>`).join('');
-  if (S.quedan > 0) t.textContent = S.quedan === 1 ? 'Te queda 1 mensaje hoy' : `Te quedan ${S.quedan} mensajes hoy`;
-  else t.textContent = 'Sin mensajes hasta ' + (S.reinicio ? 'mañana a las ' + new Date(S.reinicio).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : 'mañana');
-  root.classList.toggle('scx-agotado', S.quedan === 0);
+  if (enCurso()) t.textContent = 'Conversación en curso · escribe lo que necesites';
+  else if (S.quedan > 0) t.textContent = S.quedan === 1 ? 'Te queda 1 conversación hoy' : `Te quedan ${S.quedan} conversaciones hoy`;
+  else t.textContent = 'Sin conversaciones nuevas hasta ' + (S.reinicio ? 'mañana a las ' + new Date(S.reinicio).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : 'mañana');
+  root.classList.toggle('scx-agotado', bloqueado());
+  if (S.vista === 'fin') textoFin();
   $('.scx-nueva').hidden = S.quedan === 0;
   pintarComposer();
 }

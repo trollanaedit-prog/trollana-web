@@ -212,12 +212,10 @@ function pintarCabeceraChat() {
   const c = P.chats.get(P.sel); if (!c) return;
   $('#pnChatAv').innerHTML = avatar({ id: P.sel, ...c }, true);
   $('#pnChatNombre').textContent = nombre(c);
-  const hoyIni = inicioHoy();
-  const usados = P.msgs.filter((m) => m.de === 'cliente' && ms(m.hora) >= hoyIni).length;
   const partes = [];
   if (c.dispositivo) partes.push(c.dispositivo);
   partes.push(c.estado === 'espera' ? `Esperando ${hace(c.actualizado)}` : 'Respondido');
-  partes.push(`Hoy ha enviado ${Math.min(usados, LIMITE)} de ${LIMITE}`);
+  if (c.conversacionHoy) partes.push(`Conversación ${Math.min(Number(c.conversacionHoy), LIMITE)} de ${LIMITE} de hoy`);
   $('#pnChatMeta').textContent = partes.join(' · ');
 }
 
