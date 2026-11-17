@@ -193,6 +193,7 @@ async function enviar() {
     const j = await r.json().catch(() => ({}));
     if (r.status === 429 && j.error === 'limite') { S.quedan = 0; S.enCurso = false; S.reinicio = j.reinicio; local.local = 'limite'; pintarCuota(); pintarMensajes(); return; }
     if (r.status === 429 && j.error === 'rapido') { local.local = 'error'; local.reintento = { texto, img }; aviso('Espera un segundo entre mensaje y mensaje.'); pintarMensajes(); return; }
+    if (r.status === 429 && j.error === 'imagenes') { local.local = 'error'; local.reintento = { texto, img: null }; aviso('Has llegado al máximo de 10 imágenes en esta conversación. Puedes seguir escribiendo.'); pintarMensajes(); return; }
     if (r.status === 429 && j.error === 'conversacion') { local.local = 'error'; local.reintento = { texto, img }; aviso('Esta conversación ha llegado al máximo de mensajes. Finalízala y abre otra.'); pintarMensajes(); return; }
     if (!r.ok) throw new Error(j.error || 'http' + r.status);
     S.quedan = j.quedan; S.reinicio = j.reinicio; S.enCurso = true; local.id = j.id; local.local = img ? 'subiendo' : 'enviado';

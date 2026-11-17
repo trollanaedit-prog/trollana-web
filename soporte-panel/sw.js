@@ -12,8 +12,8 @@ if (cfg.apiKey && self.firebase) {
   firebase.messaging();
 }
 
-const CACHE = 'dv-soporte-v1';
-const BASE = ['./', './index.html', './panel.css', './panel.js', '../soporte-config.js', '../icono.png', '../icon-192.png'];
+const CACHE = 'dv-soporte-v2';
+const BASE = ['./', './index.html', '../soporte-config.js', '../icono.png', '../icon-192.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(BASE)).catch(() => {}));
