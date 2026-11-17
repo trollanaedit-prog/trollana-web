@@ -1,4 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+  import { SOPORTE } from './soporte-config.js';
   import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
     from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
@@ -12,15 +13,6 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
     measurementId: "G-6J5FX3S3Q0"
   };
 
-  function infoGpu(){
-    try{
-      const c=document.createElement('canvas');
-      const gl=c.getContext('webgl')||c.getContext('experimental-webgl');
-      if(gl){ const e=gl.getExtension('WEBGL_debug_renderer_info');
-        if(e){ const r=gl.getParameter(e.UNMASKED_RENDERER_WEBGL); if(r) return r; } }
-    }catch(_){}
-    return 'desconocida';
-  }
   function zonaHoraria(){
     try{
       const off = -new Date().getTimezoneOffset()/60;
@@ -111,7 +103,6 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
           referrer: document.referrer,
           url: location.href,
           zona_horaria: zonaHoraria(),
-          gpu: infoGpu(),
         };
 
         // 1) CREAR EL DOCUMENTO YA (rápido) -> la referencia queda lista al instante
@@ -120,24 +111,24 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
         // Si ya pulsó descargar o ya pasó tiempo mientras se creaba, lo reflejamos
         if(descargo || segundos()>0) guardarDuracion();
 
-        // 2) Ubicación aproximada por IP (sin clave) -> se añade después con updateDoc
-        try{
-          const ctrl = new AbortController();
-          const t = setTimeout(()=>ctrl.abort(), 5000);
-          const r = await fetch('https://ipwho.is/', {signal: ctrl.signal});
-          clearTimeout(t);
-          if(r.ok){
-            const g = await r.json();
-            if(g && g.success){
-              actualizar({
-                ip: g.ip, pais: g.country, pais_codigo: g.country_code,
-                region: g.region, ciudad: g.city,
-                latitud: g.latitude, longitud: g.longitude,
-                isp: g.connection?.isp, organizacion: g.connection?.org,
-              });
+        // 2) Solo el PAÍS, que nos dice nuestro propio servidor (Cloudflare).
+        //    No se guarda la IP, ni la ciudad, ni coordenadas, ni el proveedor de internet.
+        if(SOPORTE.worker){
+          try{
+            const ctrl = new AbortController();
+            const t = setTimeout(()=>ctrl.abort(), 5000);
+            const r = await fetch(SOPORTE.worker + '/pais', {signal: ctrl.signal});
+            clearTimeout(t);
+            if(r.ok){
+              const g = await r.json();
+              if(g && g.pais){
+                let nombre = g.pais;
+                try{ nombre = new Intl.DisplayNames(['es'], {type:'region'}).of(g.pais) || g.pais; }catch(_){}
+                actualizar({ pais: nombre, pais_codigo: g.pais });
+              }
             }
-          }
-        }catch(_){ /* sin geo, seguimos */ }
+          }catch(_){ /* sin país, seguimos */ }
+        }
 
       }catch(e){
         console.log('Registro de visita falló (no crítico):', e);

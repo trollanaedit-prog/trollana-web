@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /soporte-panel/
 
 Sitemap: https://downloaderv.com/sitemap.xml

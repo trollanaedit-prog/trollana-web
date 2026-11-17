@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>downloaderV Soporte</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#150D26">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+<div class="pn" id="pn" data-vista="cargando">
+
+  <!-- Cargando -->
+  <section class="pn-splash">
+    <img src="../icono.png" alt="" width="72" height="72">
+    <span class="pn-spin"></span>
+  </section>
+
+  <!-- Entrar -->
+  <section class="pn-login">
+    <div class="pn-login-card">
+      <img class="pn-login-logo" src="../icono.png" alt="" width="84" height="84">
+      <h1>downloaderV <span>Soporte</span></h1>
+      <p>Panel privado del equipo Trollana para responder a los usuarios en directo.</p>
+      <button type="button" class="pn-google" id="pnEntrar">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        Entrar con Google
+      </button>
+      <p class="pn-login-note" id="pnLoginNota">Solo la cuenta de soporte tiene acceso.</p>
+    </div>
+  </section>
+
+  <!-- Sin permiso -->
+  <section class="pn-denegado">
+    <div class="pn-login-card">
+      <img class="pn-login-logo" src="../icono.png" alt="" width="84" height="84">
+      <h1>Esta cuenta no tiene acceso</h1>
+      <p id="pnDenegadoT">Entra con la cuenta de soporte de downloaderV.</p>
+      <button type="button" class="pn-google" id="pnCambiar">Cambiar de cuenta</button>
+    </div>
+  </section>
+
+  <!-- Panel -->
+  <section class="pn-app">
+    <header class="pn-top">
+      <div class="pn-marca">
+        <img src="../icono.png" alt="" width="36" height="36">
+        <span><b>downloaderV</b><em>Soporte</em></span>
+      </div>
+      <label class="pn-estado" title="Lo que ven los usuarios en el chat">
+        <input type="checkbox" id="pnDisponible" checked>
+        <span class="pn-sw"><i></i></span>
+        <span class="pn-estado-t" id="pnEstadoT">Disponible</span>
+      </label>
+      <div class="pn-top-acc">
+        <button type="button" class="pn-ib" id="pnInstalar" hidden title="Instalar la app"><svg viewBox="0 0 24 24"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></svg></button>
+        <button type="button" class="pn-ib" id="pnSonido" title="Sonido de avisos" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="on" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5zM15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="off" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5zM16 9.5l5 5M21 9.5l-5 5"/></svg></button>
+        <button type="button" class="pn-ib" id="pnAvisos" title="Avisos en este dispositivo"><svg viewBox="0 0 24 24"><path d="M6.5 16.5h11l-1.3-2V10a4.2 4.2 0 0 0-8.4 0v4.5zM10 19.5a2.2 2.2 0 0 0 4 0"/></svg><i class="pn-ib-dot"></i></button>
+        <button type="button" class="pn-yo" id="pnYo" title="Tu cuenta"><img id="pnYoImg" alt="" width="34" height="34"><span id="pnYoIni"></span></button>
+        <div class="pn-menu" id="pnMenu" hidden>
+          <span id="pnYoMail"></span>
+          <button type="button" id="pnLimpiar">Limpiar chats caducados</button>
+          <button type="button" id="pnSalir">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="pn-banner" id="pnBanner" hidden>
+      <span><b>Activa los avisos</b> para que te llegue cada mensaje al instante, aunque tengas el panel cerrado.</span>
+      <button type="button" id="pnBannerSi">Activar avisos</button>
+      <button type="button" class="pn-banner-x" id="pnBannerNo" aria-label="Ahora no">×</button>
+    </div>
+
+    <div class="pn-main" id="pnMain">
+      <aside class="pn-lista">
+        <div class="pn-lista-h">
+          <h2>Conversaciones</h2>
+          <div class="pn-tabs" role="tablist">
+            <button type="button" role="tab" class="on" data-filtro="espera">En espera <i id="pnNEspera">0</i></button>
+            <button type="button" role="tab" data-filtro="todas">Todas <i id="pnNTodas">0</i></button>
+          </div>
+          <label class="pn-buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="pnBuscar" type="search" placeholder="Buscar por nombre o mensaje"></label>
+        </div>
+        <div class="pn-items" id="pnItems"></div>
+      </aside>
+
+      <main class="pn-chat" id="pnChat">
+        <div class="pn-vacio" id="pnVacio">
+          <img src="../icono.png" alt="" width="76" height="76">
+          <h2 id="pnVacioT">Todo al día</h2>
+          <p id="pnVacioP">Cuando alguien escriba, aparecerá aquí al momento.</p>
+        </div>
+        <header class="pn-chat-h" hidden>
+          <button type="button" class="pn-atras" id="pnAtras" aria-label="Volver a la lista"><svg viewBox="0 0 24 24"><path d="M14.5 5.5L8 12l6.5 6.5"/></svg></button>
+          <span class="pn-av" id="pnChatAv"></span>
+          <span class="pn-chat-id"><b id="pnChatNombre"></b><em id="pnChatMeta"></em></span>
+          <button type="button" class="pn-fin" id="pnFin"><svg viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 12.5h9l1-12.5"/></svg><span>Finalizar y borrar</span></button>
+        </header>
+        <div class="pn-msgs" id="pnMsgs" hidden role="log" aria-live="polite"></div>
+        <footer class="pn-comp" hidden>
+          <div class="pn-rapidas" id="pnRapidas"></div>
+          <div class="pn-prev" id="pnPrev" hidden><img alt=""><span>Imagen lista</span><button type="button" id="pnPrevX" aria-label="Quitar">×</button></div>
+          <div class="pn-escribir">
+            <button type="button" class="pn-adj" id="pnAdj" title="Adjuntar imagen"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3.5"/><circle cx="9" cy="10" r="1.8"/><path d="M20.5 15.5l-5-5-9 9"/></svg></button>
+            <input type="file" id="pnFile" accept="image/*" hidden>
+            <textarea id="pnTa" rows="1" placeholder="Escribe tu respuesta…" maxlength="2000"></textarea>
+            <button type="button" class="pn-send" id="pnSend" disabled aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M4.5 12h11M12 5.5l6.5 6.5-6.5 6.5"/></svg></button>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </section>
+
+  <!-- Confirmar borrado -->
+  <div class="pn-ov" id="pnOv" hidden>
+    <div class="pn-dlg" role="alertdialog" aria-modal="true" aria-labelledby="pnDlgT">
+      <span class="pn-dlg-ic"><svg viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 12.5h9l1-12.5"/></svg></span>
+      <h3 id="pnDlgT">¿Finalizar y borrar esta conversación?</h3>
+      <p>Se eliminan al instante todos los mensajes e imágenes, para ti y para el usuario. No queda copia.</p>
+      <div class="pn-dlg-b"><button type="button" id="pnNo">Cancelar</button><button type="button" id="pnSi">Finalizar y borrar</button></div>
+    </div>
+  </div>
+  <div class="pn-lb" id="pnLb" hidden><img alt=""></div>
+  <div class="pn-toast" id="pnToast" role="status" aria-live="polite"></div>
+</div>
+<script type="module" src="panel.js"></script>
+</body>
+</html>

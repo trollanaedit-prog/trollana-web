@@ -768,15 +768,15 @@
         else frag.appendChild(wrap(node));
       });
       h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
-      h.innerHTML = ''; h.appendChild(frag); h.classList.add('split');
+      h.innerHTML = ''; h.appendChild(frag); h.classList.add('wsplit');
     });
     const sel = '.sh p, .split-copy .lead, .split-copy .ticks, .split-copy .tags, .split-copy .steps-mini, .split-copy .note-ok, .split-copy .stats, .split-vis, .bx, .extras, .steps li, .cards3 article, .cards4 article, .bk-card, .bk-demo, .bk-grid .flist, .bk-plat, .os, .stats .stat, .gal, .subs .flist li, .example, .player, .es-card, .mu, .emo-facts li, .emo-note, .warn, .vrow, .clog li, .sup-l, .status, .faq-search, .faq details, .cta-btns, .cta-feats';
     const els = $$(sel).filter((el) => !el.closest('.hero'));
     const groups = new Map();
     els.forEach((el) => { const k = el.parentElement; const i = groups.get(k) || 0; groups.set(k, i + 1); el.style.setProperty('--d', Math.min(i, 6) * 70 + 'ms'); el.classList.add('rv'); });
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; e.target.classList.add(e.target.classList.contains('split') ? 'split-in' : 'in'); io.unobserve(e.target); }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; e.target.classList.add(e.target.classList.contains('wsplit') ? 'split-in' : 'in'); io.unobserve(e.target); }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
     els.forEach((el) => io.observe(el));
-    $$('.split').forEach((h) => io.observe(h));
+    $$('.wsplit').forEach((h) => io.observe(h));
   })();
 
   /* ============================================================
