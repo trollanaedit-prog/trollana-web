@@ -16,6 +16,8 @@ const MAX_TEXTO = 1000;
 const MAX_IMG = 700 * 1024;
 const LS_ACTIVO = 'dv_soporte_activo';
 const d = document;
+// Si alguien mete esta página dentro de otra web (iframe), el chat no se conecta: solo muestra el correo
+const EN_MARCO = (() => { try { return window.top !== window.self; } catch (_) { return true; } })();
 
 const root = d.getElementById('soporteChat');
 const modal = root && root.closest('.modal');
@@ -63,7 +65,7 @@ function iniciar() {
   // Precarga si la persona va a abrir el chat
   d.addEventListener('pointerover', (e) => { if (e.target.closest && e.target.closest('[data-modal="chat"]')) precargar(); }, { passive: true });
   // Si ya tenía una conversación abierta, la recuperamos sin molestar
-  try { if (localStorage.getItem(LS_ACTIVO) && SOPORTE.worker) (window.requestIdleCallback || setTimeout)(() => conectar().catch(() => {}), { timeout: 3000 }); } catch (_) {}
+  try { if (localStorage.getItem(LS_ACTIVO) && SOPORTE.worker && !EN_MARCO) (window.requestIdleCallback || setTimeout)(() => conectar().catch(() => {}), { timeout: 3000 }); } catch (_) {}
   d.addEventListener('visibilitychange', () => { if (!d.hidden && S.abierto) marcarLeidas(); });
   // En el móvil, el chat se adapta a lo que se ve (barra del navegador, barra de Android y teclado)
   if (VV) { VV.addEventListener('resize', ajustarPantalla); VV.addEventListener('scroll', ajustarPantalla); }
@@ -89,7 +91,7 @@ function ajustarPantalla() {
 }
 
 function precargar() {
-  if (S._pre || !SOPORTE.worker) return; S._pre = true;
+  if (S._pre || !SOPORTE.worker || EN_MARCO) return; S._pre = true;
   ['firebase-app.js', 'firebase-auth.js', 'firebase-firestore.js'].forEach((f) => {
     const l = d.createElement('link'); l.rel = 'modulepreload'; l.href = CDN + f; l.crossOrigin = 'anonymous'; d.head.appendChild(l);
   });
@@ -97,7 +99,7 @@ function precargar() {
 
 async function alAbrir() {
   S.abierto = true; marcarLeidas(); lanzador(); ajustarPantalla();
-  if (!SOPORTE.worker) { S.vista = 'off'; pintar(); return; }
+  if (!SOPORTE.worker || EN_MARCO) { S.vista = 'off'; pintar(); return; }
   if (!S.fb) { S.vista = 'cargando'; pintar(); }
   try { await conectar(); } catch (e) { console.log('soporte · no conecta', e && (e.code || e.message)); S.vista = 'off'; pintar(); return; }
   if (S.vista === 'cargando') S.vista = S.chat ? 'chat' : 'inicio';
@@ -109,6 +111,7 @@ function alCerrar() { S.abierto = false; lanzador(); ajustarPantalla(); }
 /* ------------------------------ Firebase ------------------------------ */
 let conectando = null;
 function conectar() {
+  if (EN_MARCO) return Promise.reject(new Error('marco'));
   if (conectando) return conectando;
   conectando = (async () => {
     const [A, U, F] = await Promise.all([import(CDN + 'firebase-app.js'), import(CDN + 'firebase-auth.js'), import(CDN + 'firebase-firestore.js')]);
@@ -178,6 +181,7 @@ function escucharChat() {
 async function token(forzar) { return S.user ? S.user.getIdToken(!!forzar) : null; }
 
 async function pedirCuota() {
+  if (EN_MARCO) return;
   try {
     const t = await token();
     const r = await fetch(SOPORTE.worker + '/cuota', { headers: t ? { Authorization: 'Bearer ' + t } : {} });
