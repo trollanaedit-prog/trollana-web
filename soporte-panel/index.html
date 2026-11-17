@@ -79,24 +79,31 @@ svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 // Puerta del panel. Aquí no hay nada del panel: su código y su diseño están
 // guardados en la base de datos, y solo la cuenta autorizada puede leerlos.
 import { SOPORTE } from '/soporte-config.js';
+// Nunca dentro de otra web (evita trucos para que pulses algo sin darte cuenta)
+if (window.top !== window.self) { document.body.innerHTML = ''; throw new Error('marco'); }
 const CDN = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const [A, U, F] = await Promise.all([import(CDN + 'firebase-app.js'), import(CDN + 'firebase-auth.js'), import(CDN + 'firebase-firestore.js')]);
 const app = A.getApps().find((a) => a.name === 'panel') || A.initializeApp(SOPORTE.firebase, 'panel');
 const auth = U.getAuth(app), db = F.getFirestore(app);
 const $ = (s) => document.querySelector(s), pn = $('#pn');
 const vista = (v) => { pn.dataset.vista = v; };
-let abierto = false;
+let abierto = false, mostrandoDenegado = false;
 const parar = U.onAuthStateChanged(auth, async (u) => {
   if (abierto) return;
-  if (!u) return vista('login');
+  if (!u) { if (!mostrandoDenegado) vista('login'); return; }
+  mostrandoDenegado = false;
   vista('cargando');
-  let d = null;
+  let d = null, denegado = false;
   if (u.emailVerified && (u.providerData || []).some((p) => p.providerId === 'google.com')) {
-    try { const s = await F.getDoc(F.doc(db, 'soporte_admin_app', 'panel')); d = s.exists() ? s.data() : null; } catch (_) { d = null; }
-  }
+    try { const s = await F.getDoc(F.doc(db, 'soporte_admin_app', 'panel')); d = s.exists() ? s.data() : null; }
+    catch (e) { d = null; denegado = !!(e && e.code === 'permission-denied'); }
+  } else denegado = true;
   if (!d || typeof d.js !== 'string') {
     $('#pnDenegadoT').textContent = `Has entrado como ${u.email || 'una cuenta sin correo'}. Esta cuenta no tiene permiso.`;
-    return vista('denegado');
+    vista('denegado'); mostrandoDenegado = true;
+    // Una cuenta sin permiso no se queda guardada en el proyecto (ni su correo)
+    if (denegado) { try { await U.deleteUser(u); } catch (_) { try { await U.signOut(auth); } catch (__) {} } }
+    return;
   }
   abierto = true; parar();
   const st = document.createElement('style'); st.textContent = d.css; document.head.appendChild(st);
@@ -115,7 +122,7 @@ async function entrar() {
   }
 }
 $('#pnEntrar').addEventListener('click', entrar);
-$('#pnCambiar').addEventListener('click', async () => { await U.signOut(auth); entrar(); });
+$('#pnCambiar').addEventListener('click', async () => { mostrandoDenegado = false; try { await U.signOut(auth); } catch (_) {} entrar(); });
 </script>
 </body>
 </html>

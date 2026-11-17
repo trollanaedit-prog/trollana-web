@@ -60,7 +60,7 @@
   const linksReady = fetch('LINKSSSSSSSSSSS.txt?v=' + Date.now(), { cache: 'no-store' })
     .then((r) => (r.ok ? r.text() : ''))
     .then((t) => {
-      const urls = (t.match(/https?:\/\/[^\s()"'<>]+/gi) || []).map((u) => u.replace(/[),.;]+$/, ''));
+      const urls = (t.match(/https:\/\/[^\s()"'<>]+/gi) || []).map((u) => u.replace(/[),.;]+$/, ''));
       const exe = urls.find((u) => /\.exe(\?|$)/i.test(u)), apk = urls.find((u) => /\.apk(\?|$)/i.test(u));
       if (exe) LINKS.windows = exe; if (apk) LINKS.android = apk;
       paintLinks();

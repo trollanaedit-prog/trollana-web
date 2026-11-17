@@ -40,7 +40,9 @@ self.addEventListener('notificationclick', (e) => {
   const d = e.notification.data || {};
   if (d.FCM_MSG) return;
   e.notification.close();
-  const url = new URL(d.url || './', self.location.href).href;
+  let url = new URL(d.url || './', self.location.href);
+  if (url.origin !== self.location.origin) url = new URL('./', self.location.href);
+  url = url.href;
   e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((ws) => {
     for (const w of ws) if (w.url.startsWith(new URL('./', self.location.href).href)) { w.navigate(url).catch(() => {}); return w.focus(); }
     return self.clients.openWindow(url);
