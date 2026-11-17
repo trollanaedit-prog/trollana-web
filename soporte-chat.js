@@ -65,6 +65,27 @@ function iniciar() {
   // Si ya tenía una conversación abierta, la recuperamos sin molestar
   try { if (localStorage.getItem(LS_ACTIVO) && SOPORTE.worker) (window.requestIdleCallback || setTimeout)(() => conectar().catch(() => {}), { timeout: 3000 }); } catch (_) {}
   d.addEventListener('visibilitychange', () => { if (!d.hidden && S.abierto) marcarLeidas(); });
+  // En el móvil, el chat se adapta a lo que se ve (barra del navegador, barra de Android y teclado)
+  if (VV) { VV.addEventListener('resize', ajustarPantalla); VV.addEventListener('scroll', ajustarPantalla); }
+  addEventListener('resize', ajustarPantalla);
+}
+
+/* ------------------------------ Pantalla visible (móvil) ------------------------------ */
+// En el móvil el chat ocupa justo la parte de la pantalla que se ve: sin la barra del navegador,
+// sin la barra de Android y sin el teclado. Así la caja para escribir siempre está a la vista.
+const VV = window.visualViewport;
+const MOVIL = matchMedia('(max-width: 560px)');
+function ajustarPantalla() {
+  if (!modal) return;
+  const st = modal.style;
+  // Mientras escribe en el móvil se esconde el texto legal de abajo para dejar más sitio a los mensajes
+  root.classList.toggle('scx-teclado', !!(S.abierto && MOVIL.matches && d.activeElement === $('.scx-ta')));
+  if (!S.abierto || !VV || !MOVIL.matches) { st.removeProperty('--scx-alto'); st.removeProperty('--scx-arriba'); return; }
+  st.setProperty('--scx-alto', Math.floor(VV.height) + 'px');
+  st.setProperty('--scx-arriba', Math.max(0, Math.round(VV.offsetTop)) + 'px');
+  // Con el teclado abierto, que se vean los últimos mensajes justo encima de la caja de escribir
+  const box = $('.scx-msgs');
+  if (box && d.activeElement === $('.scx-ta')) box.scrollTop = box.scrollHeight;
 }
 
 function precargar() {
@@ -75,7 +96,7 @@ function precargar() {
 }
 
 async function alAbrir() {
-  S.abierto = true; marcarLeidas(); lanzador();
+  S.abierto = true; marcarLeidas(); lanzador(); ajustarPantalla();
   if (!SOPORTE.worker) { S.vista = 'off'; pintar(); return; }
   if (!S.fb) { S.vista = 'cargando'; pintar(); }
   try { await conectar(); } catch (e) { console.log('soporte · no conecta', e && (e.code || e.message)); S.vista = 'off'; pintar(); return; }
@@ -83,7 +104,7 @@ async function alAbrir() {
   S.bajar = true; pintar(); pedirCuota();
   setTimeout(() => { const ta = $('.scx-ta'); if (ta && !ta.disabled && matchMedia('(pointer:fine)').matches) ta.focus({ preventScroll: true }); }, 260);
 }
-function alCerrar() { S.abierto = false; lanzador(); }
+function alCerrar() { S.abierto = false; lanzador(); ajustarPantalla(); }
 
 /* ------------------------------ Firebase ------------------------------ */
 let conectando = null;
@@ -377,6 +398,9 @@ function $(s) { return root.querySelector(s); }
 function enlazar() {
   const ta = $('.scx-ta');
   ta.addEventListener('input', () => { autoAlto(); pintarComposer(); });
+  // Al tocar para escribir sale el teclado: se reajusta el chat cuando termina de abrirse
+  ta.addEventListener('focus', () => { ajustarPantalla(); setTimeout(ajustarPantalla, 350); });
+  ta.addEventListener('blur', () => setTimeout(ajustarPantalla, 50));
   ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && matchMedia('(pointer:fine)').matches) { e.preventDefault(); enviar(); } });
   ta.addEventListener('paste', (e) => { const f = [...(e.clipboardData ? e.clipboardData.files : [])].find((x) => /^image\//.test(x.type)); if (f) { e.preventDefault(); elegirImagen(f); } });
   $('.scx-send').addEventListener('click', enviar);
@@ -570,6 +594,9 @@ function enlaces(t) {
   return esc(t).replace(/\bhttps?:\/\/[^\s<]+[^\s<.,;:!?)\]'"]/g, (u) => `<a href="${u}" target="_blank" rel="noopener nofollow">${u}</a>`).replace(/\n/g, '<br>');
 }
 function dispositivo() {
+  // Dentro de la app (soporte-app.html) se identifica como «App Android 1.0.11» o «App Windows 2.0.11»
+  const app = typeof window.SOPORTE_DISPOSITIVO === 'string' ? window.SOPORTE_DISPOSITIVO : '';
+  if (app) return app.slice(0, 60);
   const ua = navigator.userAgent;
   const so = /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iPhone/iPad' : /Windows/i.test(ua) ? 'Windows' : /Mac OS X/i.test(ua) ? 'Mac' : /Linux/i.test(ua) ? 'Linux' : 'Otro';
   const nav = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /SamsungBrowser/.test(ua) ? 'Samsung Internet' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'Navegador';
