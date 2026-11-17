@@ -19,7 +19,6 @@ export const SOPORTE = {
   },
   worker: 'https://downloaderv-soporte.downloaderv.workers.dev',
   vapidKey: 'BD5Xt4njpp23kStA6oxp3Hu7s_jAFyniTLIxT7ShEwxDEPE-bgILf4_u6E_mc-LUMNg-xdZLYcBI95qPJLfrIS4',
-  adminEmail: 'downloadervtrollana@gmail.com',
   email: 'downloadervtrollana@gmail.com',
   panelUrl: 'https://downloaderv.com/soporte-panel/',
   limiteDia: 3,

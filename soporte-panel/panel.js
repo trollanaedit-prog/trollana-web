@@ -38,15 +38,20 @@ const P = {
 /* ------------------------------ Vistas ------------------------------ */
 function vista(v) { pn.dataset.vista = v; }
 
-U.onAuthStateChanged(auth, (u) => {
+U.onAuthStateChanged(auth, async (u) => {
   if (!u) { parar(); vista('login'); return; }
-  if (!esAdmin(u)) { parar(); $('#pnDenegadoT').textContent = `Has entrado como ${u.email || 'una cuenta sin correo'}. Usa la cuenta de soporte de downloaderV.`; vista('denegado'); return; }
   if (P.user && P.user.uid === u.uid) return;
+  vista('cargando');
+  if (!(await esAdmin(u))) { parar(); $('#pnDenegadoT').textContent = `Has entrado como ${u.email || 'una cuenta sin correo'}. Esta cuenta no tiene permiso para el panel.`; vista('denegado'); return; }
   P.user = u; vista('app'); arrancar();
 });
 
-function esAdmin(u) {
-  return !!u && u.email === SOPORTE.adminEmail && u.emailVerified && (u.providerData || []).some((p) => p.providerId === 'google.com');
+// El código público no dice qué cuenta es la de soporte: se lo preguntamos a la
+// base de datos, que solo deja leer esta colección a la cuenta autorizada.
+async function esAdmin(u) {
+  if (!u || !u.emailVerified || !(u.providerData || []).some((p) => p.providerId === 'google.com')) return false;
+  try { await F.getDocs(F.query(F.collection(db, 'soporte_admin_tokens'), F.limit(1))); return true; }
+  catch (_) { return false; }
 }
 
 $('#pnEntrar').addEventListener('click', entrar);
@@ -54,7 +59,7 @@ $('#pnCambiar').addEventListener('click', async () => { await U.signOut(auth); e
 
 async function entrar() {
   const prov = new U.GoogleAuthProvider();
-  prov.setCustomParameters({ prompt: 'select_account', login_hint: SOPORTE.adminEmail });
+  prov.setCustomParameters({ prompt: 'select_account' });
   const nota = $('#pnLoginNota');
   try {
     await U.signInWithPopup(auth, prov);
